@@ -10,7 +10,7 @@ import UIKit
 
 class CustomGriddedContentCollectionViewDelegate: DefaultCollectionViewDelegate {
     private let itemsPerRow: CGFloat = 2
-    private let minimumItemSpacing: CGFloat = 15
+    private let minimumItemSpacing: CGFloat = 10
     
     // MARK: - UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView,
