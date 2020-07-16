@@ -9,29 +9,36 @@
 import UIKit
 
 var datasource: [Any] = CellsProvider.get()
+var vc: UICollectionViewController? = nil
 
 class TodayCollectionViewController: UICollectionViewController {
     
     
     private var Delegate: CollectionViewSelectableItemDelegate = {
         let res = CustomGriddedContentCollectionViewDelegate()
-        res.didSelectItem = { _ in
-            print("Item selected")
+        res.didSelectItem = { index in
+            print("\(index.item) Item selected")
+            if datasource[index.item] is Habit {
+                let detailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "HabitDetailsViewController") as? HabitDetailsViewController
+                detailsVC?.habit = datasource[index.item] as? Habit
+                vc?.navigationController?.present(detailsVC!, animated: true, completion: nil)
+            }
         }
         return res
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        vc = self
         self.collectionView.register (
             HabitCollectionViewCell.nib,
             forCellWithReuseIdentifier: HabitCollectionViewCell.reuseID
         )
         
         self.collectionView.register (
-                   ReminderCollectionViewCell.nib,
-                   forCellWithReuseIdentifier: ReminderCollectionViewCell.reuseID
-               )
+            ReminderCollectionViewCell.nib,
+            forCellWithReuseIdentifier: ReminderCollectionViewCell.reuseID
+        )
         
         collectionView.contentInset = .zero
         updatePresentationStyle()
@@ -73,7 +80,7 @@ extension TodayCollectionViewController {
             cell.update(reminder: item)
             return cell
         }
-    fatalError("Wrong cell")
+        fatalError("Wrong cell")
     }
 }
 
