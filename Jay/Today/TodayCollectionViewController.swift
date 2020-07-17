@@ -14,17 +14,17 @@ var vc: UICollectionViewController? = nil
 class TodayCollectionViewController: UICollectionViewController {
     
     
-    private var Delegate: CollectionViewSelectableItemDelegate = {
+    private lazy var Delegate: CollectionViewSelectableItemDelegate = {
         let res = CustomGriddedContentCollectionViewDelegate()
         res.didSelectItem = { index in
             print("\(index.item) Item selected")
             if datasource[index.item] is Habit {
-                let detailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "HabitDetailsViewController") as? HabitDetailsViewController
+                let detailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HabitDetailsViewController") as? HabitDetailsViewController
                 detailsVC?.habit = datasource[index.item] as? Habit
                 vc?.navigationController?.present(detailsVC!, animated: true, completion: nil)
             }
             else if datasource[index.item] is Reminder {
-                let detailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "ReminderDetailsViewController") as? ReminderDetailsViewController
+                let detailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReminderDetailsViewController") as? ReminderDetailsViewController
                 detailsVC?.reminder = datasource[index.item] as? Reminder
                 vc?.navigationController?.present(detailsVC!, animated: true, completion: nil)
             }
@@ -45,11 +45,13 @@ class TodayCollectionViewController: UICollectionViewController {
             forCellWithReuseIdentifier: ReminderCollectionViewCell.reuseID
         )
         
-        collectionView.contentInset = .zero
         updatePresentationStyle()
     }
     
     private func updatePresentationStyle() {
+        if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.estimatedItemSize = CGSize.zero
+        }
         collectionView.delegate = Delegate
         collectionView.performBatchUpdates({
             collectionView.reloadData()
