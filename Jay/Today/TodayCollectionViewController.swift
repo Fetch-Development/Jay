@@ -23,6 +23,11 @@ class TodayCollectionViewController: UICollectionViewController {
                 detailsVC?.habit = datasource[index.item] as? Habit
                 vc?.navigationController?.present(detailsVC!, animated: true, completion: nil)
             }
+            else if datasource[index.item] is Reminder {
+                let detailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "ReminderDetailsViewController") as? ReminderDetailsViewController
+                detailsVC?.reminder = datasource[index.item] as? Reminder
+                vc?.navigationController?.present(detailsVC!, animated: true, completion: nil)
+            }
         }
         return res
     }()

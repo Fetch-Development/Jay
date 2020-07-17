@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		80DC229524C063980076737D /* HabitDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC229424C063980076737D /* HabitDetailsViewController.swift */; };
 		80DC22A824C195630076737D /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC22A724C195630076737D /* AddViewController.swift */; };
+		80DC22B324C1DBDD0076737D /* ReminderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC22B224C1DBDD0076737D /* ReminderDetailsViewController.swift */; };
 		FC85761024BF00060012CDEA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC85760E24BF00060012CDEA /* Main.storyboard */; };
 		FC85761F24BF002E0012CDEA /* CellsStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC85761D24BF002E0012CDEA /* CellsStructs.swift */; };
 		FC85762024BF002E0012CDEA /* CellsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC85761E24BF002E0012CDEA /* CellsProvider.swift */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		80DC229424C063980076737D /* HabitDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailsViewController.swift; sourceTree = "<group>"; };
 		80DC22A724C195630076737D /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		80DC22B224C1DBDD0076737D /* ReminderDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReminderDetailsViewController.swift; path = "Jay/Cell's Views/Reminder/DetailsView/ReminderDetailsViewController.swift"; sourceTree = SOURCE_ROOT; };
 		FC85760524BF00060012CDEA /* Jay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC85760F24BF00060012CDEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FC85761624BF00080012CDEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -72,6 +74,23 @@
 				80DC229424C063980076737D /* HabitDetailsViewController.swift */,
 			);
 			path = "Details View";
+			sourceTree = "<group>";
+		};
+		80DC22B024C1DB720076737D /* Details View */ = {
+			isa = PBXGroup;
+			children = (
+				80DC22B224C1DBDD0076737D /* ReminderDetailsViewController.swift */,
+			);
+			path = "Details View";
+			sourceTree = "<group>";
+		};
+		80DC22B124C1DBB30076737D /* Collection Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FC85762624BF003D0012CDEA /* ReminderCollectionViewCell.swift */,
+				FC85762724BF003D0012CDEA /* ReminderCollectionViewCell.xib */,
+			);
+			path = "Collection Cell";
 			sourceTree = "<group>";
 		};
 		FC8575FC24BF00060012CDEA = {
@@ -133,8 +152,8 @@
 		FC85762524BF003D0012CDEA /* Reminder */ = {
 			isa = PBXGroup;
 			children = (
-				FC85762624BF003D0012CDEA /* ReminderCollectionViewCell.swift */,
-				FC85762724BF003D0012CDEA /* ReminderCollectionViewCell.xib */,
+				80DC22B124C1DBB30076737D /* Collection Cell */,
+				80DC22B024C1DB720076737D /* Details View */,
 			);
 			path = Reminder;
 			sourceTree = "<group>";
@@ -243,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC85762A24BF003D0012CDEA /* ReminderCollectionViewCell.swift in Sources */,
+				80DC22B324C1DBDD0076737D /* ReminderDetailsViewController.swift in Sources */,
 				FC85762024BF002E0012CDEA /* CellsProvider.swift in Sources */,
 				FC85761F24BF002E0012CDEA /* CellsStructs.swift in Sources */,
 				80DC22A824C195630076737D /* AddViewController.swift in Sources */,
@@ -398,13 +418,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3BJD363R2V;
 				INFOPLIST_FILE = Jay/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Fetch.Jay;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Fetch.Jay4CV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -418,13 +439,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3BJD363R2V;
 				INFOPLIST_FILE = Jay/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Fetch.Jay;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Fetch.Jay4CV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

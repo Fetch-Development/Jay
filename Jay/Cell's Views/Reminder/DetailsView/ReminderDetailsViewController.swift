@@ -1,22 +1,22 @@
 //
-//  HabitDetailsViewController.swift
+//  ReminderDetailsViewController.swift
 //  Jay
 //
-//  Created by Vova on 16.07.2020.
+//  Created by Vova on 17.07.2020.
 //  Copyright © 2020 Fetch Development. All rights reserved.
 //
 
-
 import UIKit
 
-class HabitDetailsViewController: UIViewController {
+class ReminderDetailsViewController: UIViewController {
+
+    @IBOutlet weak var CloseButton: UIBarButtonItem!
+    @IBOutlet weak var label: UILabel!
     
-    var habit: Habit? = nil
-    @IBOutlet weak var Label: UILabel!
-    @IBOutlet weak var Close: UIBarButtonItem!
+    var reminder: Reminder? = nil
     
     override func viewDidLoad() {
-        Label.text = habit?.name ?? "no data"
+        label.text = reminder?.name ?? "no data"
         super.viewDidLoad()
     }
     
@@ -24,5 +24,5 @@ class HabitDetailsViewController: UIViewController {
         navigationController?.popViewController(animated: true)
         dismiss(animated: true, completion: nil)
     }
+    
 }
-

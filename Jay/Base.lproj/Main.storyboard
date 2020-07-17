@@ -144,35 +144,91 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Y3-IY-nrw">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Y3-IY-nrw">
                                 <rect key="frame" x="100" y="144" width="214" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S6O-X2-PVt">
-                                <rect key="frame" x="200" y="631" width="16" height="31"/>
-                            </switch>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P1w-bK-XQk">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Habit" id="iNz-oW-7or">
+                                        <barButtonItem key="leftBarButtonItem" title="Close" id="Uvk-Qp-Rh0">
+                                            <connections>
+                                                <action selector="close:" destination="dzq-4H-OT6" id="lDg-Td-jXZ"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="P1w-bK-XQk" firstAttribute="leading" secondItem="taS-C1-762" secondAttribute="leading" id="38n-jt-ec4"/>
                             <constraint firstItem="0Y3-IY-nrw" firstAttribute="top" secondItem="taS-C1-762" secondAttribute="top" constant="100" id="FgY-3g-8rH"/>
+                            <constraint firstItem="P1w-bK-XQk" firstAttribute="top" secondItem="taS-C1-762" secondAttribute="top" id="GHv-mP-Op2"/>
                             <constraint firstItem="0Y3-IY-nrw" firstAttribute="leading" secondItem="taS-C1-762" secondAttribute="leading" constant="100" id="GUJ-8z-FZj"/>
-                            <constraint firstItem="taS-C1-762" firstAttribute="trailing" secondItem="S6O-X2-PVt" secondAttribute="trailing" constant="200" id="NKc-Yl-p8q"/>
                             <constraint firstItem="taS-C1-762" firstAttribute="trailing" secondItem="0Y3-IY-nrw" secondAttribute="trailing" constant="100" id="QAK-5h-7fX"/>
-                            <constraint firstItem="S6O-X2-PVt" firstAttribute="leading" secondItem="taS-C1-762" secondAttribute="leading" constant="200" id="Yfl-nI-pNH"/>
-                            <constraint firstItem="taS-C1-762" firstAttribute="bottom" secondItem="S6O-X2-PVt" secondAttribute="bottom" constant="200" id="t8h-mS-vcI"/>
+                            <constraint firstItem="P1w-bK-XQk" firstAttribute="trailing" secondItem="taS-C1-762" secondAttribute="trailing" id="VbD-GU-3Us"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="taS-C1-762"/>
                     </view>
                     <connections>
                         <outlet property="Label" destination="0Y3-IY-nrw" id="G9R-gA-BKp"/>
-                        <outlet property="State" destination="S6O-X2-PVt" id="y2N-WL-EQh"/>
+                        <outlet property="close" destination="Uvk-Qp-Rh0" id="hk5-RU-S47"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TZt-8d-vQB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="587" y="-121"/>
+            <point key="canvasLocation" x="-120" y="368"/>
+        </scene>
+        <!--Reminder Details View Controller-->
+        <scene sceneID="QHP-aX-fcB">
+            <objects>
+                <viewController storyboardIdentifier="ReminderDetailsViewController" id="WEU-bO-Ezu" customClass="ReminderDetailsViewController" customModule="Jay" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="79i-GF-rTW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mLb-pc-5ua">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Reminder" id="VkD-RV-jTJ">
+                                        <barButtonItem key="leftBarButtonItem" title="Close" id="d9V-ZY-H38">
+                                            <connections>
+                                                <action selector="close:" destination="WEU-bO-Ezu" id="e15-aL-mJO"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Atg-l4-7p9">
+                                <rect key="frame" x="100" y="130" width="214" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="mLb-pc-5ua" firstAttribute="leading" secondItem="Zau-5x-poF" secondAttribute="leading" id="6Z1-0o-j0q"/>
+                            <constraint firstItem="mLb-pc-5ua" firstAttribute="top" secondItem="Zau-5x-poF" secondAttribute="top" id="KzW-gh-lCU"/>
+                            <constraint firstItem="mLb-pc-5ua" firstAttribute="trailing" secondItem="Zau-5x-poF" secondAttribute="trailing" id="a1C-BN-Vwr"/>
+                            <constraint firstItem="Zau-5x-poF" firstAttribute="trailing" secondItem="Atg-l4-7p9" secondAttribute="trailing" constant="100" id="j9U-Or-m39"/>
+                            <constraint firstItem="Atg-l4-7p9" firstAttribute="leading" secondItem="Zau-5x-poF" secondAttribute="leading" constant="100" id="sBt-5g-RDE"/>
+                            <constraint firstItem="Atg-l4-7p9" firstAttribute="top" secondItem="Zau-5x-poF" secondAttribute="top" constant="86" id="tMO-FT-zFE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Zau-5x-poF"/>
+                    </view>
+                    <connections>
+                        <outlet property="CloseButton" destination="d9V-ZY-H38" id="qbm-O0-NKX"/>
+                        <outlet property="label" destination="Atg-l4-7p9" id="iTH-MH-7IZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lum-tC-Ls7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="677" y="367"/>
         </scene>
     </scenes>
     <resources>
