@@ -51,6 +51,15 @@ class TodayCollectionViewController: UICollectionViewController {
         }, completion: nil)
     }
     
+    // add button reload seque
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "addButton" else { return }
+        guard let destination = segue.destination as? AddViewController else { return }
+        destination.reload = {
+            self.collectionView.reloadData()
+        }
+    }
+    
 }
 
 // MARK: UICollectionViewDataSource & UICollectionViewDelegate

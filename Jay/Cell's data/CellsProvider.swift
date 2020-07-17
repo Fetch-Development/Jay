@@ -14,9 +14,6 @@ struct CellsProvider {
             Habit(name: "1", state: false), Habit(name: "2", state: false),
             Reminder(name: "12345", state: false),
             Reminder(name: "67890", state: false),
-            Habit(name: "3", state: false), Habit(name: "4", state: false),
-            Habit(name: "5", state: false), Habit(name: "6", state: false),
-            Reminder(name: "09876", state: false)
         ]
     }
 }

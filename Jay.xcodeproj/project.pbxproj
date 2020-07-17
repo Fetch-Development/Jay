@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		80DC229524C063980076737D /* HabitDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC229424C063980076737D /* HabitDetailsViewController.swift */; };
+		80DC22A824C195630076737D /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC22A724C195630076737D /* AddViewController.swift */; };
 		FC85761024BF00060012CDEA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC85760E24BF00060012CDEA /* Main.storyboard */; };
 		FC85761F24BF002E0012CDEA /* CellsStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC85761D24BF002E0012CDEA /* CellsStructs.swift */; };
 		FC85762024BF002E0012CDEA /* CellsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC85761E24BF002E0012CDEA /* CellsProvider.swift */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		80DC229424C063980076737D /* HabitDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailsViewController.swift; sourceTree = "<group>"; };
+		80DC22A724C195630076737D /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		FC85760524BF00060012CDEA /* Jay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC85760F24BF00060012CDEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FC85761624BF00080012CDEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -91,9 +93,9 @@
 		FC85760724BF00060012CDEA /* Jay */ = {
 			isa = PBXGroup;
 			children = (
+				FC85761C24BF002E0012CDEA /* Cell's data */,
 				FC85762124BF003D0012CDEA /* Cell's Views */,
 				FC85763624BF004B0012CDEA /* Today */,
-				FC85761C24BF002E0012CDEA /* Cell's data */,
 				FC85761624BF00080012CDEA /* Info.plist */,
 				FC85760E24BF00060012CDEA /* Main.storyboard */,
 				FC85762C24BF00440012CDEA /* Supporting Files */,
@@ -153,6 +155,7 @@
 			children = (
 				FC85763724BF004B0012CDEA /* CustomLayout */,
 				FC85763A24BF004B0012CDEA /* TodayCollectionViewController.swift */,
+				80DC22A724C195630076737D /* AddViewController.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				FC85762A24BF003D0012CDEA /* ReminderCollectionViewCell.swift in Sources */,
 				FC85762024BF002E0012CDEA /* CellsProvider.swift in Sources */,
 				FC85761F24BF002E0012CDEA /* CellsStructs.swift in Sources */,
+				80DC22A824C195630076737D /* AddViewController.swift in Sources */,
 				FC85763424BF00440012CDEA /* AppDelegate.swift in Sources */,
 				FC85762824BF003D0012CDEA /* HabitCollectionViewCell.swift in Sources */,
 				FC85763C24BF004B0012CDEA /* DefaultCollectionViewDelegate.swift in Sources */,
