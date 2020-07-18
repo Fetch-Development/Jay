@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomGriddedCalendarCollectionViewDelegate: DefaultCollectionViewDelegate {
+class CustomGriddedCalendarCollectionViewDelegate: CalendarCollectionViewDelegate {
     private let itemsPerRow: CGFloat = 7
     private let minimumItemSpacing: CGFloat = 10
     

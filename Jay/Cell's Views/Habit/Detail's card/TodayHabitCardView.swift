@@ -38,7 +38,7 @@ class TodayHabitCardView: UIView, ChartViewDelegate, UICollectionViewDataSource,
         history: JayData.JayHabitHistory(habits: [])
     )
     let successGreenColor = UIColor.init(displayP3Red: 91/255, green: 199/255, blue: 122/255, alpha: 1)
-    var delegate = CalendarCollectionViewDelegate()
+    var delegate = CustomGriddedCalendarCollectionViewDelegate()
     public static var startingWeekday = 0
     var cellsPrinted = 0
     var daysInMonth = 0
@@ -193,7 +193,6 @@ class TodayHabitCardView: UIView, ChartViewDelegate, UICollectionViewDataSource,
             collectionViewLayout: UICollectionViewFlowLayout()
         )
         collectionView.dataSource = self
-        collectionView.delegate = self
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
         collectionView.alwaysBounceVertical = true
         collectionView.backgroundColor = .white

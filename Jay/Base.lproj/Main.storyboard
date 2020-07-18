@@ -92,7 +92,7 @@
                     <navigationItem key="navigationItem" title="Today" id="oqy-Te-1Do">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="c3e-Vm-nI3">
                             <connections>
-                                <segue destination="KLv-SR-0e6" kind="presentation" identifier="addButton" id="x4B-qh-8oZ"/>
+                                <segue destination="KLv-SR-0e6" kind="presentation" id="eu9-Vl-rsU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
