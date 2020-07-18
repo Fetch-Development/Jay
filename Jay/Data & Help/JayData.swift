@@ -58,13 +58,50 @@ class JayData {
     // MARK: - Data Provider
 
     func getAvaliableCellsIDs() -> [Int] {
-        return [1, 2]
+        return [1, 2, 3]
     }
     
     // TODO: Make actual API
     private var data: [Int: Generic] = [
         1: Generic(type: .reminder, obj: Reminder(name: "1", state: false)),
-        2: Generic(type: .reminder, obj: Reminder(name: "2", state: false))
+        2: Generic(type: .reminder, obj: Reminder(name: "2", state: false)),
+        3: Generic(type: .habit, obj: {
+            let history = JayData.JayHabitHistory(
+                habits: [
+                    JayData.JayHabitHistoricalValue(
+                        completed: 2,
+                        wanted: 2,
+                        state: .completed
+                    ),
+                     JayData.JayHabitHistoricalValue(
+                        completed: 1,
+                        wanted: 2,
+                        state: .incompleted
+                    ),
+                    JayData.JayHabitHistoricalValue(
+                        completed: 0,
+                        wanted: 2,
+                        state: .untouched
+                    ),
+                    JayData.JayHabitHistoricalValue(
+                        completed: 2,
+                        wanted: 2,
+                        state: .completed
+                    ),
+                    
+                ]
+            )
+            let data = JayData.Habit(
+                name: "temp",
+                createdAt: Jay.dateFromComponents(day: 1, month: 7, year: 2020),
+                completed: 0,
+                wanted: 2,
+                state: .untouched,
+                history: history
+            )
+            return data
+        }()
+        )
     ]
     
     // TODO: Make actual API

@@ -13,7 +13,7 @@ func getDetailsVC(id: Int) -> UIViewController {
     
     switch data.type {
     case .habit:
-        var vc = UIViewController()
+        let vc = UIViewController()
         let habitView: TodayHabitCardView =
             TodayHabitCardView(data: data.obj as! JayData.Habit, frame: vc.view.frame)
         
