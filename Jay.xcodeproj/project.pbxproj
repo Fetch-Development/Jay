@@ -11,8 +11,8 @@
 		80DC22B324C1DBDD0076737D /* ReminderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC22B224C1DBDD0076737D /* ReminderDetailsViewController.swift */; };
 		80DC22B924C2ECD70076737D /* TodayHabitCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC22B824C2ECD70076737D /* TodayHabitCardView.swift */; };
 		80DC22BA24C2ECD70076737D /* JayData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC22B624C2ECD60076737D /* JayData.swift */; };
-		80DC22BD24C2ECDE0076737D /* DefaultCollectionViewDelegate1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC22BC24C2ECDE0076737D /* DefaultCollectionViewDelegate1.swift */; };
-		80DC22BE24C2ECDE0076737D /* CustomGriddedContentCollectionViewDelegate1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC22BB24C2ECDE0076737D /* CustomGriddedContentCollectionViewDelegate1.swift */; };
+		80DC22BD24C2ECDE0076737D /* CalendarViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC22BC24C2ECDE0076737D /* CalendarViewDelegate.swift */; };
+		80DC22BE24C2ECDE0076737D /* CalendarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC22BB24C2ECDE0076737D /* CalendarDelegate.swift */; };
 		80DC22C224C2EDB70076737D /* GetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC22C124C2EDB70076737D /* GetVC.swift */; };
 		80DC22C424C2FD3A0076737D /* JayLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC22C324C2FD3A0076737D /* JayLibrary.swift */; };
 		80DC22C524C312F60076737D /* TodayHabitCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80DC22B724C2ECD60076737D /* TodayHabitCard.xib */; };
@@ -40,8 +40,8 @@
 		80DC22B624C2ECD60076737D /* JayData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JayData.swift; sourceTree = "<group>"; };
 		80DC22B724C2ECD60076737D /* TodayHabitCard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodayHabitCard.xib; sourceTree = "<group>"; };
 		80DC22B824C2ECD70076737D /* TodayHabitCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayHabitCardView.swift; sourceTree = "<group>"; };
-		80DC22BB24C2ECDE0076737D /* CustomGriddedContentCollectionViewDelegate1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGriddedContentCollectionViewDelegate1.swift; sourceTree = "<group>"; };
-		80DC22BC24C2ECDE0076737D /* DefaultCollectionViewDelegate1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCollectionViewDelegate1.swift; sourceTree = "<group>"; };
+		80DC22BB24C2ECDE0076737D /* CalendarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDelegate.swift; sourceTree = "<group>"; };
+		80DC22BC24C2ECDE0076737D /* CalendarViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewDelegate.swift; sourceTree = "<group>"; };
 		80DC22C124C2EDB70076737D /* GetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetVC.swift; sourceTree = "<group>"; };
 		80DC22C324C2FD3A0076737D /* JayLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JayLibrary.swift; sourceTree = "<group>"; };
 		FC85760524BF00060012CDEA /* Jay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jay.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,8 +120,8 @@
 		80DC22C024C2ED040076737D /* Custom layout */ = {
 			isa = PBXGroup;
 			children = (
-				80DC22BB24C2ECDE0076737D /* CustomGriddedContentCollectionViewDelegate1.swift */,
-				80DC22BC24C2ECDE0076737D /* DefaultCollectionViewDelegate1.swift */,
+				80DC22BB24C2ECDE0076737D /* CalendarDelegate.swift */,
+				80DC22BC24C2ECDE0076737D /* CalendarViewDelegate.swift */,
 			);
 			path = "Custom layout";
 			sourceTree = "<group>";
@@ -351,10 +351,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC85762A24BF003D0012CDEA /* ReminderCollectionViewCell.swift in Sources */,
-				80DC22BD24C2ECDE0076737D /* DefaultCollectionViewDelegate1.swift in Sources */,
+				80DC22BD24C2ECDE0076737D /* CalendarViewDelegate.swift in Sources */,
 				80DC22B324C1DBDD0076737D /* ReminderDetailsViewController.swift in Sources */,
 				80DC22C424C2FD3A0076737D /* JayLibrary.swift in Sources */,
-				80DC22BE24C2ECDE0076737D /* CustomGriddedContentCollectionViewDelegate1.swift in Sources */,
+				80DC22BE24C2ECDE0076737D /* CalendarDelegate.swift in Sources */,
 				80DC22A824C195630076737D /* AddViewController.swift in Sources */,
 				FC85763424BF00440012CDEA /* AppDelegate.swift in Sources */,
 				FC85762824BF003D0012CDEA /* HabitCollectionViewCell.swift in Sources */,
