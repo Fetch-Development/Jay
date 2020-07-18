@@ -15,6 +15,7 @@
 		80DC22BE24C2ECDE0076737D /* CustomGriddedContentCollectionViewDelegate1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC22BB24C2ECDE0076737D /* CustomGriddedContentCollectionViewDelegate1.swift */; };
 		80DC22C224C2EDB70076737D /* GetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC22C124C2EDB70076737D /* GetVC.swift */; };
 		80DC22C424C2FD3A0076737D /* JayLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC22C324C2FD3A0076737D /* JayLibrary.swift */; };
+		80DC22C524C312F60076737D /* TodayHabitCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80DC22B724C2ECD60076737D /* TodayHabitCard.xib */; };
 		80F20017B04CE5E31B455BF2 /* Pods_Jay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 084637202D88F620A9097123 /* Pods_Jay.framework */; };
 		FC85761024BF00060012CDEA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC85760E24BF00060012CDEA /* Main.storyboard */; };
 		FC85762824BF003D0012CDEA /* HabitCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC85762324BF003D0012CDEA /* HabitCollectionViewCell.swift */; };
@@ -154,7 +155,7 @@
 		FC85760724BF00060012CDEA /* Jay */ = {
 			isa = PBXGroup;
 			children = (
-				FC85761C24BF002E0012CDEA /* Data & Help */,
+				FC85761C24BF002E0012CDEA /* Core */,
 				FC85762124BF003D0012CDEA /* Cell's Views */,
 				FC85763624BF004B0012CDEA /* Today */,
 				FC85761624BF00080012CDEA /* Info.plist */,
@@ -164,13 +165,13 @@
 			path = Jay;
 			sourceTree = "<group>";
 		};
-		FC85761C24BF002E0012CDEA /* Data & Help */ = {
+		FC85761C24BF002E0012CDEA /* Core */ = {
 			isa = PBXGroup;
 			children = (
 				80DC22B624C2ECD60076737D /* JayData.swift */,
 				80DC22C324C2FD3A0076737D /* JayLibrary.swift */,
 			);
-			path = "Data & Help";
+			path = Core;
 			sourceTree = "<group>";
 		};
 		FC85762124BF003D0012CDEA /* Cell's Views */ = {
@@ -293,6 +294,7 @@
 			files = (
 				FC85762B24BF003D0012CDEA /* ReminderCollectionViewCell.xib in Resources */,
 				FC85761024BF00060012CDEA /* Main.storyboard in Resources */,
+				80DC22C524C312F60076737D /* TodayHabitCard.xib in Resources */,
 				FC85763324BF00440012CDEA /* LaunchScreen.storyboard in Resources */,
 				FC85763224BF00440012CDEA /* Assets.xcassets in Resources */,
 				FC85762924BF003D0012CDEA /* HabitCollectionViewCell.xib in Resources */,

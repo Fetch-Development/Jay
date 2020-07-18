@@ -104,12 +104,12 @@ class JayData {
         )
     ]
     
-    // TODO: Make actual API
+    // FIXME: Make actual API
     func id2cell(id: Int) -> Generic {
         return data[id]!
     }
     
-    // TODO: Make actual API
+    // FIXME: Make actual API
     func add(type: DataType, obj: Any) {
         
     }
