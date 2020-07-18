@@ -17,13 +17,10 @@ class CustomGriddedContentCollectionViewDelegate: DefaultCollectionViewDelegate 
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemSize: CGSize
-        let data = DataProvider.id2cell(id: cellID[indexPath.item])
-        
-        switch data.type {
-        case .reminder:
+        if datasource[indexPath.item] is Reminder {
             let itemWidth = collectionView.bounds.width - (sectionInsets.left + sectionInsets.right)
             itemSize = CGSize(width: itemWidth, height: 60)
-        case .habit:
+        } else {
             let paddingSpace = sectionInsets.left + sectionInsets.right + minimumItemSpacing * (itemsPerRow - 1)
             let availableWidth = collectionView.bounds.width - paddingSpace
             let widthPerItem = Int(availableWidth / itemsPerRow)

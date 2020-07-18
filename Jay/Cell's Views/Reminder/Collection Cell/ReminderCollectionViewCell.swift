@@ -28,7 +28,7 @@ class ReminderCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
     }
     
-    func update(reminder: Reminder) {
+    func update(reminder: JayData.Reminder) {
         Label.text = reminder.name
     }
 }

@@ -3,16 +3,20 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		80DC229524C063980076737D /* HabitDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC229424C063980076737D /* HabitDetailsViewController.swift */; };
 		80DC22A824C195630076737D /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC22A724C195630076737D /* AddViewController.swift */; };
 		80DC22B324C1DBDD0076737D /* ReminderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC22B224C1DBDD0076737D /* ReminderDetailsViewController.swift */; };
+		80DC22B924C2ECD70076737D /* TodayHabitCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC22B824C2ECD70076737D /* TodayHabitCardView.swift */; };
+		80DC22BA24C2ECD70076737D /* JayData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC22B624C2ECD60076737D /* JayData.swift */; };
+		80DC22BD24C2ECDE0076737D /* DefaultCollectionViewDelegate1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC22BC24C2ECDE0076737D /* DefaultCollectionViewDelegate1.swift */; };
+		80DC22BE24C2ECDE0076737D /* CustomGriddedContentCollectionViewDelegate1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC22BB24C2ECDE0076737D /* CustomGriddedContentCollectionViewDelegate1.swift */; };
+		80DC22C224C2EDB70076737D /* GetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC22C124C2EDB70076737D /* GetVC.swift */; };
+		80DC22C424C2FD3A0076737D /* JayLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC22C324C2FD3A0076737D /* JayLibrary.swift */; };
+		80F20017B04CE5E31B455BF2 /* Pods_Jay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 084637202D88F620A9097123 /* Pods_Jay.framework */; };
 		FC85761024BF00060012CDEA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC85760E24BF00060012CDEA /* Main.storyboard */; };
-		FC85761F24BF002E0012CDEA /* CellsStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC85761D24BF002E0012CDEA /* CellsStructs.swift */; };
-		FC85762024BF002E0012CDEA /* CellsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC85761E24BF002E0012CDEA /* CellsProvider.swift */; };
 		FC85762824BF003D0012CDEA /* HabitCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC85762324BF003D0012CDEA /* HabitCollectionViewCell.swift */; };
 		FC85762924BF003D0012CDEA /* HabitCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC85762424BF003D0012CDEA /* HabitCollectionViewCell.xib */; };
 		FC85762A24BF003D0012CDEA /* ReminderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC85762624BF003D0012CDEA /* ReminderCollectionViewCell.swift */; };
@@ -27,14 +31,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		80DC229424C063980076737D /* HabitDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailsViewController.swift; sourceTree = "<group>"; };
+		084637202D88F620A9097123 /* Pods_Jay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3894EA69F9674942E0F28381 /* Pods-Jay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jay.release.xcconfig"; path = "Target Support Files/Pods-Jay/Pods-Jay.release.xcconfig"; sourceTree = "<group>"; };
+		41D9FD4AA2F9174F3D1EBDA1 /* Pods-Jay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jay.debug.xcconfig"; path = "Target Support Files/Pods-Jay/Pods-Jay.debug.xcconfig"; sourceTree = "<group>"; };
 		80DC22A724C195630076737D /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		80DC22B224C1DBDD0076737D /* ReminderDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReminderDetailsViewController.swift; path = "Jay/Cell's Views/Reminder/DetailsView/ReminderDetailsViewController.swift"; sourceTree = SOURCE_ROOT; };
+		80DC22B624C2ECD60076737D /* JayData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JayData.swift; sourceTree = "<group>"; };
+		80DC22B724C2ECD60076737D /* TodayHabitCard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodayHabitCard.xib; sourceTree = "<group>"; };
+		80DC22B824C2ECD70076737D /* TodayHabitCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayHabitCardView.swift; sourceTree = "<group>"; };
+		80DC22BB24C2ECDE0076737D /* CustomGriddedContentCollectionViewDelegate1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGriddedContentCollectionViewDelegate1.swift; sourceTree = "<group>"; };
+		80DC22BC24C2ECDE0076737D /* DefaultCollectionViewDelegate1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCollectionViewDelegate1.swift; sourceTree = "<group>"; };
+		80DC22C124C2EDB70076737D /* GetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetVC.swift; sourceTree = "<group>"; };
+		80DC22C324C2FD3A0076737D /* JayLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JayLibrary.swift; sourceTree = "<group>"; };
 		FC85760524BF00060012CDEA /* Jay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC85760F24BF00060012CDEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FC85761624BF00080012CDEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FC85761D24BF002E0012CDEA /* CellsStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellsStructs.swift; sourceTree = "<group>"; };
-		FC85761E24BF002E0012CDEA /* CellsProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellsProvider.swift; sourceTree = "<group>"; };
 		FC85762324BF003D0012CDEA /* HabitCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitCollectionViewCell.swift; sourceTree = "<group>"; };
 		FC85762424BF003D0012CDEA /* HabitCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HabitCollectionViewCell.xib; sourceTree = "<group>"; };
 		FC85762624BF003D0012CDEA /* ReminderCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -53,12 +64,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80F20017B04CE5E31B455BF2 /* Pods_Jay.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		40B0DC8AED4731F0121AD275 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				41D9FD4AA2F9174F3D1EBDA1 /* Pods-Jay.debug.xcconfig */,
+				3894EA69F9674942E0F28381 /* Pods-Jay.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		80DC226E24BF15B60076737D /* Collection Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -66,14 +87,6 @@
 				FC85762424BF003D0012CDEA /* HabitCollectionViewCell.xib */,
 			);
 			path = "Collection Cell";
-			sourceTree = "<group>";
-		};
-		80DC227324BF15FE0076737D /* Details View */ = {
-			isa = PBXGroup;
-			children = (
-				80DC229424C063980076737D /* HabitDetailsViewController.swift */,
-			);
-			path = "Details View";
 			sourceTree = "<group>";
 		};
 		80DC22B024C1DB720076737D /* Details View */ = {
@@ -93,11 +106,40 @@
 			path = "Collection Cell";
 			sourceTree = "<group>";
 		};
+		80DC22BF24C2ECF00076737D /* Detail's card */ = {
+			isa = PBXGroup;
+			children = (
+				80DC22B724C2ECD60076737D /* TodayHabitCard.xib */,
+				80DC22B824C2ECD70076737D /* TodayHabitCardView.swift */,
+				80DC22C024C2ED040076737D /* Custom layout */,
+			);
+			path = "Detail's card";
+			sourceTree = "<group>";
+		};
+		80DC22C024C2ED040076737D /* Custom layout */ = {
+			isa = PBXGroup;
+			children = (
+				80DC22BB24C2ECDE0076737D /* CustomGriddedContentCollectionViewDelegate1.swift */,
+				80DC22BC24C2ECDE0076737D /* DefaultCollectionViewDelegate1.swift */,
+			);
+			path = "Custom layout";
+			sourceTree = "<group>";
+		};
+		E3BDFE84A63CF365EB39FFDC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				084637202D88F620A9097123 /* Pods_Jay.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FC8575FC24BF00060012CDEA = {
 			isa = PBXGroup;
 			children = (
 				FC85760724BF00060012CDEA /* Jay */,
 				FC85760624BF00060012CDEA /* Products */,
+				40B0DC8AED4731F0121AD275 /* Pods */,
+				E3BDFE84A63CF365EB39FFDC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,7 +154,7 @@
 		FC85760724BF00060012CDEA /* Jay */ = {
 			isa = PBXGroup;
 			children = (
-				FC85761C24BF002E0012CDEA /* Cell's data */,
+				FC85761C24BF002E0012CDEA /* Data & Help */,
 				FC85762124BF003D0012CDEA /* Cell's Views */,
 				FC85763624BF004B0012CDEA /* Today */,
 				FC85761624BF00080012CDEA /* Info.plist */,
@@ -122,18 +164,19 @@
 			path = Jay;
 			sourceTree = "<group>";
 		};
-		FC85761C24BF002E0012CDEA /* Cell's data */ = {
+		FC85761C24BF002E0012CDEA /* Data & Help */ = {
 			isa = PBXGroup;
 			children = (
-				FC85761D24BF002E0012CDEA /* CellsStructs.swift */,
-				FC85761E24BF002E0012CDEA /* CellsProvider.swift */,
+				80DC22B624C2ECD60076737D /* JayData.swift */,
+				80DC22C324C2FD3A0076737D /* JayLibrary.swift */,
 			);
-			path = "Cell's data";
+			path = "Data & Help";
 			sourceTree = "<group>";
 		};
 		FC85762124BF003D0012CDEA /* Cell's Views */ = {
 			isa = PBXGroup;
 			children = (
+				80DC22C124C2EDB70076737D /* GetVC.swift */,
 				FC85762224BF003D0012CDEA /* Habit */,
 				FC85762524BF003D0012CDEA /* Reminder */,
 			);
@@ -143,8 +186,8 @@
 		FC85762224BF003D0012CDEA /* Habit */ = {
 			isa = PBXGroup;
 			children = (
+				80DC22BF24C2ECF00076737D /* Detail's card */,
 				80DC226E24BF15B60076737D /* Collection Cell */,
-				80DC227324BF15FE0076737D /* Details View */,
 			);
 			path = Habit;
 			sourceTree = "<group>";
@@ -195,9 +238,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FC85761924BF00080012CDEA /* Build configuration list for PBXNativeTarget "Jay" */;
 			buildPhases = (
+				827FF28E3A9F05F4BB99A574 /* [CP] Check Pods Manifest.lock */,
 				FC85760124BF00060012CDEA /* Sources */,
 				FC85760224BF00060012CDEA /* Frameworks */,
 				FC85760324BF00060012CDEA /* Resources */,
+				AC23DEFC1CF0DCB24287EC54 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -256,22 +301,67 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		827FF28E3A9F05F4BB99A574 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Jay-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AC23DEFC1CF0DCB24287EC54 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Jay/Pods-Jay-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Jay/Pods-Jay-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Jay/Pods-Jay-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FC85760124BF00060012CDEA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				FC85762A24BF003D0012CDEA /* ReminderCollectionViewCell.swift in Sources */,
+				80DC22BD24C2ECDE0076737D /* DefaultCollectionViewDelegate1.swift in Sources */,
 				80DC22B324C1DBDD0076737D /* ReminderDetailsViewController.swift in Sources */,
-				FC85762024BF002E0012CDEA /* CellsProvider.swift in Sources */,
-				FC85761F24BF002E0012CDEA /* CellsStructs.swift in Sources */,
+				80DC22C424C2FD3A0076737D /* JayLibrary.swift in Sources */,
+				80DC22BE24C2ECDE0076737D /* CustomGriddedContentCollectionViewDelegate1.swift in Sources */,
 				80DC22A824C195630076737D /* AddViewController.swift in Sources */,
 				FC85763424BF00440012CDEA /* AppDelegate.swift in Sources */,
 				FC85762824BF003D0012CDEA /* HabitCollectionViewCell.swift in Sources */,
 				FC85763C24BF004B0012CDEA /* DefaultCollectionViewDelegate.swift in Sources */,
+				80DC22BA24C2ECD70076737D /* JayData.swift in Sources */,
 				FC85763B24BF004B0012CDEA /* CustomGriddedContentCollectionViewDelegate.swift in Sources */,
+				80DC22B924C2ECD70076737D /* TodayHabitCardView.swift in Sources */,
 				FC85763524BF00440012CDEA /* SceneDelegate.swift in Sources */,
-				80DC229524C063980076737D /* HabitDetailsViewController.swift in Sources */,
+				80DC22C224C2EDB70076737D /* GetVC.swift in Sources */,
 				FC85763D24BF004B0012CDEA /* TodayCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,13 +504,14 @@
 		};
 		FC85761A24BF00080012CDEA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41D9FD4AA2F9174F3D1EBDA1 /* Pods-Jay.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3BJD363R2V;
 				INFOPLIST_FILE = Jay/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -435,13 +526,14 @@
 		};
 		FC85761B24BF00080012CDEA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3894EA69F9674942E0F28381 /* Pods-Jay.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3BJD363R2V;
 				INFOPLIST_FILE = Jay/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -13,7 +13,7 @@ class ReminderDetailsViewController: UIViewController {
     @IBOutlet weak var CloseButton: UIBarButtonItem!
     @IBOutlet weak var label: UILabel!
     
-    var reminder: Reminder? = nil
+    var reminder: JayData.Reminder? = nil
     
     override func viewDidLoad() {
         label.text = reminder?.name ?? "no data"

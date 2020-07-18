@@ -29,7 +29,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
     }
     
-    func update(habit: Habit) {
+    func update(habit: JayData.Habit) {
         Label.text = habit.name
     }
 }

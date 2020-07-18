@@ -8,18 +8,22 @@
 
 import UIKit
 
-var DataProvider = JayData()
-var cellID: [Int] = DataProvider.getAvaliableCellsIDs()
+var datasource: [Any] = CellsProvider.get()
 var vc: UICollectionViewController? = nil
 
 class TodayCollectionViewController: UICollectionViewController {
     
     
-    private lazy var Delegate: CollectionViewSelectableItemDelegate = {
+    private var Delegate: CollectionViewSelectableItemDelegate = {
         let res = CustomGriddedContentCollectionViewDelegate()
         res.didSelectItem = { index in
-            vc?.navigationController?.present(getDetailsVC(id: cellID[index.item]), animated: true, completion: nil)
+            print("\(index.item) Item selected")
+            if datasource[index.item] is Habit {
+                let detailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "HabitDetailsViewController") as? HabitDetailsViewController
+                detailsVC?.habit = datasource[index.item] as? Habit
+                vc?.navigationController?.present(detailsVC!, animated: true, completion: nil)
             }
+        }
         return res
     }()
     
@@ -36,26 +40,15 @@ class TodayCollectionViewController: UICollectionViewController {
             forCellWithReuseIdentifier: ReminderCollectionViewCell.reuseID
         )
         
+        collectionView.contentInset = .zero
         updatePresentationStyle()
     }
     
     private func updatePresentationStyle() {
-        if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.estimatedItemSize = CGSize.zero
-        }
         collectionView.delegate = Delegate
         collectionView.performBatchUpdates({
             collectionView.reloadData()
         }, completion: nil)
-    }
-    
-    // add button reload seque
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "addButton" else { return }
-        guard let destination = segue.destination as? AddViewController else { return }
-        destination.reload = {
-            self.collectionView.reloadData()
-        }
     }
     
 }
@@ -63,30 +56,28 @@ class TodayCollectionViewController: UICollectionViewController {
 // MARK: UICollectionViewDataSource & UICollectionViewDelegate
 extension TodayCollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cellID.count
+        return datasource.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let data = DataProvider.id2cell(id: cellID[indexPath.item])
         
-        switch data.type {
-        case .habit:
+        if let item = datasource[indexPath.item] as? Habit {
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: HabitCollectionViewCell.reuseID,
                 for: indexPath) as? HabitCollectionViewCell
                 else {
                     fatalError("Wrong cell")
             }
-            cell.update(habit: data.obj as! JayData.Habit)
+            cell.update(habit: item)
             return cell
-        case .reminder:
+        } else if let item = datasource[indexPath.item] as? Reminder {
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: ReminderCollectionViewCell.reuseID,
                 for: indexPath) as? ReminderCollectionViewCell
                 else {
                     fatalError("Wrong cell")
             }
-            cell.update(reminder: data.obj as! JayData.Reminder)
+            cell.update(reminder: item)
             return cell
         }
         fatalError("Wrong cell")

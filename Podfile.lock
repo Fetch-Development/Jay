@@ -1,0 +1,26 @@
+PODS:
+  - Charts (3.5.0):
+    - Charts/Core (= 3.5.0)
+  - Charts/Core (3.5.0)
+  - lottie-ios (3.1.8)
+  - TinyConstraints (4.0.1)
+
+DEPENDENCIES:
+  - Charts (= 3.5.0)
+  - lottie-ios (= 3.1.8)
+  - TinyConstraints (= 4.0.1)
+
+SPEC REPOS:
+  trunk:
+    - Charts
+    - lottie-ios
+    - TinyConstraints
+
+SPEC CHECKSUMS:
+  Charts: 40a08591df1f8ad5c223ddedfb1a06da92f24f7c
+  lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
+  TinyConstraints: 8dd91295e56797648c7bc335dd20e1d91ec4c192
+
+PODFILE CHECKSUM: 43813af7dbc7d28ed28601d8a18cfb809d01b05a
+
+COCOAPODS: 1.9.3

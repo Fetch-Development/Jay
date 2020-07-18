@@ -25,9 +25,11 @@ class AddViewController: UIViewController {
     @IBAction func save(_ sender: Any) {
         if (NameField.text != nil) {
             if TypeSelector.selectedSegmentIndex == 0 {
-                datasource.append(Habit(name: NameField.text!, state: false))
+                // TODO: adding habit to DB
+//                DataProvider.add(type: .habit, obj: )
             } else {
-                datasource.append(Reminder(name: NameField.text!, state: false))
+                // TODO: adding reminder to DB
+//                DataProvider.add(type: .reminder, obj: )
             }
             reload()
         }
