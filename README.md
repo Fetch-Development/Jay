@@ -2,6 +2,8 @@
 
 HSE summer school project
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/30eb2e16f5ed40b78d524f85b6465f5c)](https://www.codacy.com/gh/Fetch-Development/Jay?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Fetch-Development/Jay&amp;utm_campaign=Badge_Grade)
+
 Наше приложение поможет не только планировать и контролировать выполнение дел (задач, поручений) в течение дня, но и формировать полезные привычки и избавляться от вредных (отнимающих ваше время).
 
 В приложении будут доступны 2 типа задач. Первый - планирование дел на день, второй - формирование привычек. В любой момент в календаре можно будет посмотреть статистику выполнения.
