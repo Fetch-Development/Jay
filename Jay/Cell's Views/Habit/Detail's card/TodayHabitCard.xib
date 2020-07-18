@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TodayHabitCardView" customModule="CardExtendedViewPrototype" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TodayHabitCardView" customModule="Jay" customModuleProvider="target">
             <connections>
                 <outlet property="calendarDateLabel" destination="G4q-20-HUJ" id="byh-Eb-PwY"/>
                 <outlet property="calendarView" destination="nS3-3b-H3k" id="dOx-nK-20q"/>
@@ -28,7 +28,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ans-hm-wMi" userLabel="TodayHabitContentView">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="1100"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="1150"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brush your teeth" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F2w-c6-g0l" userLabel="TodayHabitMainLabel">
                                     <rect key="frame" x="20" y="15" width="239" height="37"/>
@@ -373,7 +373,7 @@ Don't stop there and double your success!</string>
                                 <constraint firstAttribute="trailing" secondItem="K3D-Vy-eio" secondAttribute="trailing" id="aK1-MN-gIF"/>
                                 <constraint firstAttribute="trailing" secondItem="nS3-3b-H3k" secondAttribute="trailing" constant="20" id="aKE-Ep-eTG"/>
                                 <constraint firstItem="pBy-m6-hLD" firstAttribute="top" secondItem="F2w-c6-g0l" secondAttribute="bottom" constant="267" id="ahJ-CS-HMK"/>
-                                <constraint firstAttribute="height" constant="1100" id="f4T-jq-RaS"/>
+                                <constraint firstAttribute="height" constant="1150" id="f4T-jq-RaS"/>
                                 <constraint firstItem="Gdu-yb-O7O" firstAttribute="top" secondItem="ans-hm-wMi" secondAttribute="top" constant="60" id="iHx-7H-Q5l"/>
                                 <constraint firstItem="ox6-Tj-W0R" firstAttribute="top" secondItem="ans-hm-wMi" secondAttribute="top" constant="25" id="jEJ-jS-SWD"/>
                                 <constraint firstItem="LpS-S5-eqb" firstAttribute="top" secondItem="Gdu-yb-O7O" secondAttribute="bottom" constant="8" id="mIW-Pu-1ME"/>

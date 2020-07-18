@@ -203,7 +203,8 @@ class TodayHabitCardView: UIView, ChartViewDelegate, UICollectionViewDataSource,
         }, completion: nil)
         calendarView.addSubview(collectionView)
         collectionView.centerInSuperview()
-        collectionView.widthToSuperview()
+        collectionView.width(to: calendarView)
+        collectionView.bounds = calendarView.bounds
         collectionView.heightToSuperview()
         
         //Updating everything
@@ -238,7 +239,7 @@ class TodayHabitCardView: UIView, ChartViewDelegate, UICollectionViewDataSource,
     
     //Function, called when user presses habit-completing button
     private func progressAppend(data: inout JayData.Habit){
-        // if derivedData.state != .completed{
+        //if derivedData.state != .completed{
         data.state = .incompleted
         if data.wanted - data.completed == 1{
             data.state = .completed
