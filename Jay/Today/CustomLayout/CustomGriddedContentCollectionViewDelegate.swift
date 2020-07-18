@@ -10,17 +10,20 @@ import UIKit
 
 class CustomGriddedContentCollectionViewDelegate: DefaultCollectionViewDelegate {
     private let itemsPerRow: CGFloat = 2
-    private let minimumItemSpacing: CGFloat = 15
+    private let minimumItemSpacing: CGFloat = 10
     
     // MARK: - UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemSize: CGSize
-        if datasource[indexPath.item] is Reminder {
+        let data = DataProvider.id2cell(id: cellID[indexPath.item])
+        
+        switch data.type {
+        case .reminder:
             let itemWidth = collectionView.bounds.width - (sectionInsets.left + sectionInsets.right)
             itemSize = CGSize(width: itemWidth, height: 60)
-        } else {
+        case .habit:
             let paddingSpace = sectionInsets.left + sectionInsets.right + minimumItemSpacing * (itemsPerRow - 1)
             let availableWidth = collectionView.bounds.width - paddingSpace
             let widthPerItem = Int(availableWidth / itemsPerRow)
