@@ -110,8 +110,8 @@
 		80DC22BF24C2ECF00076737D /* Detail's card */ = {
 			isa = PBXGroup;
 			children = (
-				80DC22B824C2ECD70076737D /* TodayHabitCardView.swift */,
 				80DC22C024C2ED040076737D /* Custom layout */,
+				80DC22B824C2ECD70076737D /* TodayHabitCardView.swift */,
 			);
 			path = "Detail's card";
 			sourceTree = "<group>";
