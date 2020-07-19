@@ -24,6 +24,12 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     @IBAction func statusButtonPressed(_ sender: Any) {
         progressAppend(data: &TodayHabitCardView.derivedData)
     }
+    @IBOutlet weak var closeButton: UIButton!
+    @IBAction func closeButtonPressed(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     //LABELS
     @IBOutlet weak var calendarDateLabel: UILabel!
@@ -52,7 +58,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 28
     }
-
+    
     //Setting cells in Calendar CV
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
@@ -66,7 +72,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         {
             if (indexPath.item - offset) - (TodayHabitCardView.startingWeekday - 1) <
                 TodayHabitCardView.derivedData.history.habits.endIndex && (indexPath.item - offset) -
-                (TodayHabitCardView.startingWeekday - 1) >= 0{
+                (TodayHabitCardView.startingWeekday - 1) >= 0 {
                 //MARK: DEBUG – REMOVE IN PRODUCTION
                 print((indexPath.item - offset) - TodayHabitCardView.startingWeekday - 1)
                 //MARK: DEBUG END
@@ -216,11 +222,11 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
                 + String(TodayHabitCardView.derivedData.wanted)), for: .normal)
             if !initial{
                 UIView.animate(withDuration: 0.2,
-                    animations: {
-                    self.successAnimationView.transform = CGAffineTransform(scaleX: 0.0001, y: 0.0001)
+                               animations: {
+                                self.successAnimationView.transform = CGAffineTransform(scaleX: 0.0001, y: 0.0001)
                 },
-                    completion: { _ in
-                    self.successAnimationView.isHidden = true
+                               completion: { _ in
+                                self.successAnimationView.isHidden = true
                 })
             }
         }
@@ -243,7 +249,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
             view: successAnimationView, named: "CheckedDone", after:
             {
                 self.progressUpdate()
-            }
+        }
         )
     }
     

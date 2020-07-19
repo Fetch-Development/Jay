@@ -191,6 +191,7 @@
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                                 </state>
                                                 <connections>
+                                                    <action selector="closeButtonPressed:" destination="dzq-4H-OT6" eventType="touchUpInside" id="xP7-wc-tRb"/>
                                                     <action selector="statusButtonPressed:" destination="dzq-4H-OT6" eventType="editingDidEndOnExit" id="UWA-px-Dfw"/>
                                                 </connections>
                                             </button>
@@ -560,6 +561,7 @@ Don't stop there and double your success!</string>
                     <connections>
                         <outlet property="calendarDateLabel" destination="HJ5-hv-kFE" id="AlJ-Wj-swF"/>
                         <outlet property="calendarView" destination="sBJ-lF-aMn" id="2cy-e7-UK6"/>
+                        <outlet property="closeButton" destination="AmE-fA-AKT" id="jpL-HS-d6q"/>
                         <outlet property="detailsScrollView" destination="vYE-R6-oIm" id="a85-Y9-uwK"/>
                         <outlet property="graphView" destination="LuU-qR-9xa" id="gp7-1a-xbx"/>
                         <outlet property="habitCardView" destination="npR-Wa-ds8" id="rYs-RV-gSY"/>
