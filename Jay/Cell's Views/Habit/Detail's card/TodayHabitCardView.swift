@@ -45,8 +45,8 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         state: .untouched,
         history: JayData.JayHabitHistory(habits: [])
     )
-    let successGreenColor = UIColor.init(displayP3Red: 91/255, green: 199/255, blue: 122/255, alpha: 1)
-    var delegate = CustomGriddedCalendarCollectionViewDelegate()
+    let successGreenColor = UIColor.init(displayP3Red: 91 / 255, green: 199 / 255, blue: 122 / 255, alpha: 1)
+    private lazy var delegate = CustomGriddedCalendarCollectionViewDelegate()
     public static var startingWeekday = 0
     var cellsPrinted = 0
     var daysInMonth = 0
@@ -172,13 +172,9 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         lineChartView.data = data
     }
     
-    //Main XIB init function
-    public func commonInit(){
-        //Loading XIB
-        Bundle.main.loadNibNamed("TodayHabitCard", owner: self, options: nil)
-        self.view.addSubview(habitCardView)
-        habitCardView.frame = self.view.bounds
-        habitCardView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
         //Loading chart
         graphView.insertSubview(lineChartView, at: 0)
         lineChartView.centerInSuperview()
@@ -187,13 +183,18 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         setData()
         
         //Loading calendar
-        let collectionView = UICollectionView(
-            frame: CGRect(x: 0, y: 100,
-                          width: self.view.bounds.width, height: 500),
+        let collectionView = UICollectionView (
+            frame: CGRect(x: 0, y: 100, width: self.view.bounds.width, height: 500),
             collectionViewLayout: UICollectionViewFlowLayout()
         )
+        
+        if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.estimatedItemSize = CGSize.zero
+        }
+        
         collectionView.dataSource = self
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        
         collectionView.alwaysBounceVertical = true
         collectionView.backgroundColor = .white
         collectionView.contentInset = .zero
@@ -201,6 +202,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         collectionView.performBatchUpdates({
             collectionView.reloadData()
         }, completion: nil)
+        
         calendarView.addSubview(collectionView)
         collectionView.centerInSuperview()
         collectionView.width(to: calendarView)
@@ -212,7 +214,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     }
     
     //Updating all labels, images, and misc
-    private func progressUpdate(initial: Bool = false){
+    private func progressUpdate(initial: Bool = false) {
         quickLookProgressLabel.text = String(TodayHabitCardView.derivedData.completed) + "/" + String(TodayHabitCardView.derivedData.wanted)
         let calendarDateData = Jay.getCalendarDateData()
         calendarDateLabel.text = calendarDateData.0 + " " + calendarDateData.1
@@ -230,7 +232,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
                 })
             }
         }
-        else{
+        else {
             statusButton.setBackgroundImage(UIImage(named: "HabitIconDone"), for: .normal)
             quickLookProgressLabel.textColor = successGreenColor
             //MARK: Move detailsScrollView to front here
@@ -238,18 +240,18 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     }
     
     //Function, called when user presses habit-completing button
-    private func progressAppend(data: inout JayData.Habit){
-        //if derivedData.state != .completed{
+    private func progressAppend(data: inout JayData.Habit) {
+        print(data)
+        //if derivedData.state != .completed {
         data.state = .incompleted
-        if data.wanted - data.completed == 1{
+        if data.wanted - data.completed == 1 {
             data.state = .completed
         }
         data.completed += 1
-        playLottieAnimation(
-            view: successAnimationView, named: "CheckedDone", after:
-            {
-                self.progressUpdate()
-        }
+        playLottieAnimation (
+            view: successAnimationView,
+            named: "CheckedDone",
+            after: { self.progressUpdate() }
         )
     }
     

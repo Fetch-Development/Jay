@@ -15,7 +15,7 @@ var vc: UICollectionViewController? = nil
 class TodayCollectionViewController: UICollectionViewController {
     
     
-    private lazy var Delegate: CollectionViewSelectableItemDelegate = {
+    private lazy var delegate: CollectionViewSelectableItemDelegate = {
         let res = CustomGriddedContentCollectionViewDelegate()
         res.didSelectItem = { index in
             vc?.navigationController?.present(getDetailsVC(id: cellID[index.item]), animated: true, completion: nil)
@@ -43,7 +43,7 @@ class TodayCollectionViewController: UICollectionViewController {
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.estimatedItemSize = CGSize.zero
         }
-        collectionView.delegate = Delegate
+        collectionView.delegate = delegate
         collectionView.performBatchUpdates({
             collectionView.reloadData()
         }, completion: nil)

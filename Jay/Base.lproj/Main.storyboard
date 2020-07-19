@@ -192,7 +192,6 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="closeButtonPressed:" destination="dzq-4H-OT6" eventType="touchUpInside" id="xP7-wc-tRb"/>
-                                                    <action selector="statusButtonPressed:" destination="dzq-4H-OT6" eventType="editingDidEndOnExit" id="UWA-px-Dfw"/>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LuU-qR-9xa" userLabel="TodayHabitGraphView">
@@ -294,6 +293,9 @@ Don't stop there and double your success!</string>
                                                         <state key="normal" backgroundImage="HabitIcon0.1">
                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="47" scale="large"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="statusButtonPressed:" destination="dzq-4H-OT6" eventType="touchUpInside" id="pzi-KF-Lau"/>
+                                                        </connections>
                                                     </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="-8" translatesAutoresizingMaskIntoConstraints="NO" id="NyS-X9-MdA" userLabel="TodayHabitStatSW">
                                                         <rect key="frame" x="86" y="0.0" width="100" height="72"/>
@@ -491,7 +493,7 @@ Don't stop there and double your success!</string>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="cTb-WF-Ias"/>
                                             </scrollView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="06.2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HJ5-hv-kFE" userLabel="CalendarDateLabel">
-                                                <rect key="frame" x="20" y="665" width="114" height="34"/>
+                                                <rect key="frame" x="20" y="665" width="374" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="sNl-d6-yik"/>
                                                 </constraints>
@@ -510,18 +512,19 @@ Don't stop there and double your success!</string>
                                             <constraint firstItem="OWG-32-NhP" firstAttribute="leading" secondItem="npR-Wa-ds8" secondAttribute="leading" constant="30" id="B76-sn-dSh"/>
                                             <constraint firstItem="sBJ-lF-aMn" firstAttribute="centerX" secondItem="npR-Wa-ds8" secondAttribute="centerX" id="CG2-3y-uaM"/>
                                             <constraint firstItem="x0e-kX-jd7" firstAttribute="height" secondItem="hjH-Th-0A3" secondAttribute="height" constant="200" id="CRC-Gu-L7t"/>
+                                            <constraint firstAttribute="trailing" secondItem="HJ5-hv-kFE" secondAttribute="trailing" constant="20" id="Cxi-9d-6O3"/>
                                             <constraint firstItem="AmE-fA-AKT" firstAttribute="top" secondItem="npR-Wa-ds8" secondAttribute="top" constant="25" id="DCy-aM-K6g"/>
                                             <constraint firstItem="qMC-tq-bPa" firstAttribute="top" secondItem="npR-Wa-ds8" secondAttribute="top" constant="15" id="E79-df-LOP"/>
-                                            <constraint firstAttribute="trailing" secondItem="HJ5-hv-kFE" secondAttribute="trailing" constant="280" id="FLX-SS-hpQ"/>
                                             <constraint firstItem="nt4-yA-sbH" firstAttribute="top" secondItem="vYE-R6-oIm" secondAttribute="bottom" constant="8" id="GFq-m7-OXa"/>
                                             <constraint firstAttribute="trailing" secondItem="9Ty-zh-Cni" secondAttribute="trailing" constant="23" id="HOD-Pk-raO"/>
                                             <constraint firstItem="x0e-kX-jd7" firstAttribute="width" secondItem="hjH-Th-0A3" secondAttribute="width" constant="200" id="HiW-pu-kLM"/>
+                                            <constraint firstItem="HJ5-hv-kFE" firstAttribute="top" secondItem="nt4-yA-sbH" secondAttribute="bottom" constant="15" id="Hwe-fb-pIA"/>
                                             <constraint firstItem="x0e-kX-jd7" firstAttribute="centerX" secondItem="hjH-Th-0A3" secondAttribute="centerX" constant="-1" id="K09-eA-ti9"/>
                                             <constraint firstItem="9Ty-zh-Cni" firstAttribute="top" secondItem="qMC-tq-bPa" secondAttribute="bottom" constant="267" id="N9n-XD-47K"/>
                                             <constraint firstItem="vYE-R6-oIm" firstAttribute="trailing" secondItem="nt4-yA-sbH" secondAttribute="trailing" id="OOb-Hj-alw"/>
+                                            <constraint firstItem="HJ5-hv-kFE" firstAttribute="leading" secondItem="npR-Wa-ds8" secondAttribute="leading" constant="20" id="RlM-Ua-UOU"/>
                                             <constraint firstItem="sBJ-lF-aMn" firstAttribute="top" secondItem="nt4-yA-sbH" secondAttribute="bottom" constant="60" id="Xpr-3a-B8L"/>
                                             <constraint firstItem="sBJ-lF-aMn" firstAttribute="leading" secondItem="npR-Wa-ds8" secondAttribute="leading" constant="20" id="bAb-4T-LU7"/>
-                                            <constraint firstItem="HJ5-hv-kFE" firstAttribute="top" secondItem="nt4-yA-sbH" secondAttribute="bottom" constant="15" id="bgE-dk-3UL"/>
                                             <constraint firstItem="qMC-tq-bPa" firstAttribute="leading" secondItem="npR-Wa-ds8" secondAttribute="leading" constant="20" id="cQx-XW-u5m"/>
                                             <constraint firstAttribute="trailing" secondItem="nt4-yA-sbH" secondAttribute="trailing" id="cTa-oW-SzK"/>
                                             <constraint firstItem="vYE-R6-oIm" firstAttribute="leading" secondItem="npR-Wa-ds8" secondAttribute="leading" id="fXR-qz-wgn"/>
@@ -530,7 +533,6 @@ Don't stop there and double your success!</string>
                                             <constraint firstAttribute="height" constant="1150" id="lNk-wQ-EtW"/>
                                             <constraint firstAttribute="trailing" secondItem="sBJ-lF-aMn" secondAttribute="trailing" constant="20" id="nRB-3C-c7R"/>
                                             <constraint firstItem="x0e-kX-jd7" firstAttribute="centerY" secondItem="hjH-Th-0A3" secondAttribute="centerY" constant="2" id="npZ-fP-GL1"/>
-                                            <constraint firstItem="HJ5-hv-kFE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="npR-Wa-ds8" secondAttribute="leading" constant="20" symbolic="YES" id="qpW-N9-TJq"/>
                                             <constraint firstItem="LuU-qR-9xa" firstAttribute="leading" secondItem="npR-Wa-ds8" secondAttribute="leading" constant="-10" id="sx2-Be-tKa"/>
                                             <constraint firstItem="vYE-R6-oIm" firstAttribute="top" secondItem="LuU-qR-9xa" secondAttribute="bottom" constant="8" id="xr8-FW-KEg"/>
                                             <constraint firstItem="LuU-qR-9xa" firstAttribute="top" secondItem="npR-Wa-ds8" secondAttribute="top" constant="60" id="ydj-mZ-Km1"/>
