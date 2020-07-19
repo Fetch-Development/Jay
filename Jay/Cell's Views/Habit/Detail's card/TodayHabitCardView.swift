@@ -11,18 +11,20 @@ import Charts
 import TinyConstraints
 import Lottie
 
-class TodayHabitCardView: UIView, ChartViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
+class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     //VIEWS
     @IBOutlet var habitCardView: UIView!
     @IBOutlet weak var graphView: UIView!
     @IBOutlet weak var calendarView: UIView!
     @IBOutlet weak var successAnimationView: AnimationView!
     @IBOutlet weak var detailsScrollView: UIScrollView!
+    
     //BUTTONS
     @IBOutlet weak var statusButton: UIButton!
     @IBAction func statusButtonPressed(_ sender: Any) {
         progressAppend(data: &TodayHabitCardView.derivedData)
     }
+    
     //LABELS
     @IBOutlet weak var calendarDateLabel: UILabel!
     @IBOutlet weak var quickLookProgressLabel: UILabel!
@@ -100,20 +102,12 @@ class TodayHabitCardView: UIView, ChartViewDelegate, UICollectionViewDataSource,
         return cell
     }
     
-    //Initializing everything
-    override init(frame: CGRect){
-        super.init(frame: frame)
-    }
-    required init?(coder aDecoder: NSCoder){
-        super.init(coder: aDecoder)
-    }
-    init(data: JayData.Habit, frame: CGRect) {
+    func update(data: JayData.Habit) {
         TodayHabitCardView.self.derivedData = data
         let month = Calendar.current.component(.month, from: Date())
         let year = Calendar.current.component(.year, from: Date())
         TodayHabitCardView.startingWeekday = Calendar.current.component(.weekday, from: Calendar.current.date(from: DateComponents(year: year, month: month, day: 0))!)
         daysInMonth = Jay.getDaysInMonth(month: month)
-        super.init(frame: frame)
     }
     
     //Creating & configuring chart
@@ -176,8 +170,8 @@ class TodayHabitCardView: UIView, ChartViewDelegate, UICollectionViewDataSource,
     public func commonInit(){
         //Loading XIB
         Bundle.main.loadNibNamed("TodayHabitCard", owner: self, options: nil)
-        addSubview(habitCardView)
-        habitCardView.frame = self.bounds
+        self.view.addSubview(habitCardView)
+        habitCardView.frame = self.view.bounds
         habitCardView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         //Loading chart
         graphView.insertSubview(lineChartView, at: 0)
@@ -189,7 +183,7 @@ class TodayHabitCardView: UIView, ChartViewDelegate, UICollectionViewDataSource,
         //Loading calendar
         let collectionView = UICollectionView(
             frame: CGRect(x: 0, y: 100,
-                          width: self.bounds.width, height: 500),
+                          width: self.view.bounds.width, height: 500),
             collectionViewLayout: UICollectionViewFlowLayout()
         )
         collectionView.dataSource = self

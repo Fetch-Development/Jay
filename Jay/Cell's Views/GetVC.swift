@@ -13,17 +13,12 @@ func getDetailsVC(id: Int) -> UIViewController {
     
     switch data.type {
     case .habit:
-        let vc = UIViewController()
-        let habitView: TodayHabitCardView =
-            TodayHabitCardView (
-                data: data.obj as! JayData.Habit,
-                frame: vc.view.frame
-        )
+        let detailsVC = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "TodayHabitCardView")
+                as? TodayHabitCardView
         
-        habitView.commonInit()
-        vc.view.addSubview(habitView)
-//        habitView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        return vc
+        detailsVC!.update(data: data.obj as! JayData.Habit)
+        return detailsVC!
     case .reminder:
         let detailsVC = UIStoryboard(name: "Main", bundle: nil)
             .instantiateViewController(withIdentifier: "ReminderDetailsViewController")
