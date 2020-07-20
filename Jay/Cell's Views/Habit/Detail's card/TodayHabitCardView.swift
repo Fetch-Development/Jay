@@ -30,7 +30,6 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         dismiss(animated: true, completion: nil)
     }
     
-    
     //LABELS
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var calendarDateLabel: UILabel!
@@ -52,8 +51,6 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     var cellsPrinted = 0
     var daysInMonth = 0
     public static var today = Calendar.current.component(.day, from: Date()) + 1
-    
-    
     
     //Setting number of cells in Calendar CV
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -175,7 +172,6 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Title
         mainLabel.text = TodayHabitCardView.self.derivedData.name
         //Loading chart
@@ -184,7 +180,6 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         lineChartView.width(to: graphView)
         lineChartView.height(to: graphView)
         setData()
-        
         //Loading calendar
         let collectionView = UICollectionView (
             frame: CGRect(x: 0, y: 100, width: self.view.bounds.width, height: 500),

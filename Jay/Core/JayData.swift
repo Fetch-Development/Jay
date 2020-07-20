@@ -43,7 +43,7 @@ class JayData {
         var notificationId: String? = nil
     }
     
-    // MARK: Gemeric Struct
+    // MARK: Generic Struct
     public struct Generic {
         var type: DataType
         var obj: Any
