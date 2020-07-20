@@ -17,7 +17,7 @@ func getDetailsVC(id: Int) -> UIViewController {
             .instantiateViewController(withIdentifier: "TodayHabitCardView")
                 as? TodayHabitCardView
         
-        detailsVC!.update(data: data.obj as! JayData.Habit)
+        detailsVC!.update(id: id, data: data.obj as! JayData.Habit)
         return detailsVC!
     case .reminder:
         let detailsVC = UIStoryboard(name: "Main", bundle: nil)
