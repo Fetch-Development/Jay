@@ -22,7 +22,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     //BUTTONS
     @IBOutlet weak var statusButton: UIButton!
     @IBAction func statusButtonPressed(_ sender: Any) {
-        progressAppend(data: &TodayHabitCardView.derivedData)
+        progressAppend(data: &(TodayHabitCardView.derivedData)!)
     }
     @IBOutlet weak var closeButton: UIButton!
     @IBAction func closeButtonPressed(_ sender: Any) {
@@ -37,14 +37,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     
     //GLOBAL VARS
     let date = Date()
-    public static var derivedData = JayData.Habit(
-        name: "temp",
-        createdAt: Date(),
-        completed: 0,
-        wanted: 0,
-        state: .untouched,
-        history: JayData.JayHabitHistory(habits: [])
-    )
+    public static var derivedData: JayData.Habit? = nil
     let successGreenColor = UIColor.init(displayP3Red: 91 / 255, green: 199 / 255, blue: 122 / 255, alpha: 1)
     private lazy var delegate = CustomGriddedCalendarCollectionViewDelegate()
     public static var startingWeekday = 0
@@ -60,7 +53,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     //Setting cells in Calendar CV
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        let offset = Calendar.current.component(.day, from: TodayHabitCardView.derivedData.createdAt) - 1
+        let offset = Calendar.current.component(.day, from: TodayHabitCardView.derivedData!.createdAt) - 1
         var imageView = UIImageView()
         
         //Changing UIImage according to habit history
@@ -69,12 +62,12 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
             && indexPath.item <= (daysInMonth - TodayHabitCardView.startingWeekday - 3)
         {
             if (indexPath.item - offset) - (TodayHabitCardView.startingWeekday - 1) <
-                TodayHabitCardView.derivedData.history.habits.endIndex && (indexPath.item - offset) -
+                TodayHabitCardView.derivedData!.history.habits.endIndex && (indexPath.item - offset) -
                 (TodayHabitCardView.startingWeekday - 1) >= 0 {
                 //MARK: DEBUG – REMOVE IN PRODUCTION
                 print((indexPath.item - offset) - TodayHabitCardView.startingWeekday - 1)
                 //MARK: DEBUG END
-                switch TodayHabitCardView.derivedData.history.habits[(indexPath.item - offset) -
+                switch TodayHabitCardView.derivedData!.history.habits[(indexPath.item - offset) -
                     (TodayHabitCardView.startingWeekday - 1)].state {
                 case .completed:
                     imageView = UIImageView(image: UIImage(systemName: "smallcircle.fill.circle"))
@@ -107,7 +100,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     }
     
     func update(data: JayData.Habit) {
-        TodayHabitCardView.self.derivedData = data
+        TodayHabitCardView.derivedData = data
         let month = Calendar.current.component(.month, from: Date())
         let year = Calendar.current.component(.year, from: Date())
         TodayHabitCardView.startingWeekday = Calendar.current.component(.weekday, from: Calendar.current.date(from: DateComponents(year: year, month: month, day: 0))!)
@@ -173,7 +166,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         // Title
-        mainLabel.text = TodayHabitCardView.derivedData.name
+        mainLabel.text = TodayHabitCardView.derivedData?.name
         //Loading chart
         graphView.insertSubview(lineChartView, at: 0)
         lineChartView.centerInSuperview()
@@ -213,13 +206,13 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     
     //Updating all labels, images, and misc
     private func progressUpdate(initial: Bool = false) {
-        quickLookProgressLabel.text = String(TodayHabitCardView.derivedData.completed) + "/" + String(TodayHabitCardView.derivedData.wanted)
+        quickLookProgressLabel.text = String(TodayHabitCardView.derivedData!.completed) + "/" + String(TodayHabitCardView.derivedData!.wanted)
         let calendarDateData = Jay.getCalendarDateData()
         calendarDateLabel.text = calendarDateData.0 + " " + calendarDateData.1
-        if TodayHabitCardView.derivedData.state != .completed{
+        if TodayHabitCardView.derivedData!.state != .completed{
             statusButton.setBackgroundImage(UIImage(named: "HabitIcon"
-                + String(TodayHabitCardView.derivedData.completed) + "."
-                + String(TodayHabitCardView.derivedData.wanted)), for: .normal)
+                + String(TodayHabitCardView.derivedData!.completed) + "."
+                + String(TodayHabitCardView.derivedData!.wanted)), for: .normal)
             if !initial{
                 UIView.animate(withDuration: 0.2,
                                animations: {
@@ -239,8 +232,6 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     
     //Function, called when user presses habit-completing button
     private func progressAppend(data: inout JayData.Habit) {
-        print(data)
-        //if derivedData.state != .completed {
         data.state = .incompleted
         if data.wanted - data.completed == 1 {
             data.state = .completed

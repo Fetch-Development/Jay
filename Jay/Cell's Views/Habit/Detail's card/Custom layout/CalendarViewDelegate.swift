@@ -21,29 +21,29 @@ class CalendarCollectionViewDelegate: NSObject, CalendarViewSelectableItemDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
-        let offset = Calendar.current.component(.day, from: TodayHabitCardView.derivedData.createdAt) - 1
+        let offset = Calendar.current.component(.day, from: TodayHabitCardView.derivedData!.createdAt) - 1
         let cell = collectionView.cellForItem(at: indexPath)
         //MARK: UNOPTIMAL CODE – WORTH RESHAPING
         if (indexPath.item >= TodayHabitCardView.startingWeekday - 1 && indexPath.item <= (TodayHabitCardView.today - TodayHabitCardView.startingWeekday - 1))
             && ((indexPath.item - offset) - (TodayHabitCardView.startingWeekday - 1) <
-                TodayHabitCardView.derivedData.history.habits.endIndex && (indexPath.item - offset) -
+                TodayHabitCardView.derivedData!.history.habits.endIndex && (indexPath.item - offset) -
                 (TodayHabitCardView.startingWeekday - 1) >= 0)
         {
             cell?.contentView.subviews[0].removeFromSuperview()
             var imageView = UIImageView()
-            switch TodayHabitCardView.derivedData.history.habits[(indexPath.item - offset) -
+            switch TodayHabitCardView.derivedData!.history.habits[(indexPath.item - offset) -
                 (TodayHabitCardView.startingWeekday - 1)].state{
             case .completed:
                 imageView = UIImageView(image: UIImage(systemName: "slash.circle"))
-                TodayHabitCardView.derivedData.history.habits[(indexPath.item - offset) -
+                TodayHabitCardView.derivedData!.history.habits[(indexPath.item - offset) -
                     (TodayHabitCardView.startingWeekday - 1)].state = .untouched
             case .untouched:
                 imageView = UIImageView(image: UIImage(systemName: "smallcircle.circle"))
-                TodayHabitCardView.derivedData.history.habits[(indexPath.item - offset) -
+                TodayHabitCardView.derivedData!.history.habits[(indexPath.item - offset) -
                     (TodayHabitCardView.startingWeekday - 1)].state = .incompleted
             case .incompleted:
                 imageView = UIImageView(image: UIImage(systemName: "smallcircle.fill.circle"))
-                TodayHabitCardView.derivedData.history.habits[(indexPath.item - offset) -
+                TodayHabitCardView.derivedData!.history.habits[(indexPath.item - offset) -
                     (TodayHabitCardView.startingWeekday - 1)].state = .completed
             default:
                 fatalError("Unknown state")
