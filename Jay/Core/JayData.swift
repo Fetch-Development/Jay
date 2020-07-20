@@ -155,4 +155,8 @@ class JayData {
         data.updateValue(Generic(type: type, obj: obj), forKey: index)
         dataKey.append(index)
     }
+    
+    func update(id: Int, obj: Any) {
+        data[id] = Generic(type: data[id]!.type, obj: obj)
+    }
 }

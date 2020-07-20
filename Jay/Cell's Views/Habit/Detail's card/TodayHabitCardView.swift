@@ -30,6 +30,10 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         dismiss(animated: true, completion: nil)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        DataProvider.update(id: cellId!, obj: TodayHabitCardView.derivedData as Any)
+    }
+    
     //LABELS
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var calendarDateLabel: UILabel!
@@ -38,6 +42,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     //GLOBAL VARS
     let date = Date()
     public static var derivedData: JayData.Habit? = nil
+    public var cellId: Int? = nil
     let successGreenColor = UIColor.init(displayP3Red: 91 / 255, green: 199 / 255, blue: 122 / 255, alpha: 1)
     private lazy var delegate = CustomGriddedCalendarCollectionViewDelegate()
     public static var startingWeekday = 0
@@ -99,7 +104,8 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         return cell
     }
     
-    func update(data: JayData.Habit) {
+    func update(id: Int, data: JayData.Habit) {
+        cellId = id
         TodayHabitCardView.derivedData = data
         let month = Calendar.current.component(.month, from: Date())
         let year = Calendar.current.component(.year, from: Date())
