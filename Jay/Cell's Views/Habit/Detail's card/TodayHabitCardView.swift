@@ -32,6 +32,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     
     
     //LABELS
+    @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var calendarDateLabel: UILabel!
     @IBOutlet weak var quickLookProgressLabel: UILabel!
     
@@ -175,6 +176,8 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Title
+        mainLabel.text = TodayHabitCardView.self.derivedData.name
         //Loading chart
         graphView.insertSubview(lineChartView, at: 0)
         lineChartView.centerInSuperview()

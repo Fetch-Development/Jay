@@ -26,11 +26,47 @@ class AddViewController: UIViewController {
         if (NameField.text != nil) {
             if TypeSelector.selectedSegmentIndex == 0 {
                 // TODO: adding habit to DB
-//                DataProvider.add(type: .habit, obj: )
+                DataProvider.add(type: .habit, obj: {
+                    let history = JayData.JayHabitHistory(
+                        habits: [
+                            JayData.JayHabitHistoricalValue(
+                                completed: 2,
+                                wanted: 2,
+                                state: .completed
+                            ),
+                             JayData.JayHabitHistoricalValue(
+                                completed: 1,
+                                wanted: 2,
+                                state: .incompleted
+                            ),
+                            JayData.JayHabitHistoricalValue(
+                                completed: 0,
+                                wanted: 2,
+                                state: .untouched
+                            ),
+                            JayData.JayHabitHistoricalValue(
+                                completed: 2,
+                                wanted: 2,
+                                state: .completed
+                            ),
+                            
+                        ]
+                    )
+                    let data = JayData.Habit(
+                        name: NameField.text ?? "no data",
+                        createdAt: Jay.dateFromComponents(day: 1, month: 7, year: 2020),
+                        completed: 0,
+                        wanted: 2,
+                        state: .untouched,
+                        history: history
+                    )
+                    return data
+                }())
             } else {
                 // TODO: adding reminder to DB
-//                DataProvider.add(type: .reminder, obj: )
+                DataProvider.add(type: .reminder, obj: JayData.Reminder(name: NameField.text ?? "no data", state: false))
             }
+            cellID = DataProvider.getAvaliableCellsIDs()
             reload()
         }
         navigationController?.popViewController(animated: true)

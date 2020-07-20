@@ -92,7 +92,7 @@
                     <navigationItem key="navigationItem" title="Today" id="oqy-Te-1Do">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="c3e-Vm-nI3">
                             <connections>
-                                <segue destination="KLv-SR-0e6" kind="presentation" id="eu9-Vl-rsU"/>
+                                <segue destination="KLv-SR-0e6" kind="presentation" identifier="addButton" id="eu9-Vl-rsU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -567,6 +567,7 @@ Don't stop there and double your success!</string>
                         <outlet property="detailsScrollView" destination="vYE-R6-oIm" id="a85-Y9-uwK"/>
                         <outlet property="graphView" destination="LuU-qR-9xa" id="gp7-1a-xbx"/>
                         <outlet property="habitCardView" destination="npR-Wa-ds8" id="rYs-RV-gSY"/>
+                        <outlet property="mainLabel" destination="qMC-tq-bPa" id="o1u-ob-I9G"/>
                         <outlet property="quickLookProgressLabel" destination="bfV-6h-awI" id="vkC-Om-cUY"/>
                         <outlet property="statusButton" destination="hjH-Th-0A3" id="VOz-6M-ZRm"/>
                         <outlet property="successAnimationView" destination="x0e-kX-jd7" id="Y4a-gp-MTT"/>
@@ -630,7 +631,7 @@ Don't stop there and double your success!</string>
         <image name="WideInfoContainer" width="621" height="218"/>
         <image name="chart" width="358" height="510"/>
         <image name="checkmark.seal.fill" catalog="system" width="128" height="122"/>
-        <image name="clock" catalog="system" width="128" height="121"/>
+        <image name="clock" catalog="system" width="32" height="32"/>
         <image name="list.dash" catalog="system" width="128" height="85"/>
         <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
     </resources>
