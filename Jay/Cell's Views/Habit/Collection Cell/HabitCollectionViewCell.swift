@@ -19,7 +19,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = .gray
+        backgroundColor = .lightGray
         clipsToBounds = true
         layer.cornerRadius = 4
         Label.font = UIFont.systemFont(ofSize: 18)

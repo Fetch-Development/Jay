@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MH9-6e-vpq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MH9-6e-vpq">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -178,8 +178,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="npR-Wa-ds8" userLabel="TodayHabitContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1150"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brush your teeth" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMC-tq-bPa" userLabel="TodayHabitMainLabel">
-                                                <rect key="frame" x="20" y="15" width="239" height="37"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMC-tq-bPa" userLabel="TodayHabitMainLabel">
+                                                <rect key="frame" x="20" y="15" width="64" height="37"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -212,7 +212,7 @@
                                                 <rect key="frame" x="0.0" y="522" width="414" height="128"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WideInfoContainer" translatesAutoresizingMaskIntoConstraints="NO" id="yQ2-bT-RQ3" userLabel="Background">
-                                                        <rect key="frame" x="-15" y="-5" width="439" height="146"/>
+                                                        <rect key="frame" x="0.0" y="-5" width="414" height="146"/>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="HYX-04-erd">
                                                         <rect key="frame" x="40" y="34" width="334" height="60"/>
@@ -252,13 +252,13 @@ Don't stop there and double your success!</string>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="128" id="8QQ-Wl-giG"/>
                                                     <constraint firstAttribute="bottom" secondItem="yQ2-bT-RQ3" secondAttribute="bottom" constant="-13" id="C6t-zE-H5a"/>
-                                                    <constraint firstAttribute="trailing" secondItem="yQ2-bT-RQ3" secondAttribute="trailing" constant="-10" id="HsI-Ze-qLa"/>
+                                                    <constraint firstAttribute="trailing" secondItem="yQ2-bT-RQ3" secondAttribute="trailing" id="HsI-Ze-qLa"/>
                                                     <constraint firstItem="HYX-04-erd" firstAttribute="leading" relation="lessThanOrEqual" secondItem="nt4-yA-sbH" secondAttribute="leading" constant="40" id="NfP-Sf-XGL"/>
                                                     <constraint firstItem="HYX-04-erd" firstAttribute="centerY" secondItem="nt4-yA-sbH" secondAttribute="centerY" id="Yab-Nz-j2b"/>
                                                     <constraint firstItem="HYX-04-erd" firstAttribute="centerX" secondItem="nt4-yA-sbH" secondAttribute="centerX" id="bjK-FE-cCA"/>
                                                     <constraint firstAttribute="trailing" secondItem="HYX-04-erd" secondAttribute="trailing" constant="40" id="dGb-0u-UHp"/>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="128" id="i9D-YQ-U2k"/>
-                                                    <constraint firstItem="yQ2-bT-RQ3" firstAttribute="leading" secondItem="nt4-yA-sbH" secondAttribute="leading" constant="-15" id="jbk-5n-RXh"/>
+                                                    <constraint firstItem="yQ2-bT-RQ3" firstAttribute="leading" secondItem="nt4-yA-sbH" secondAttribute="leading" id="jbk-5n-RXh"/>
                                                     <constraint firstItem="yQ2-bT-RQ3" firstAttribute="top" secondItem="nt4-yA-sbH" secondAttribute="top" constant="-5" id="lmC-6p-MY8"/>
                                                 </constraints>
                                             </view>
@@ -603,12 +603,21 @@ Don't stop there and double your success!</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xAS-PZ-Myu">
+                                <rect key="frame" x="20" y="210" width="374" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="mLb-pc-5ua" firstAttribute="leading" secondItem="Zau-5x-poF" secondAttribute="leading" id="6Z1-0o-j0q"/>
                             <constraint firstItem="mLb-pc-5ua" firstAttribute="top" secondItem="Zau-5x-poF" secondAttribute="top" id="KzW-gh-lCU"/>
+                            <constraint firstItem="xAS-PZ-Myu" firstAttribute="leading" secondItem="Zau-5x-poF" secondAttribute="leading" constant="20" id="Vw2-qk-h5M"/>
                             <constraint firstItem="mLb-pc-5ua" firstAttribute="trailing" secondItem="Zau-5x-poF" secondAttribute="trailing" id="a1C-BN-Vwr"/>
+                            <constraint firstItem="Zau-5x-poF" firstAttribute="trailing" secondItem="xAS-PZ-Myu" secondAttribute="trailing" constant="20" id="cVM-Mr-5Qa"/>
+                            <constraint firstItem="xAS-PZ-Myu" firstAttribute="top" secondItem="Atg-l4-7p9" secondAttribute="bottom" constant="59" id="fni-rM-376"/>
                             <constraint firstItem="Zau-5x-poF" firstAttribute="trailing" secondItem="Atg-l4-7p9" secondAttribute="trailing" constant="100" id="j9U-Or-m39"/>
                             <constraint firstItem="Atg-l4-7p9" firstAttribute="leading" secondItem="Zau-5x-poF" secondAttribute="leading" constant="100" id="sBt-5g-RDE"/>
                             <constraint firstItem="Atg-l4-7p9" firstAttribute="top" secondItem="Zau-5x-poF" secondAttribute="top" constant="86" id="tMO-FT-zFE"/>
@@ -618,6 +627,7 @@ Don't stop there and double your success!</string>
                     <connections>
                         <outlet property="CloseButton" destination="d9V-ZY-H38" id="qbm-O0-NKX"/>
                         <outlet property="label" destination="Atg-l4-7p9" id="iTH-MH-7IZ"/>
+                        <outlet property="statusLable" destination="xAS-PZ-Myu" id="mil-82-RCj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lum-tC-Ls7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
