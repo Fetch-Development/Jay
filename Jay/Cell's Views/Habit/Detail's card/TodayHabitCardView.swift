@@ -173,7 +173,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         // Title
-        mainLabel.text = TodayHabitCardView.self.derivedData.name
+        mainLabel.text = TodayHabitCardView.derivedData.name
         //Loading chart
         graphView.insertSubview(lineChartView, at: 0)
         lineChartView.centerInSuperview()
@@ -259,7 +259,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         view.isHidden = false
         view.animation = Animation.named(named)
         view.loopMode = .playOnce
-        view.play { (finished) in
+        view.play { _ in
             after()
         }
     }
