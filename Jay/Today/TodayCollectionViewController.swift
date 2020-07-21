@@ -87,7 +87,7 @@ extension TodayCollectionViewController {
                     fatalError("Wrong cell")
             }
             cell.setData(
-                id: cellID[indexPath.item],
+                remId: cellID[indexPath.item],
                 reminder: data.obj as! JayData.Reminder
             )
             return cell
