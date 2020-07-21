@@ -85,6 +85,7 @@ class JayData {
                         flag = false
                 })
             } else {
+                flag = false
                 print("The app is not permitted to access reminders, make sure to grant permission in the settings and try again")
             }
         }
