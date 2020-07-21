@@ -86,7 +86,7 @@ class JayData {
         case reminder
     }
     
-    func getHabitState(_ state : String) -> JayHabitState {
+    func getHabitState(_ state: String) -> JayHabitState {
         let map: [String: JayHabitState] = ["completed": .completed,
                                             "incompleted": .incompleted,
                                             "untouched": .untouched,

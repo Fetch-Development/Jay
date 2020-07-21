@@ -13,8 +13,8 @@ class ReminderCollectionViewCell: UICollectionViewCell {
     static let reuseID = String(describing: ReminderCollectionViewCell.self)
     static let nib = UINib(nibName: String(describing: ReminderCollectionViewCell.self), bundle: nil)
     
-    var reminderID: String? = nil
-    var reminder: JayData.Reminder? = nil
+    var reminderID: String?
+    var reminder: JayData.Reminder?
     
     @IBOutlet weak var Label: UILabel!
     @IBOutlet weak var statusButton: UIButton!
@@ -38,8 +38,8 @@ class ReminderCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
     }
     
-    func setData(id: String, reminder: JayData.Reminder) {
-        self.reminderID = id
+    func setData(remId: String, reminder: JayData.Reminder) {
+        self.reminderID = remId
         self.reminder = reminder
         update()
     }

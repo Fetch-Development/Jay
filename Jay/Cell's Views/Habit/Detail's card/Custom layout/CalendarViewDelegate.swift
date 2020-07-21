@@ -19,7 +19,8 @@ class CalendarCollectionViewDelegate: NSObject, CalendarViewSelectableItemDelega
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         didSelectItem?(indexPath)
     }
-    
+   
+//{
 //    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
 //        let offset = Calendar.current.component(.day, from: TodayHabitCardView.derivedData!.createdAt) - 1
 //        let cell = collectionView.cellForItem(at: indexPath)
@@ -57,13 +58,14 @@ class CalendarCollectionViewDelegate: NSObject, CalendarViewSelectableItemDelega
 //        }
 //    }
     
-    //    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
-    //        let cell = collectionView.cellForItem(at: indexPath)
-    //        if cell?.backgroundColor == .red {
-    //            cell?.backgroundColor = .gray
-    //        } else {
-    //            cell?.backgroundColor = .red
-    //        }
-    //    }
+//    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+//        let cell = collectionView.cellForItem(at: indexPath)
+//        if cell?.backgroundColor == .red {
+//            cell?.backgroundColor = .gray
+//        } else {
+//            cell?.backgroundColor = .red
+//        }
+//    }
+//}
     
 }

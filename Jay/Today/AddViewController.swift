@@ -40,7 +40,9 @@ class AddViewController: UIViewController {
                 }())
             } else {
                 // TODO: adding reminder to DB
-                DataProvider.add(type: .reminder, obj: JayData.Reminder(name: NameField.text ?? "no data", state: false))
+                DataProvider.add(type: .reminder, obj: JayData.Reminder(
+                    name: NameField.text ?? "no data", state: false)
+                )
             }
             cellID = DataProvider.getAvaliableCellsIDs()
             reload()
