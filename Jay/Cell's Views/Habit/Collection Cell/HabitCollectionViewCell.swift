@@ -15,14 +15,19 @@ class HabitCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var Label: UILabel!
     
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = .lightGray
         clipsToBounds = true
-        layer.cornerRadius = 4
-        Label.font = UIFont.systemFont(ofSize: 18)
+        layer.cornerRadius = 10
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.5
+        layer.shadowOffset = CGSize(width: -3, height: 7)
+        layer.shadowRadius = 5
+        layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: 10).cgPath
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.main.scale
     }
     
     override func layoutSubviews() {

@@ -31,7 +31,7 @@ class ReminderCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         backgroundColor = .lightGray
         clipsToBounds = true
-        layer.cornerRadius = 4
+        layer.cornerRadius = 10
     }
     
     override func layoutSubviews() {

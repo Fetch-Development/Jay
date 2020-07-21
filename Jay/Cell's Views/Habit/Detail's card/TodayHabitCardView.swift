@@ -22,7 +22,9 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     //BUTTONS
     @IBOutlet weak var statusButton: UIButton!
     @IBAction func statusButtonPressed(_ sender: Any) {
-        progressAppend(data: &(TodayHabitCardView.derivedData)!)
+        if TodayHabitCardView.derivedData!.state != .completed{
+            progressAppend(data: &(TodayHabitCardView.derivedData)!)
+        }
     }
     @IBOutlet weak var closeButton: UIButton!
     @IBAction func closeButtonPressed(_ sender: Any) {
@@ -69,9 +71,6 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
             if (indexPath.item - offset) - (TodayHabitCardView.startingWeekday - 1) <
                 TodayHabitCardView.derivedData!.history.habits.endIndex && (indexPath.item - offset) -
                 (TodayHabitCardView.startingWeekday - 1) >= 0 {
-                //MARK: DEBUG – REMOVE IN PRODUCTION
-                print((indexPath.item - offset) - TodayHabitCardView.startingWeekday - 1)
-                //MARK: DEBUG END
                 switch TodayHabitCardView.derivedData!.history.habits[(indexPath.item - offset) -
                     (TodayHabitCardView.startingWeekday - 1)].state {
                 case .completed:
@@ -238,10 +237,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     
     //Function, called when user presses habit-completing button
     private func progressAppend(data: inout JayData.Habit) {
-        data.state = .incompleted
-        if data.wanted - data.completed == 1 {
-            data.state = .completed
-        }
+        (data.wanted - data.completed == 1) ? (data.state = .completed) : (data.state = .incompleted)
         data.completed += 1
         playLottieAnimation (
             view: successAnimationView,

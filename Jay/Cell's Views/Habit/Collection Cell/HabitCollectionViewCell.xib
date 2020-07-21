@@ -10,14 +10,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="HabitCollectionViewCell" customModule="Jay" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="154" height="180"/>
+            <rect key="frame" x="0.0" y="0.0" width="178" height="180"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="154" height="180"/>
+                <rect key="frame" x="0.0" y="0.0" width="178" height="180"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peo-u6-ZPi">
-                        <rect key="frame" x="6" y="6" width="43" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brush your teeth" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peo-u6-ZPi">
+                        <rect key="frame" x="15" y="15" width="153" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="pwy-JB-HnI"/>
                         </constraints>
@@ -28,15 +28,16 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="peo-u6-ZPi" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="6" id="27g-oQ-U60"/>
-                <constraint firstItem="peo-u6-ZPi" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="6" id="p4Z-Z0-EmZ"/>
+                <constraint firstItem="peo-u6-ZPi" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="27g-oQ-U60"/>
+                <constraint firstAttribute="trailing" secondItem="peo-u6-ZPi" secondAttribute="trailing" constant="10" id="Byh-rj-3cP"/>
+                <constraint firstItem="peo-u6-ZPi" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="p4Z-Z0-EmZ"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <size key="customSize" width="154" height="180"/>
+            <size key="customSize" width="178" height="180"/>
             <connections>
                 <outlet property="Label" destination="peo-u6-ZPi" id="hx8-cs-d8j"/>
             </connections>
-            <point key="canvasLocation" x="215.94202898550725" y="196.875"/>
+            <point key="canvasLocation" x="233.33333333333334" y="196.875"/>
         </collectionViewCell>
     </objects>
 </document>
