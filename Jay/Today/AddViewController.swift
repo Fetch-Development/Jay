@@ -26,11 +26,25 @@ class AddViewController: UIViewController {
         if (NameField.text != nil) {
             if TypeSelector.selectedSegmentIndex == 0 {
                 // TODO: adding habit to DB
-//                DataProvider.add(type: .habit, obj: )
+                DataProvider.add(type: .habit, obj: {
+                    let data = JayData.HabitLocal (
+                        name: NameField.text ?? "no data",
+                        createdAt: Date(),
+                        lastUpdate: Date(),
+                        completed: 0,
+                        wanted: 2,
+                        state: .untouched,
+                        archived: false
+                    )
+                    return data
+                }())
             } else {
                 // TODO: adding reminder to DB
-//                DataProvider.add(type: .reminder, obj: )
+                DataProvider.add(type: .reminder, obj: JayData.Reminder(
+                    name: NameField.text ?? "no data", state: false)
+                )
             }
+            cellID = DataProvider.getAvaliableCellsIDs()
             reload()
         }
         navigationController?.popViewController(animated: true)

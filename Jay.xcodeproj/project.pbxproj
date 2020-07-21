@@ -15,7 +15,6 @@
 		80DC22BE24C2ECDE0076737D /* CalendarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC22BB24C2ECDE0076737D /* CalendarDelegate.swift */; };
 		80DC22C224C2EDB70076737D /* GetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC22C124C2EDB70076737D /* GetVC.swift */; };
 		80DC22C424C2FD3A0076737D /* JayLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DC22C324C2FD3A0076737D /* JayLibrary.swift */; };
-		80DC22CA24C329D90076737D /* TodayHabitCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80DC22C924C329D90076737D /* TodayHabitCard.xib */; };
 		80F20017B04CE5E31B455BF2 /* Pods_Jay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 084637202D88F620A9097123 /* Pods_Jay.framework */; };
 		FC25C35024C3724B00A27933 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = FC25C34F24C3724B00A27933 /* .gitignore */; };
 		FC85761024BF00060012CDEA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC85760E24BF00060012CDEA /* Main.storyboard */; };
@@ -30,6 +29,7 @@
 		FC85763B24BF004B0012CDEA /* CustomGriddedContentCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC85763824BF004B0012CDEA /* CustomGriddedContentCollectionViewDelegate.swift */; };
 		FC85763C24BF004B0012CDEA /* DefaultCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC85763924BF004B0012CDEA /* DefaultCollectionViewDelegate.swift */; };
 		FC85763D24BF004B0012CDEA /* TodayCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC85763A24BF004B0012CDEA /* TodayCollectionViewController.swift */; };
+		FCA243C824C5924800CB04B1 /* CheckedDone.json in Resources */ = {isa = PBXBuildFile; fileRef = FCA243C724C5924800CB04B1 /* CheckedDone.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,7 +44,6 @@
 		80DC22BC24C2ECDE0076737D /* CalendarViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewDelegate.swift; sourceTree = "<group>"; };
 		80DC22C124C2EDB70076737D /* GetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetVC.swift; sourceTree = "<group>"; };
 		80DC22C324C2FD3A0076737D /* JayLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JayLibrary.swift; sourceTree = "<group>"; };
-		80DC22C924C329D90076737D /* TodayHabitCard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TodayHabitCard.xib; sourceTree = "<group>"; };
 		FC25C34F24C3724B00A27933 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		FC85760524BF00060012CDEA /* Jay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC85760F24BF00060012CDEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -60,6 +59,7 @@
 		FC85763824BF004B0012CDEA /* CustomGriddedContentCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomGriddedContentCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		FC85763924BF004B0012CDEA /* DefaultCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		FC85763A24BF004B0012CDEA /* TodayCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayCollectionViewController.swift; sourceTree = "<group>"; };
+		FCA243C724C5924800CB04B1 /* CheckedDone.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CheckedDone.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,9 +112,8 @@
 		80DC22BF24C2ECF00076737D /* Detail's card */ = {
 			isa = PBXGroup;
 			children = (
-				80DC22C924C329D90076737D /* TodayHabitCard.xib */,
-				80DC22B824C2ECD70076737D /* TodayHabitCardView.swift */,
 				80DC22C024C2ED040076737D /* Custom layout */,
+				80DC22B824C2ECD70076737D /* TodayHabitCardView.swift */,
 			);
 			path = "Detail's card";
 			sourceTree = "<group>";
@@ -208,6 +207,7 @@
 		FC85762C24BF00440012CDEA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FCA243C924C5925B00CB04B1 /* Lottie */,
 				FC85762D24BF00440012CDEA /* Assets.xcassets */,
 				FC85762E24BF00440012CDEA /* LaunchScreen.storyboard */,
 				FC85763024BF00440012CDEA /* AppDelegate.swift */,
@@ -233,6 +233,14 @@
 				FC85763924BF004B0012CDEA /* DefaultCollectionViewDelegate.swift */,
 			);
 			path = CustomLayout;
+			sourceTree = "<group>";
+		};
+		FCA243C924C5925B00CB04B1 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				FCA243C724C5924800CB04B1 /* CheckedDone.json */,
+			);
+			path = Lottie;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,8 +306,8 @@
 				FC85762B24BF003D0012CDEA /* ReminderCollectionViewCell.xib in Resources */,
 				FC25C35024C3724B00A27933 /* .gitignore in Resources */,
 				FC85761024BF00060012CDEA /* Main.storyboard in Resources */,
-				80DC22CA24C329D90076737D /* TodayHabitCard.xib in Resources */,
 				FC85763324BF00440012CDEA /* LaunchScreen.storyboard in Resources */,
+				FCA243C824C5924800CB04B1 /* CheckedDone.json in Resources */,
 				FC85763224BF00440012CDEA /* Assets.xcassets in Resources */,
 				FC85762924BF003D0012CDEA /* HabitCollectionViewCell.xib in Resources */,
 			);

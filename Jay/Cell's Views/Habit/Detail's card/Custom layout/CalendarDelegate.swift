@@ -17,8 +17,7 @@ class CustomGriddedCalendarCollectionViewDelegate: CalendarCollectionViewDelegat
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemSize: CGSize
-        let paddingSpace = sectionInsets.left + sectionInsets.right
-                            + minimumItemSpacing * (itemsPerRow - 1)
+        let paddingSpace = sectionInsets.left + sectionInsets.right + minimumItemSpacing * (itemsPerRow - 1)
         let availableWidth = collectionView.bounds.width - paddingSpace
         let widthPerItem = Int(availableWidth / itemsPerRow)
         itemSize = CGSize(width: widthPerItem, height: widthPerItem)

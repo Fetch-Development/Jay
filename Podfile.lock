@@ -3,24 +3,34 @@ PODS:
     - Charts/Core (= 3.5.0)
   - Charts/Core (3.5.0)
   - lottie-ios (3.1.8)
+  - Realm (5.3.1):
+    - Realm/Headers (= 5.3.1)
+  - Realm/Headers (5.3.1)
+  - RealmSwift (5.3.1):
+    - Realm (= 5.3.1)
   - TinyConstraints (4.0.1)
 
 DEPENDENCIES:
   - Charts (= 3.5.0)
   - lottie-ios (= 3.1.8)
+  - RealmSwift (= 5.3.1)
   - TinyConstraints (= 4.0.1)
 
 SPEC REPOS:
   trunk:
     - Charts
     - lottie-ios
+    - Realm
+    - RealmSwift
     - TinyConstraints
 
 SPEC CHECKSUMS:
   Charts: 40a08591df1f8ad5c223ddedfb1a06da92f24f7c
   lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
+  Realm: 8ec860dc0c3079f7cab1085d95661a06f162d487
+  RealmSwift: ca9d0df752157befb8c28034301f988a56ce91eb
   TinyConstraints: 8dd91295e56797648c7bc335dd20e1d91ec4c192
 
-PODFILE CHECKSUM: d672fff0868088d4b7a1887f6e2350cf530fbdf9
+PODFILE CHECKSUM: df7bbb07ea3b83ece7acbf8316a48f04b15f93f6
 
 COCOAPODS: 1.9.3

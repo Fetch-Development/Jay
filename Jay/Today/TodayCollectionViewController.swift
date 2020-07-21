@@ -9,13 +9,13 @@
 import UIKit
 
 var DataProvider = JayData()
-var cellID: [Int] = DataProvider.getAvaliableCellsIDs()
+var cellID: [String] = DataProvider.getAvaliableCellsIDs()
 var vc: UICollectionViewController? = nil
 
 class TodayCollectionViewController: UICollectionViewController {
     
     
-    private lazy var Delegate: CollectionViewSelectableItemDelegate = {
+    private lazy var delegate: CollectionViewSelectableItemDelegate = {
         let res = CustomGriddedContentCollectionViewDelegate()
         res.didSelectItem = { index in
             vc?.navigationController?.present(getDetailsVC(id: cellID[index.item]), animated: true, completion: nil)
@@ -43,7 +43,7 @@ class TodayCollectionViewController: UICollectionViewController {
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.estimatedItemSize = CGSize.zero
         }
-        collectionView.delegate = Delegate
+        collectionView.delegate = delegate
         collectionView.performBatchUpdates({
             collectionView.reloadData()
         }, completion: nil)
@@ -77,7 +77,7 @@ extension TodayCollectionViewController {
                 else {
                     fatalError("Wrong cell")
             }
-            cell.update(habit: data.obj as! JayData.Habit)
+            cell.update(habit: data.obj as! JayData.HabitLocal)
             return cell
         case .reminder:
             guard let cell = collectionView.dequeueReusableCell(
@@ -86,7 +86,10 @@ extension TodayCollectionViewController {
                 else {
                     fatalError("Wrong cell")
             }
-            cell.update(reminder: data.obj as! JayData.Reminder)
+            cell.setData(
+                remId: cellID[indexPath.item],
+                reminder: data.obj as! JayData.Reminder
+            )
             return cell
         }
     }

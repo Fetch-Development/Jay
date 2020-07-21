@@ -8,22 +8,17 @@
 
 import UIKit
 
-func getDetailsVC(id: Int) -> UIViewController {
+func getDetailsVC(id: String) -> UIViewController {
     let data = DataProvider.id2cell(id: id)
     
     switch data.type {
     case .habit:
-        let vc = UIViewController()
-        let habitView: TodayHabitCardView =
-            TodayHabitCardView (
-                data: data.obj as! JayData.Habit,
-                frame: vc.view.frame
-        )
+        let detailsVC = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "TodayHabitCardView")
+                as? TodayHabitCardView
         
-        habitView.commonInit()
-        vc.view.addSubview(habitView)
-//        habitView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        return vc
+        detailsVC!.update(idCell: id, data: data.obj as! JayData.HabitLocal)
+        return detailsVC!
     case .reminder:
         let detailsVC = UIStoryboard(name: "Main", bundle: nil)
             .instantiateViewController(withIdentifier: "ReminderDetailsViewController")

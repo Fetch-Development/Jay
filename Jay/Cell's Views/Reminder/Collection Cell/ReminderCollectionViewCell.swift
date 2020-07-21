@@ -13,22 +13,47 @@ class ReminderCollectionViewCell: UICollectionViewCell {
     static let reuseID = String(describing: ReminderCollectionViewCell.self)
     static let nib = UINib(nibName: String(describing: ReminderCollectionViewCell.self), bundle: nil)
     
+    var reminderID: String?
+    var reminder: JayData.Reminder?
     
     @IBOutlet weak var Label: UILabel!
+    @IBOutlet weak var statusButton: UIButton!
     
+    
+    @IBAction func statusButtonPressed(_ sender: Any) {
+        self.reminder!.state.toggle()
+        // Status Button
+        update()
+        DataProvider.update(id: reminderID!, obj: reminder!)
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = .gray
+        backgroundColor = .lightGray
         clipsToBounds = true
-        layer.cornerRadius = 4
+        layer.cornerRadius = 10
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
     }
     
-    func update(reminder: JayData.Reminder) {
-        Label.text = reminder.name
+    func setData(remId: String, reminder: JayData.Reminder) {
+        self.reminderID = remId
+        self.reminder = reminder
+        update()
+    }
+    
+    func update() {
+        // Lable
+        Label.text = reminder?.name
+        
+        // Status Button
+        switch reminder!.state {
+        case true:
+            statusButton.setImage(UIImage(systemName: "circle.fill"), for: .normal)
+        case false:
+            statusButton.setImage(UIImage(systemName: "circle"), for: .normal)
+        }
     }
 }

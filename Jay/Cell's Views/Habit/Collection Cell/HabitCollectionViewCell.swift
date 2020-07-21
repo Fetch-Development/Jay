@@ -15,22 +15,26 @@ class HabitCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var Label: UILabel!
     
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = .gray
+        backgroundColor = .systemGray6
         clipsToBounds = true
-        layer.cornerRadius = 4
-        Label.font = UIFont.systemFont(ofSize: 18)
+        layer.cornerRadius = 10
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.5
+        layer.shadowOffset = CGSize(width: 1, height: 3)
+        layer.shadowRadius = 4
+        layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: 10).cgPath
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.main.scale
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
     }
     
-    func update(habit: JayData.Habit) {
+    func update(habit: JayData.HabitLocal) {
         Label.text = habit.name
     }
 }
-
