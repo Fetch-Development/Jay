@@ -13,7 +13,7 @@ class ReminderCollectionViewCell: UICollectionViewCell {
     static let reuseID = String(describing: ReminderCollectionViewCell.self)
     static let nib = UINib(nibName: String(describing: ReminderCollectionViewCell.self), bundle: nil)
     
-    var reminderID: Int? = nil
+    var reminderID: String? = nil
     var reminder: JayData.Reminder? = nil
     
     @IBOutlet weak var Label: UILabel!
@@ -38,7 +38,7 @@ class ReminderCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
     }
     
-    func setData(id: Int, reminder: JayData.Reminder) {
+    func setData(id: String, reminder: JayData.Reminder) {
         self.reminderID = id
         self.reminder = reminder
         update()
