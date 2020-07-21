@@ -33,6 +33,31 @@ class CustomGriddedContentCollectionViewDelegate: DefaultCollectionViewDelegate 
     }
     
     func collectionView(_ collectionView: UICollectionView,
+                        contextMenuConfigurationForItemAt indexPath: IndexPath,
+                        point: CGPoint) -> UIContextMenuConfiguration? {
+        
+        let share = UIAction(title: "Share",
+                             image: UIImage(systemName: "square.and.arrow.up")
+        ) {_ in
+            // TODO: share action
+        }
+        let delete = UIAction(
+            title: "Delete",
+            image: UIImage(systemName: "trash")
+        ) {_ in
+            DataProvider.delete(id: cellID[indexPath.item])
+            cellID = DataProvider.getAvaliableCellsIDs()
+            vc!.collectionView.reloadData()
+        }
+        
+        return UIContextMenuConfiguration(identifier: nil,
+                                          previewProvider: nil)
+        { _ in
+            UIMenu(title: "", children: [share, delete])
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
         return sectionInsets

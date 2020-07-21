@@ -81,10 +81,11 @@ class JayData {
                 eventStore.fetchReminders(
                     matching: predicate,
                     completion: { (reminders: [EKReminder]?) -> Void in
-                        reminderList = reminders
+                        reminderList += reminders!
                         flag = false
                 })
             } else {
+                flag = false
                 print("The app is not permitted to access reminders, make sure to grant permission in the settings and try again")
             }
         }
@@ -138,6 +139,7 @@ class JayData {
         }
         
         // Reminder
+        cellIDs += Array(reminderDict.keys)
         getReminders()
         while flag {
             _ = 2 + 2 // pass
@@ -148,7 +150,6 @@ class JayData {
                 cellIDs.append(reminder.calendarItemIdentifier)
             }
         }
-        print(reminderList!)
         
         return cellIDs
     }
@@ -225,6 +226,16 @@ class JayData {
             try! db.write {
                 db.delete(item!)
                 db.add(target)
+            }
+        }
+    }
+    
+    func delete(id: String) {
+        if reminderDict[id] == nil {
+            let db = try! Realm()
+            let item = db.objects(Habit.self).filter("id = '\(id)'").first
+            try! db.write {
+                db.delete(item!)
             }
         }
     }
