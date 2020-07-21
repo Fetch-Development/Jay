@@ -152,6 +152,8 @@ class JayData {
         target.name = item.name
         if ID == nil {
             target.createdAt = Date()
+        } else {
+            target.createdAt = item.createdAt
         }
         target.lastUpdate = Date()
         target.completed = item.completed
