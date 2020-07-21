@@ -52,7 +52,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     public static var derivedData: JayData.HabitLocal?
     public var cellId: String?
     let successGreenColor = UIColor.init(displayP3Red: 91 / 255, green: 199 / 255, blue: 122 / 255, alpha: 1)
-    private weak var delegate = CustomGriddedCalendarCollectionViewDelegate()
+    private var delegate = CustomGriddedCalendarCollectionViewDelegate()
     public static var startingWeekday = 0
     var cellsPrinted = 0
     var daysInMonth = 0

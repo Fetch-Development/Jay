@@ -57,7 +57,6 @@ class TodayCollectionViewController: UICollectionViewController {
             self.collectionView.reloadData()
         }
     }
-    
 }
 
 // MARK: UICollectionViewDataSource & UICollectionViewDelegate
