@@ -8,7 +8,7 @@
 
 import UIKit
 
-func getDetailsVC(id: Int) -> UIViewController {
+func getDetailsVC(id: String) -> UIViewController {
     let data = DataProvider.id2cell(id: id)
     
     switch data.type {
@@ -17,7 +17,7 @@ func getDetailsVC(id: Int) -> UIViewController {
             .instantiateViewController(withIdentifier: "TodayHabitCardView")
                 as? TodayHabitCardView
         
-        detailsVC!.update(id: id, data: data.obj as! JayData.Habit)
+        detailsVC!.update(id: id, data: data.obj as! JayData.HabitLocal)
         return detailsVC!
     case .reminder:
         let detailsVC = UIStoryboard(name: "Main", bundle: nil)

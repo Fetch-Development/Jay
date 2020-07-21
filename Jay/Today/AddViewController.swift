@@ -27,38 +27,14 @@ class AddViewController: UIViewController {
             if TypeSelector.selectedSegmentIndex == 0 {
                 // TODO: adding habit to DB
                 DataProvider.add(type: .habit, obj: {
-                    let history = JayData.JayHabitHistory(
-                        habits: [
-                            JayData.JayHabitHistoricalValue(
-                                completed: 2,
-                                wanted: 2,
-                                state: .completed
-                            ),
-                             JayData.JayHabitHistoricalValue(
-                                completed: 1,
-                                wanted: 2,
-                                state: .incompleted
-                            ),
-                            JayData.JayHabitHistoricalValue(
-                                completed: 0,
-                                wanted: 2,
-                                state: .untouched
-                            ),
-                            JayData.JayHabitHistoricalValue(
-                                completed: 2,
-                                wanted: 2,
-                                state: .completed
-                            ),
-                            
-                        ]
-                    )
-                    let data = JayData.Habit(
+                    let data = JayData.HabitLocal (
                         name: NameField.text ?? "no data",
-                        createdAt: Jay.dateFromComponents(day: 1, month: 7, year: 2020),
+                        createdAt: Date(),
+                        lastUpdate: Date(),
                         completed: 0,
                         wanted: 2,
                         state: .untouched,
-                        history: history
+                        archived: false
                     )
                     return data
                 }())

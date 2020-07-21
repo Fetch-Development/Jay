@@ -9,7 +9,7 @@
 import UIKit
 
 var DataProvider = JayData()
-var cellID: [Int] = DataProvider.getAvaliableCellsIDs()
+var cellID: [String] = DataProvider.getAvaliableCellsIDs()
 var vc: UICollectionViewController? = nil
 
 class TodayCollectionViewController: UICollectionViewController {
@@ -77,7 +77,7 @@ extension TodayCollectionViewController {
                 else {
                     fatalError("Wrong cell")
             }
-            cell.update(habit: data.obj as! JayData.Habit)
+            cell.update(habit: data.obj as! JayData.HabitLocal)
             return cell
         case .reminder:
             guard let cell = collectionView.dequeueReusableCell(

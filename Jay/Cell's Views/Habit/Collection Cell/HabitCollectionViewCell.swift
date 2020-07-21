@@ -34,7 +34,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
     }
     
-    func update(habit: JayData.Habit) {
+    func update(habit: JayData.HabitLocal) {
         Label.text = habit.name
     }
 }
