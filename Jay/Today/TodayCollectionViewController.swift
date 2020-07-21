@@ -20,13 +20,14 @@ class TodayCollectionViewController: UICollectionViewController {
         let res = CustomGriddedContentCollectionViewDelegate()
         res.didSelectItem = { index in
             vc?.navigationController?.present(getDetailsVC(id: cellID[index.item]), animated: true, completion: nil)
-            }
+        }
         return res
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         vc = self
+        self.collectionView.isUserInteractionEnabled = true
         self.collectionView.register (
             HabitCollectionViewCell.nib,
             forCellWithReuseIdentifier: HabitCollectionViewCell.reuseID

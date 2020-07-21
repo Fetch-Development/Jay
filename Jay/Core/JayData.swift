@@ -229,4 +229,14 @@ class JayData {
             }
         }
     }
+    
+    func delete(id: String) {
+        if reminderDict[id] == nil {
+            let db = try! Realm()
+            let item = db.objects(Habit.self).filter("id = '\(id)'").first
+            try! db.write {
+                db.delete(item!)
+            }
+        }
+    }
 }
