@@ -24,8 +24,8 @@ class CalendarCollectionViewDelegate: NSObject, CalendarViewSelectableItemDelega
 //    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
 //        let offset = Calendar.current.component(.day, from: TodayHabitCardView.derivedData!.createdAt) - 1
 //        let cell = collectionView.cellForItem(at: indexPath)
-//        //MARK: UNOPTIMAL CODE – WORTH RESHAPING
-//        if (indexPath.item >= TodayHabitCardView.startingWeekday - 1 && indexPath.item <= (TodayHabitCardView.today - TodayHabitCardView.startingWeekday - 1))
+//        if (indexPath.item >= TodayHabitCardView.startingWeekday - 1 && indexPath.item <=
+//    (TodayHabitCardView.today - TodayHabitCardView.startingWeekday - 1))
 //            && ((indexPath.item - offset) - (TodayHabitCardView.startingWeekday - 1) <
 //                TodayHabitCardView.derivedData!.history.habits.endIndex && (indexPath.item - offset) -
 //                (TodayHabitCardView.startingWeekday - 1) >= 0)
