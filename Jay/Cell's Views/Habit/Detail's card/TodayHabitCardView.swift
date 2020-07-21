@@ -22,10 +22,12 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     //BUTTONS
     @IBOutlet weak var statusButton: UIButton!
     @IBAction func statusButtonPressed(_ sender: Any) {
-        progressAppend(data: &(TodayHabitCardView.derivedData)!)
-        DispatchQueue(label: "background").async {
-        autoreleasepool {
-            DataProvider.update(id: self.cellId!, obj: TodayHabitCardView.derivedData as Any)
+        if TodayHabitCardView.derivedData?.state != .completed{
+            progressAppend(data: &(TodayHabitCardView.derivedData)!)
+            DispatchQueue(label: "background").async {
+                autoreleasepool {
+                    DataProvider.update(id: self.cellId!, obj: TodayHabitCardView.derivedData as Any)
+                }
             }
         }
     }
@@ -64,49 +66,49 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     //Setting cells in Calendar CV
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-//        let offset = Calendar.current.component(.day, from: TodayHabitCardView.derivedData!.createdAt) - 1
-//        var imageView = UIImageView()
-//
-//        //Changing UIImage according to habit history
-//        //MARK: UNOPTIMAL CODE – WORTH RESHAPING
-//        if indexPath.item >= TodayHabitCardView.startingWeekday - 1
-//            && indexPath.item <= (daysInMonth - TodayHabitCardView.startingWeekday - 3)
-//        {
-//            if (indexPath.item - offset) - (TodayHabitCardView.startingWeekday - 1) <
-//                TodayHabitCardView.derivedData!.history.habits.endIndex && (indexPath.item - offset) -
-//                (TodayHabitCardView.startingWeekday - 1) >= 0 {
-//                //MARK: DEBUG – REMOVE IN PRODUCTION
-//                print((indexPath.item - offset) - TodayHabitCardView.startingWeekday - 1)
-//                //MARK: DEBUG END
-//                switch TodayHabitCardView.derivedData!.history.habits[(indexPath.item - offset) -
-//                    (TodayHabitCardView.startingWeekday - 1)].state {
-//                case .completed:
-//                    imageView = UIImageView(image: UIImage(systemName: "smallcircle.fill.circle"))
-//                case .incompleted:
-//                    imageView = UIImageView(image: UIImage(systemName: "smallcircle.circle"))
-//                case .untouched:
-//                    imageView = UIImageView(image: UIImage(systemName: "slash.circle"))
-//                default:
-//                    imageView = UIImageView(image: UIImage(systemName: "circle"))
-//                }
-//                //Detecting if its today
-//            } else if indexPath.item == TodayHabitCardView.today{
-//                imageView = UIImageView(image: UIImage(systemName: "largecircle.fill.circle"))
-//            } else {
-//                imageView = UIImageView(image: UIImage(systemName: "circle"))
-//            }
-//
-//            //Setting cell's tint color
-//            if indexPath.item <= TodayHabitCardView.today {
-//                imageView.tintColor = .darkGray
-//            } else {
-//                imageView.tintColor = .systemGray
-//            }
-//            cell.contentView.addSubview(imageView)
-//            imageView.centerInSuperview()
-//            imageView.widthToSuperview()
-//            imageView.heightToSuperview()
-//        }
+        //        let offset = Calendar.current.component(.day, from: TodayHabitCardView.derivedData!.createdAt) - 1
+        //        var imageView = UIImageView()
+        //
+        //        //Changing UIImage according to habit history
+        //        //MARK: UNOPTIMAL CODE – WORTH RESHAPING
+        //        if indexPath.item >= TodayHabitCardView.startingWeekday - 1
+        //            && indexPath.item <= (daysInMonth - TodayHabitCardView.startingWeekday - 3)
+        //        {
+        //            if (indexPath.item - offset) - (TodayHabitCardView.startingWeekday - 1) <
+        //                TodayHabitCardView.derivedData!.history.habits.endIndex && (indexPath.item - offset) -
+        //                (TodayHabitCardView.startingWeekday - 1) >= 0 {
+        //                //MARK: DEBUG – REMOVE IN PRODUCTION
+        //                print((indexPath.item - offset) - TodayHabitCardView.startingWeekday - 1)
+        //                //MARK: DEBUG END
+        //                switch TodayHabitCardView.derivedData!.history.habits[(indexPath.item - offset) -
+        //                    (TodayHabitCardView.startingWeekday - 1)].state {
+        //                case .completed:
+        //                    imageView = UIImageView(image: UIImage(systemName: "smallcircle.fill.circle"))
+        //                case .incompleted:
+        //                    imageView = UIImageView(image: UIImage(systemName: "smallcircle.circle"))
+        //                case .untouched:
+        //                    imageView = UIImageView(image: UIImage(systemName: "slash.circle"))
+        //                default:
+        //                    imageView = UIImageView(image: UIImage(systemName: "circle"))
+        //                }
+        //                //Detecting if its today
+        //            } else if indexPath.item == TodayHabitCardView.today{
+        //                imageView = UIImageView(image: UIImage(systemName: "largecircle.fill.circle"))
+        //            } else {
+        //                imageView = UIImageView(image: UIImage(systemName: "circle"))
+        //            }
+        //
+        //            //Setting cell's tint color
+        //            if indexPath.item <= TodayHabitCardView.today {
+        //                imageView.tintColor = .darkGray
+        //            } else {
+        //                imageView.tintColor = .systemGray
+        //            }
+        //            cell.contentView.addSubview(imageView)
+        //            imageView.centerInSuperview()
+        //            imageView.widthToSuperview()
+        //            imageView.heightToSuperview()
+        //        }
         return cell
     }
     
@@ -243,7 +245,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     }
     
     //Function, called when user presses habit-completing button
-    private func progressAppend(data: inout JayData.Habit) {
+    private func progressAppend(data: inout JayData.HabitLocal) {
         (data.wanted - data.completed == 1) ? (data.state = .completed) : (data.state = .incompleted)
         data.completed += 1
         playLottieAnimation (
