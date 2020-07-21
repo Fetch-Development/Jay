@@ -17,14 +17,14 @@ class HabitCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = .lightGray
+        backgroundColor = .systemGray6
         clipsToBounds = true
         layer.cornerRadius = 10
         layer.masksToBounds = false
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.5
-        layer.shadowOffset = CGSize(width: -3, height: 7)
-        layer.shadowRadius = 5
+        layer.shadowOffset = CGSize(width: 1, height: 3)
+        layer.shadowRadius = 4
         layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: 10).cgPath
         layer.shouldRasterize = true
         layer.rasterizationScale = UIScreen.main.scale
@@ -38,4 +38,3 @@ class HabitCollectionViewCell: UICollectionViewCell {
         Label.text = habit.name
     }
 }
-
