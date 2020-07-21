@@ -8,7 +8,12 @@
 
 import Foundation
 import RealmSwift
+import EventKit
 
+var eventStore: EKEventStore!
+var reminderList: [EKReminder]!
+var flag = true
+var reminderDict: [String: JayData.Reminder] = [:]
 
 
 class HabitHistoricalValue: Object {
@@ -30,13 +35,6 @@ class Habit: Object {
     @objc dynamic var archived = false
 }
 
-
-class Reminder: Object {
-    @objc dynamic var id = ""
-    @objc dynamic var name = ""
-    @objc dynamic var notificationID = ""
-    @objc dynamic var time = Date()
-}
 
 
 
@@ -72,7 +70,24 @@ class JayData {
     public struct Reminder {
         var name: String
         var state: Bool
-        var notificationId: String? = nil
+    }
+    
+    func getReminders() {
+        eventStore = EKEventStore()
+        reminderList = [EKReminder]()
+        eventStore.requestAccess(to: EKEntityType.reminder) { (granted: Bool, error: Error?) -> () in
+            if granted {
+                let predicate = eventStore.predicateForReminders(in: nil)
+                eventStore.fetchReminders(
+                    matching: predicate,
+                    completion: { (reminders: [EKReminder]?) -> Void in
+                        reminderList = reminders
+                        flag = false
+                })
+            } else {
+                print("The app is not permitted to access reminders, make sure to grant permission in the settings and try again")
+            }
+        }
     }
     
     // MARK: Generic Struct
@@ -113,6 +128,7 @@ class JayData {
     // MARK: - Data Provider
     
     func getAvaliableCellsIDs() -> [String] {
+        // Habit
         Realm.Configuration.defaultConfiguration.deleteRealmIfMigrationNeeded = true
         let db = try! Realm()
         let habits = db.objects(Habit.self).filter("archived = false")
@@ -120,6 +136,20 @@ class JayData {
         for habit in habits {
             cellIDs.append(habit.id)
         }
+        
+        // Reminder
+        getReminders()
+        while flag {
+            _ = 2 + 2 // pass
+        }
+        for reminder in reminderList {
+            if !reminder.isCompleted {
+                reminderDict[reminder.calendarItemIdentifier] = Reminder(name: reminder.title, state: reminder.isCompleted)
+                cellIDs.append(reminder.calendarItemIdentifier)
+            }
+        }
+        print(reminderList!)
+        
         return cellIDs
     }
     
@@ -127,8 +157,12 @@ class JayData {
     // FIXME: Make actual API
     func id2cell(id: String) -> Generic {
         let db = try! Realm()
-        let item = db.objects(Habit.self).filter("id = '\(id)'").first
-        return self.class2struct(habit: item!)
+        if let item = db.objects(Habit.self).filter("id = '\(id)'").first {
+            return self.class2struct(habit: item)
+        }
+        return Generic(type: .reminder, obj: reminderDict[id] as Any)
+        
+        
     }
     
     func state2string(_ state: JayHabitState) -> String {

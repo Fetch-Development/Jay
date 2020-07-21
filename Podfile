@@ -10,5 +10,4 @@ target 'Jay' do
   pod 'TinyConstraints', '4.0.1'
   pod 'lottie-ios', '3.1.8'
   pod 'RealmSwift', '5.3.1'
-  pod 'RealmSwift', '5.3.1'
 end
