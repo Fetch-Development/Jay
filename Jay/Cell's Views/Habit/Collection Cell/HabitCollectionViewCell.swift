@@ -12,20 +12,15 @@ class HabitCollectionViewCell: UICollectionViewCell {
     
     static let reuseID = String(describing: HabitCollectionViewCell.self)
     static let nib = UINib(nibName: String(describing: HabitCollectionViewCell.self), bundle: nil)
+    var cell: UICollectionViewCell? = nil
     
     @IBOutlet weak var Label: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = .systemGray6
-        clipsToBounds = true
         layer.cornerRadius = 10
         layer.masksToBounds = false
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.5
-        layer.shadowOffset = CGSize(width: 1, height: 3)
-        layer.shadowRadius = 4
-        layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: 10).cgPath
         layer.shouldRasterize = true
         layer.rasterizationScale = UIScreen.main.scale
     }
@@ -34,7 +29,12 @@ class HabitCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
     }
     
-    func update(habit: JayData.HabitLocal) {
+    func update(caller: UICollectionViewCell, habit: JayData.HabitLocal) {
         Label.text = habit.name
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.2
+        layer.shadowRadius = 8
+        let view = caller.contentView
+        layer.shadowPath = UIBezierPath(roundedRect: CGRect(x: (view.center.x - view.bounds.width / 2) - 8, y: view.center.x - view.bounds.width / 2, width: layer.bounds.width + 12, height: layer.bounds.width + 12), cornerRadius: 10).cgPath
     }
 }

@@ -77,7 +77,10 @@ extension TodayCollectionViewController {
                 else {
                     fatalError("Wrong cell")
             }
-            cell.update(habit: data.obj as! JayData.HabitLocal)
+            cell.contentView.widthToSuperview()
+            cell.contentView.heightToSuperview()
+            cell.contentView.centerInSuperview()
+            cell.update(caller: cell, habit: data.obj as! JayData.HabitLocal)
             return cell
         case .reminder:
             guard let cell = collectionView.dequeueReusableCell(
