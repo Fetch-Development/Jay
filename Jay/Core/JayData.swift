@@ -81,7 +81,7 @@ class JayData {
                 eventStore.fetchReminders(
                     matching: predicate,
                     completion: { (reminders: [EKReminder]?) -> Void in
-                        reminderList = reminders
+                        reminderList += reminders!
                         flag = false
                 })
             } else {
@@ -138,6 +138,7 @@ class JayData {
         }
         
         // Reminder
+        cellIDs += Array(reminderDict.keys)
         getReminders()
         while flag {
             _ = 2 + 2 // pass
@@ -148,7 +149,6 @@ class JayData {
                 cellIDs.append(reminder.calendarItemIdentifier)
             }
         }
-        print(reminderList!)
         
         return cellIDs
     }

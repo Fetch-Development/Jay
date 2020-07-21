@@ -14,6 +14,7 @@ var vc: UICollectionViewController? = nil
 
 class TodayCollectionViewController: UICollectionViewController {
     
+    private let refreshControl = UIRefreshControl()
     
     private lazy var delegate: CollectionViewSelectableItemDelegate = {
         let res = CustomGriddedContentCollectionViewDelegate()
@@ -36,8 +37,19 @@ class TodayCollectionViewController: UICollectionViewController {
             forCellWithReuseIdentifier: ReminderCollectionViewCell.reuseID
         )
         
+        // Pull-to-Refresh
+        self.collectionView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        
         updatePresentationStyle()
     }
+    
+    @objc private func refresh(_ sender: Any) {
+        cellID = DataProvider.getAvaliableCellsIDs()
+        self.collectionView.reloadData()
+        self.refreshControl.endRefreshing()
+    }
+    
     
     private func updatePresentationStyle() {
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
