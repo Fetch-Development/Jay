@@ -9,12 +9,12 @@
 import UIKit
 
 class AddViewController: UIViewController {
-
+    
     @IBOutlet weak var SaveButton: UINavigationItem!
     @IBOutlet weak var CloseButton: UIBarButtonItem!
     
-    @IBOutlet weak var TypeSelector: UISegmentedControl!
     @IBOutlet weak var NameField: UITextField!
+    @IBOutlet weak var wantedSelector: UISegmentedControl!
     
     var reload : () -> () = {}
     
@@ -24,26 +24,18 @@ class AddViewController: UIViewController {
     
     @IBAction func save(_ sender: Any) {
         if (NameField.text != nil) {
-            if TypeSelector.selectedSegmentIndex == 0 {
-                // TODO: adding habit to DB
-                DataProvider.add(type: .habit, obj: {
-                    let data = JayData.HabitLocal (
-                        name: NameField.text ?? "no data",
-                        createdAt: Date(),
-                        lastUpdate: Date(),
-                        completed: 0,
-                        wanted: 2,
-                        state: .untouched,
-                        archived: false
-                    )
-                    return data
-                }())
-            } else {
-                // TODO: adding reminder to DB
-                DataProvider.add(type: .reminder, obj: JayData.Reminder(
-                    name: NameField.text ?? "no data", done: false)
+            DataProvider.add(type: .habit, obj: {
+                let data = JayData.HabitLocal (
+                    name: NameField.text ?? "no data",
+                    createdAt: Date(),
+                    lastUpdate: Date(),
+                    completed: 0,
+                    wanted: wantedSelector.selectedSegmentIndex + 1,
+                    state: .untouched,
+                    archived: false
                 )
-            }
+                return data
+            }())
             cellID = DataProvider.getAvaliableCellsIDs()
             reload()
         }
