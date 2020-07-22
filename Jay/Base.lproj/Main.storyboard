@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MH9-6e-vpq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MH9-6e-vpq">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -578,13 +578,13 @@ Don't stop there and double your success!</string>
                         <outlet property="calendarDateLabel" destination="HJ5-hv-kFE" id="AlJ-Wj-swF"/>
                         <outlet property="calendarView" destination="sBJ-lF-aMn" id="2cy-e7-UK6"/>
                         <outlet property="closeButton" destination="AmE-fA-AKT" id="jpL-HS-d6q"/>
-                        <outlet property="dayCountLable" destination="60R-xK-R89" id="snY-YR-Flt"/>
+                        <outlet property="dayCountLabel" destination="60R-xK-R89" id="PZu-yu-cjN"/>
                         <outlet property="detailsScrollView" destination="vYE-R6-oIm" id="a85-Y9-uwK"/>
                         <outlet property="graphView" destination="LuU-qR-9xa" id="gp7-1a-xbx"/>
                         <outlet property="habitCardView" destination="npR-Wa-ds8" id="rYs-RV-gSY"/>
                         <outlet property="mainLabel" destination="qMC-tq-bPa" id="o1u-ob-I9G"/>
-                        <outlet property="missesLable" destination="mD5-x9-Bz7" id="Phy-oN-wa3"/>
-                        <outlet property="procentageLabel" destination="i7m-Ok-Zu2" id="xSu-oI-uOJ"/>
+                        <outlet property="missesLabel" destination="mD5-x9-Bz7" id="cJ1-Dh-dCP"/>
+                        <outlet property="percentageLabel" destination="i7m-Ok-Zu2" id="sDU-xp-ufk"/>
                         <outlet property="quickLookProgressLabel" destination="bfV-6h-awI" id="vkC-Om-cUY"/>
                         <outlet property="statusButton" destination="hjH-Th-0A3" id="VOz-6M-ZRm"/>
                         <outlet property="streakLabel" destination="Y7L-UC-b0k" id="LGk-FL-N49"/>

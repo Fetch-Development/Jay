@@ -50,13 +50,13 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     @IBOutlet weak var calendarDateLabel: UILabel!
     @IBOutlet weak var quickLookProgressLabel: UILabel!
     
-    // Details
+    // DETAILS
     @IBOutlet weak var streakLabel: UILabel!
     @IBOutlet weak var bestCntLabel: UILabel!
-    @IBOutlet weak var procentageLabel: UILabel!
-    @IBOutlet weak var missesLable: UILabel!
+    @IBOutlet weak var percentageLabel: UILabel!
+    @IBOutlet weak var missesLabel: UILabel!
     @IBOutlet weak var successLabel: UILabel!
-    @IBOutlet weak var dayCountLable: UILabel!
+    @IBOutlet weak var dayCountLabel: UILabel!
     
     
     //GLOBAL VARS
@@ -165,10 +165,10 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
             streakLabel.text = "1"
         }
         
-        procentageLabel.text = "\(details.donePercentage)%"
-        missesLable.text = "\(details.allCnt - details.completedSum)"
+        percentageLabel.text = "\(details.donePercentage)%"
+        missesLabel.text = "\(details.allCnt - details.completedSum)"
         successLabel.text = "\(details.completedSum)"
-        dayCountLable.text = "of \(details.len) days"
+        dayCountLabel.text = "Over \(details.len) days"
     }
     
     override func viewDidLoad() {

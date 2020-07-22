@@ -222,7 +222,7 @@ public class JayData {
             }
             
         case .reminder:
-            // FIXME : add reminder
+            // FIXME: add reminder
             break
         }
     }
@@ -296,20 +296,36 @@ public class JayData {
         var allCnt: Int = 0
         var donePercentage: Int = 0
         var len: Int = 0
+        var streak: Int = 0
     }
     
     func getStatistics(id: String) -> HabitStatistics {
         let db = try! Realm()
         let items = db.objects(HabitHistory.self).filter("id = '\(id)'")
         var target = HabitStatistics()
-        for item in items {
-            target.completedSum += item.completed
-            target.allCnt += item.wanted
+        if items.last!.state == "completed"{
+            for item in items {
+                target.completedSum += item.completed
+                target.allCnt += item.wanted
+                if item.state == "completed"{
+                    target.streak += 1
+                }
+                else {
+                    target.streak = 0
+                }
+            }
+        } else {
+            for item in items {
+                target.completedSum += item.completed
+                target.allCnt += item.wanted
+            }
+            target.streak = 0
         }
         target.len = items.count
         if target.allCnt != 0 {
             target.donePercentage = Int((Double(target.completedSum) / Double(target.allCnt)) * 100)
         }
+        
         return target
     }
 }

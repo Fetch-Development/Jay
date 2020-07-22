@@ -86,7 +86,7 @@ public class Jay {
         })
     }
     
-    // DB time formate
+    // DB time format
      public static func removeTimeFrom(date: Date) -> Date {
         var components = Calendar.current.dateComponents([.year, .month, .day], from: date)
         components.hour = 0
