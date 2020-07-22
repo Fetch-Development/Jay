@@ -23,7 +23,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     @IBOutlet weak var statusButton: UIButton!
     @IBAction func statusButtonPressed(_ sender: Any) {
         if TodayHabitCardView.derivedData?.state != .completed {
-            progressAppend(data: &(TodayHabitCardView.derivedData)!)
+            Jay.progressAppend(data: &(TodayHabitCardView.derivedData)!, animationView: successAnimationView, afterAction: {self.progressUpdate()})
             DispatchQueue(label: "background").async {
                 autoreleasepool {
                     DataProvider.update(id: self.cellId!, obj: TodayHabitCardView.derivedData as Any)
@@ -38,10 +38,6 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         dismiss(animated: true, completion: nil)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        DataProvider.update(id: cellId!, obj: TodayHabitCardView.derivedData as Any)
-    }
-    
     //LABELS
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var calendarDateLabel: UILabel!
@@ -51,12 +47,29 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     let date = Date()
     public static var derivedData: JayData.HabitLocal?
     public var cellId: String?
-    let successGreenColor = UIColor.init(displayP3Red: 91 / 255, green: 199 / 255, blue: 122 / 255, alpha: 1)
     private var delegate = CustomGriddedCalendarCollectionViewDelegate()
     public static var startingWeekday = 0
     var cellsPrinted = 0
     var daysInMonth = 0
     public static var today = Calendar.current.component(.day, from: Date()) + 1
+    
+    //MISC
+    override func viewWillDisappear(_ animated: Bool) {
+        DataProvider.update(id: cellId!, obj: TodayHabitCardView.derivedData as Any)
+    }
+    
+    //Explicitly detecting whether the system appearance has changed in order to redraw the chart
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        if #available(iOS 13.0, *) {
+            if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+                setData()
+            }
+        } else {
+            // Fallback on earlier versions
+        }
+    }
     
     //Setting number of cells in Calendar CV
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -66,50 +79,6 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     //Setting cells in Calendar CV
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        //{        let offset = Calendar.current.component(.day, from: TodayHabitCardView.derivedData!.createdAt) - 1
-        //        var imageView = UIImageView()
-        //
-        //        //Changing UIImage according to habit history
-        //
-        //        if indexPath.item >= TodayHabitCardView.startingWeekday - 1
-        //            && indexPath.item <= (daysInMonth - TodayHabitCardView.startingWeekday - 3)
-        //        {
-        //            if (indexPath.item - offset) - (TodayHabitCardView.startingWeekday - 1) <
-        //                TodayHabitCardView.derivedData!.history.habits.endIndex && (indexPath.item - offset) -
-        //                (TodayHabitCardView.startingWeekday - 1) >= 0 {
-        //
-        //                print((indexPath.item - offset) - TodayHabitCardView.startingWeekday - 1)
-        //
-        //                switch TodayHabitCardView.derivedData!.history.habits[(indexPath.item - offset) -
-        //                    (TodayHabitCardView.startingWeekday - 1)].state {
-        //                case .completed:
-        //                    imageView = UIImageView(image: UIImage(systemName: "smallcircle.fill.circle"))
-        //                case .incompleted:
-        //                    imageView = UIImageView(image: UIImage(systemName: "smallcircle.circle"))
-        //                case .untouched:
-        //                    imageView = UIImageView(image: UIImage(systemName: "slash.circle"))
-        //                default:
-        //                    imageView = UIImageView(image: UIImage(systemName: "circle"))
-        //                }
-        //                //Detecting if its today
-        //            } else if indexPath.item == TodayHabitCardView.today{
-        //                imageView = UIImageView(image: UIImage(systemName: "largecircle.fill.circle"))
-        //            } else {
-        //                imageView = UIImageView(image: UIImage(systemName: "circle"))
-        //            }
-        //
-        //            //Setting cell's tint color
-        //            if indexPath.item <= TodayHabitCardView.today {
-        //                imageView.tintColor = .darkGray
-        //            } else {
-        //                imageView.tintColor = .systemGray
-        //            }
-        //            cell.contentView.addSubview(imageView)
-        //            imageView.centerInSuperview()
-        //            imageView.widthToSuperview()
-        //            imageView.heightToSuperview()
-        //        }
-        //}
         return cell
     }
     
@@ -224,41 +193,15 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
                 + String(TodayHabitCardView.derivedData!.completed) + "."
                 + String(TodayHabitCardView.derivedData!.wanted)), for: .normal)
             if !initial{
-                UIView.animate(withDuration: 0.2,
-                               animations: {
-                                self.successAnimationView.transform = CGAffineTransform(scaleX: 0.0001, y: 0.0001)
-                },
-                               completion: { _ in
-                                self.successAnimationView.isHidden = true
-                })
+                Jay.animateScale(view: successAnimationView)
             }
         }
         else {
             statusButton.setBackgroundImage(UIImage(named: "HabitIconDone"), for: .normal)
-            quickLookProgressLabel.textColor = successGreenColor
+            quickLookProgressLabel.textColor = Jay.successGreenColor
             //MARK: Move detailsScrollView to front here
         }
     }
     
-    //Function, called when user presses habit-completing button
-    private func progressAppend(data: inout JayData.HabitLocal) {
-        (data.wanted - data.completed == 1) ? (data.state = .completed) : (data.state = .incompleted)
-        data.completed += 1
-        playLottieAnimation (
-            view: successAnimationView,
-            named: "CheckedDone",
-            after: { self.progressUpdate() }
-        )
-    }
     
-    //Playing animation
-    private func playLottieAnimation(view: AnimationView, named: String, after: @escaping () -> Void) {
-        self.successAnimationView.transform = CGAffineTransform(scaleX: 1, y: 1)
-        view.isHidden = false
-        view.animation = Animation.named(named)
-        view.loopMode = .playOnce
-        view.play { _ in
-            after()
-        }
-    }
 }
