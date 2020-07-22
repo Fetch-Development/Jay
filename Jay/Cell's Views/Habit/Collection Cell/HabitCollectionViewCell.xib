@@ -66,7 +66,7 @@
                         </subviews>
                     </stackView>
                     <view hidden="YES" contentMode="scaleAspectFit" id="ifj-Ok-FuH" userLabel="SuccessAnimationView" customClass="AnimationView" customModule="Lottie">
-                        <rect key="frame" x="40" y="39" width="200" height="200"/>
+                        <rect key="frame" x="33" y="38" width="200" height="200"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <viewLayoutGuide key="safeArea" id="Eh3-2x-u1W"/>
                     </view>

@@ -39,6 +39,12 @@ class HabitCollectionViewCell: UICollectionViewCell {
         layer.masksToBounds = false
         layer.shouldRasterize = true
         layer.rasterizationScale = UIScreen.main.scale
+        
+//        successAnimationView.frame = CGRect(
+//            x: button.center.x,
+//            y: button.center.y,
+//            width: button.frame.width + 150,
+//            height: button.frame.height + 150)
     }
     
     override func layoutSubviews() {

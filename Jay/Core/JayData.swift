@@ -255,10 +255,11 @@ public class JayData {
     func getChartInfo(id: String) -> [Int] {
         let db = try! Realm()
         let items = db.objects(HabitHistoricalValue.self).filter("id = '\(id)'")
-        var target = [Int]()
+        var target = [0]
         for item in items {
-            target.append(item.completed)
+            target.append(10 + 10 * item.completed)
         }
+        print(target)
         return target
     }
 }
