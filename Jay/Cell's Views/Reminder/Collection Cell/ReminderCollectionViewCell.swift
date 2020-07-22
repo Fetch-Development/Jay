@@ -81,10 +81,10 @@ class ReminderCollectionViewCell: UICollectionViewCell {
                            completion: { _ in
                             //self.crossedLineView.isHidden = true
             })
-        }
-        else {
+        } else {
             crossWidthConstraint.constant = 0
-            statusButton.setImage(UIImage(named: "UntickedReminder"), for: .normal)
+            statusButton.isHidden = false
+            statusButton.setImage(UIImage(named: "untickedReminder"), for: .normal)
         }
     }
 }

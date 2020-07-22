@@ -15,15 +15,20 @@ class HabitCollectionViewCell: UICollectionViewCell {
     static let nib = UINib(nibName: String(describing: HabitCollectionViewCell.self), bundle: nil)
     var cell: UICollectionViewCell? = nil
     private var derivedData: JayData.HabitLocal?
+    private var id: String?
     
     @IBOutlet weak var successAnimationView: AnimationView!
     @IBOutlet weak var Label: UILabel!
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var progressLabel: UILabel!
     @IBAction func buttonPressed(_ sender: Any) {
-        if derivedData!.state != .completed{
+        if derivedData!.state != .completed {
             Jay.sendSuccessHapticFeedback()
             Jay.progressAppend(data: &(derivedData)!, animationView: successAnimationView, afterAction: {self.update()})
+            DataProvider.update(
+                id: self.id!,
+                obj: derivedData as Any
+            )
         }
     }
     
@@ -45,12 +50,13 @@ class HabitCollectionViewCell: UICollectionViewCell {
 //            Jay.animateScale(view: self.successAnimationView) })
 //    }
     
-    func update(){
+    func update() {
         progressLabel.text = String(derivedData!.completed) + "/" + String(derivedData!.wanted)
         if derivedData!.state == .completed {
             button.setBackgroundImage(UIImage(named: "HabitIconDone"), for: .normal)
             progressLabel.textColor = Jay.successGreenColor
         } else {
+            progressLabel.textColor = .black
             button.setBackgroundImage(UIImage(named: "HabitIcon"
             + String(derivedData!.completed) + "."
             + String(derivedData!.wanted)), for: .normal)
@@ -58,8 +64,9 @@ class HabitCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func draw(caller: UICollectionViewCell, habit: JayData.HabitLocal) {
-        derivedData = habit
+    func draw(caller: UICollectionViewCell, id: String, habit: JayData.HabitLocal) {
+        self.id = id
+        self.derivedData = habit
         Label.text = habit.name
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.2

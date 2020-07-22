@@ -12,9 +12,6 @@ var DataProvider = JayData()
 var cellID: [String] = DataProvider.getAvaliableCellsIDs()
 var vc: UICollectionViewController? = nil
 
-//MARK: DEBUG PURPOSES – REMOVE IN PRODUCTION
-import RealmSwift
-//MARK: DEBUG END
 
 class TodayCollectionViewController: UICollectionViewController {
     
@@ -30,12 +27,6 @@ class TodayCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //MARK: DEBUG PURPOSES – REMOVE IN PRODUCTION
-        let realm = try! Realm()
-        try! realm.write {
-          realm.deleteAll()
-        }
-        //MARK: DEBUG END
         vc = self
         self.collectionView.isUserInteractionEnabled = true
         self.collectionView.register (
@@ -102,7 +93,7 @@ extension TodayCollectionViewController {
             cell.contentView.widthToSuperview()
             cell.contentView.heightToSuperview()
             cell.contentView.centerInSuperview()
-            cell.draw(caller: cell, habit: data.obj as! JayData.HabitLocal)
+            cell.draw(caller: cell, id: cellID[indexPath.item], habit: data.obj as! JayData.HabitLocal)
             return cell
         case .reminder:
             guard let cell = collectionView.dequeueReusableCell(

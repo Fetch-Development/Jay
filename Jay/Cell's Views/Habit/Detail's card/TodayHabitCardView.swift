@@ -23,12 +23,19 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     @IBOutlet weak var statusButton: UIButton!
     @IBAction func statusButtonPressed(_ sender: Any) {
         if TodayHabitCardView.derivedData?.state != .completed {
-            Jay.progressAppend(data: &(TodayHabitCardView.derivedData)!, animationView: successAnimationView, afterAction: {self.progressUpdate()})
-            DispatchQueue(label: "background").async {
-                autoreleasepool {
-                    DataProvider.update(id: self.cellId!, obj: TodayHabitCardView.derivedData as Any)
-                }
+            Jay.progressAppend(
+                data: &(TodayHabitCardView.derivedData)!,
+                animationView: successAnimationView,
+                afterAction: {
+                    self.progressUpdate()
             }
+            )
+            DataProvider.update(
+                id: self.cellId!,
+                obj: TodayHabitCardView.derivedData as Any
+            )
+            self.setData()
+            
         }
     }
     
@@ -56,6 +63,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     //MISC
     override func viewWillDisappear(_ animated: Bool) {
         DataProvider.update(id: cellId!, obj: TodayHabitCardView.derivedData as Any)
+        vc!.collectionView.reloadData()
     }
     
     //Explicitly detecting whether the system appearance has changed in order to redraw the chart
@@ -192,7 +200,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
             statusButton.setBackgroundImage(UIImage(named: "HabitIcon"
                 + String(TodayHabitCardView.derivedData!.completed) + "."
                 + String(TodayHabitCardView.derivedData!.wanted)), for: .normal)
-            if !initial{
+            if !initial {
                 Jay.animateScale(view: successAnimationView)
             }
         }

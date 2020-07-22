@@ -138,6 +138,7 @@ public class JayData {
         for habit in habits {
             cellIDs.append(habit.id)
         }
+        cellIDs.sort()
         
         // Reminder
         cellIDs += Array(reminderDict.keys)

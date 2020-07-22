@@ -36,11 +36,25 @@ class CustomGriddedContentCollectionViewDelegate: DefaultCollectionViewDelegate 
                         contextMenuConfigurationForItemAt indexPath: IndexPath,
                         point: CGPoint) -> UIContextMenuConfiguration? {
         
-        let share = UIAction(title: "Share",
-                             image: UIImage(systemName: "square.and.arrow.up")
+        //        let share = UIAction(title: "Share",
+        //                             image: UIImage(systemName: "square.and.arrow.up")
+        //        ) {_ in
+        //            // TODO: share action
+        //        }
+        let reset = UIAction(
+            title: "Reset",
+            image: UIImage(systemName: "arrow.uturn.left")
         ) {_ in
-            // TODO: share action
+            let data = DataProvider.id2cell(id: cellID[indexPath.item])
+            if data.type == .habit {
+                var item = data.obj as! JayData.HabitLocal
+                item.completed = 0
+                item.state = .untouched
+                DataProvider.update(id: cellID[indexPath.item], obj: item)
+                vc!.collectionView.reloadData()
+            }
         }
+        
         
         let archive = UIAction(
             title: "Archive",
@@ -63,9 +77,10 @@ class CustomGriddedContentCollectionViewDelegate: DefaultCollectionViewDelegate 
         return UIContextMenuConfiguration(identifier: nil,
                                           previewProvider: nil)
         { _ in
-            UIMenu(title: "", children: [share, archive, delete])
+            UIMenu(title: "", children: [reset, archive, delete])
         }
     }
+    
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
