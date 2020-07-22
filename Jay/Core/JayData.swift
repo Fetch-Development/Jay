@@ -16,7 +16,7 @@ var flag = true
 var reminderDict: [String: JayData.Reminder] = [:]
 
 
-class HabitHistoricalValue: Object {
+class HabitHistory: Object {
     @objc dynamic var id = ""
     @objc dynamic var completed = 0
     @objc dynamic var wanted = 0
@@ -222,6 +222,7 @@ public class JayData {
             
             let db = try! Realm()
             
+            // Habit DB
             let item = db.objects(Habit.self).filter("id = '\(id)'").first
             let target = self.habitLocal2Habit(ID: id, item: obj as! HabitLocal)
             
@@ -229,6 +230,10 @@ public class JayData {
                 db.delete(item!)
                 db.add(target)
             }
+            
+            // History DB
+            let history = db.objects(HabitHistory.self).filter("id = '\(id)' AND date = %@", Jay.removeTimeFrom(date: Date()))
+            print(history)
         }
     }
     
@@ -254,12 +259,11 @@ public class JayData {
     
     func getChartInfo(id: String) -> [Int] {
         let db = try! Realm()
-        let items = db.objects(HabitHistoricalValue.self).filter("id = '\(id)'")
+        let items = db.objects(HabitHistory.self).filter("id = '\(id)'")
         var target = [0]
         for item in items {
             target.append(10 + 10 * item.completed)
         }
-        print(target)
         return target
     }
 }
