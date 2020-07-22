@@ -7,9 +7,23 @@
 //
 
 import Foundation
+import Lottie
 
 public class Jay {
     
+    //Colors
+    public static let successGreenColor = UIColor.init(displayP3Red: 91 / 255, green: 199 / 255, blue: 122 / 255, alpha: 1)
+    //Function, called when user presses habit-completing button
+    public static func progressAppend(data: inout JayData.HabitLocal, animationView: AnimationView, afterAction: @escaping () -> Void) {
+        (data.wanted - data.completed == 1) ? (data.state = .completed) : (data.state = .incompleted)
+        data.completed += 1
+        animationView.isHidden = false
+        Jay.playLottieAnimation (
+            view: animationView,
+            named: "CheckedDone",
+            after: { afterAction() }
+        )
+    }
     //Function to quickly create dates
     public static func dateFromComponents(day: Int, month: Int, year: Int) -> Date{
         var components = DateComponents()
@@ -38,5 +52,25 @@ public class Jay {
         let range = calendar.range(of: .day, in: .month, for: date)!
         let numDays = range.count
         return numDays
+    }
+    //Playing animation
+    public static func playLottieAnimation(view: AnimationView, named: String, after: @escaping () -> Void) {
+        view.transform = CGAffineTransform(scaleX: 1, y: 1)
+        view.isHidden = false
+        view.animation = Animation.named(named)
+        view.loopMode = .playOnce
+        view.play { _ in
+            after()
+        }
+    }
+    //Animating scale
+    public static func animateScale(view: UIView){
+        UIView.animate(withDuration: 0.2,
+                       animations: {
+                        view.transform = CGAffineTransform(scaleX: 0.0001, y: 0.0001)
+        },
+                       completion: { _ in
+                        view.isHidden = true
+        })
     }
 }

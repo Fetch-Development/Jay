@@ -23,7 +23,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     @IBOutlet weak var statusButton: UIButton!
     @IBAction func statusButtonPressed(_ sender: Any) {
         if TodayHabitCardView.derivedData?.state != .completed {
-            progressAppend(data: &(TodayHabitCardView.derivedData)!)
+            Jay.progressAppend(data: &(TodayHabitCardView.derivedData)!, animationView: successAnimationView, afterAction: {self.progressUpdate()})
             DispatchQueue(label: "background").async {
                 autoreleasepool {
                     DataProvider.update(id: self.cellId!, obj: TodayHabitCardView.derivedData as Any)
@@ -47,7 +47,6 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     let date = Date()
     public static var derivedData: JayData.HabitLocal?
     public var cellId: String?
-    let successGreenColor = UIColor.init(displayP3Red: 91 / 255, green: 199 / 255, blue: 122 / 255, alpha: 1)
     private var delegate = CustomGriddedCalendarCollectionViewDelegate()
     public static var startingWeekday = 0
     var cellsPrinted = 0
@@ -200,41 +199,15 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
                 + String(TodayHabitCardView.derivedData!.completed) + "."
                 + String(TodayHabitCardView.derivedData!.wanted)), for: .normal)
             if !initial{
-                UIView.animate(withDuration: 0.2,
-                               animations: {
-                                self.successAnimationView.transform = CGAffineTransform(scaleX: 0.0001, y: 0.0001)
-                },
-                               completion: { _ in
-                                self.successAnimationView.isHidden = true
-                })
+                Jay.animateScale(view: successAnimationView)
             }
         }
         else {
             statusButton.setBackgroundImage(UIImage(named: "HabitIconDone"), for: .normal)
-            quickLookProgressLabel.textColor = successGreenColor
+            quickLookProgressLabel.textColor = Jay.successGreenColor
             //MARK: Move detailsScrollView to front here
         }
     }
     
-    //Function, called when user presses habit-completing button
-    private func progressAppend(data: inout JayData.HabitLocal) {
-        (data.wanted - data.completed == 1) ? (data.state = .completed) : (data.state = .incompleted)
-        data.completed += 1
-        playLottieAnimation (
-            view: successAnimationView,
-            named: "CheckedDone",
-            after: { self.progressUpdate() }
-        )
-    }
     
-    //Playing animation
-    private func playLottieAnimation(view: AnimationView, named: String, after: @escaping () -> Void) {
-        self.successAnimationView.transform = CGAffineTransform(scaleX: 1, y: 1)
-        view.isHidden = false
-        view.animation = Animation.named(named)
-        view.loopMode = .playOnce
-        view.play { _ in
-            after()
-        }
-    }
 }

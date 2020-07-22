@@ -38,7 +38,7 @@ class Habit: Object {
 
 
 
-class JayData {
+public class JayData {
     // MARK: - Habit
     // This is the main Habit data structure
     public struct HabitLocal {
