@@ -35,7 +35,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = .systemGray6
-        layer.cornerRadius = 12
+        layer.cornerRadius = 15
         layer.masksToBounds = false
         layer.shouldRasterize = true
         layer.rasterizationScale = UIScreen.main.scale

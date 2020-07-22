@@ -45,7 +45,7 @@ class ReminderCollectionViewCell: UICollectionViewCell {
         self.reminderID = remId
         self.reminder = reminder
         layer.masksToBounds = false
-        layer.cornerRadius = 12
+        layer.cornerRadius = 15
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.2
         layer.shadowRadius = 8

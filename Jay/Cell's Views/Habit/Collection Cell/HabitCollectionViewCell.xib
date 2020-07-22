@@ -25,7 +25,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="-3" translatesAutoresizingMaskIntoConstraints="NO" id="vmr-Co-YSz" userLabel="TodayHabitStatSW">
-                        <rect key="frame" x="41" y="110.5" width="50" height="39.5"/>
+                        <rect key="frame" x="46" y="115.5" width="50" height="39.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="TODAY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4x7-qa-Brn">
                                 <rect key="frame" x="9" y="0.0" width="32" height="11"/>
@@ -50,7 +50,7 @@
                         </constraints>
                     </stackView>
                     <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jsf-Tz-ATq" userLabel="StatusButton">
-                        <rect key="frame" x="98" y="100" width="60" height="60"/>
+                        <rect key="frame" x="103" y="105" width="60" height="60"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="8cJ-iN-PR7"/>
                             <constraint firstAttribute="height" constant="60" id="JAz-ZP-6Ig"/>
@@ -66,7 +66,7 @@
                         </connections>
                     </button>
                     <view hidden="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="ifj-Ok-FuH" userLabel="SuccessAnimationView" customClass="AnimationView" customModule="Lottie">
-                        <rect key="frame" x="18" y="20" width="220" height="220"/>
+                        <rect key="frame" x="23" y="25" width="220" height="220"/>
                         <viewLayoutGuide key="safeArea" id="Eh3-2x-u1W"/>
                     </view>
                 </subviews>
@@ -80,8 +80,8 @@
                 <constraint firstItem="peo-u6-ZPi" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="ZZc-OK-fJF"/>
                 <constraint firstItem="peo-u6-ZPi" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="nWF-CY-kcz"/>
                 <constraint firstItem="ifj-Ok-FuH" firstAttribute="height" secondItem="Jsf-Tz-ATq" secondAttribute="height" constant="160" id="nsZ-1H-Pf1"/>
-                <constraint firstAttribute="trailing" secondItem="Jsf-Tz-ATq" secondAttribute="trailing" constant="20" id="ojF-Rp-AoK"/>
-                <constraint firstAttribute="bottom" secondItem="Jsf-Tz-ATq" secondAttribute="bottom" constant="20" id="rFd-gE-LMd"/>
+                <constraint firstAttribute="trailing" secondItem="Jsf-Tz-ATq" secondAttribute="trailing" constant="15" id="ojF-Rp-AoK"/>
+                <constraint firstAttribute="bottom" secondItem="Jsf-Tz-ATq" secondAttribute="bottom" constant="15" id="rFd-gE-LMd"/>
                 <constraint firstItem="ifj-Ok-FuH" firstAttribute="width" secondItem="Jsf-Tz-ATq" secondAttribute="width" constant="160" id="zXU-1X-n6r"/>
             </constraints>
             <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
