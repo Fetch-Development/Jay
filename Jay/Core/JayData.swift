@@ -69,7 +69,7 @@ public class JayData {
     // This is the main Reminder data structure
     public struct Reminder {
         var name: String
-        var state: Bool
+        var done: Bool
     }
     
     func getReminders() {
@@ -146,7 +146,7 @@ public class JayData {
         }
         for reminder in reminderList {
             if !reminder.isCompleted {
-                reminderDict[reminder.calendarItemIdentifier] = Reminder(name: reminder.title, state: reminder.isCompleted)
+                reminderDict[reminder.calendarItemIdentifier] = Reminder(name: reminder.title, done: reminder.isCompleted)
                 cellIDs.append(reminder.calendarItemIdentifier)
             }
         }

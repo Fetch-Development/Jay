@@ -18,7 +18,7 @@ class ReminderDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         label.text = reminder?.name ?? "no data"
-        statusLable.text = "Status: \(reminder!.state)"
+        statusLable.text = "Status: \(reminder!.done)"
         super.viewDidLoad()
     }
     

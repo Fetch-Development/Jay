@@ -22,6 +22,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var progressLabel: UILabel!
     @IBAction func buttonPressed(_ sender: Any) {
         if derivedData!.state != .completed{
+            Jay.sendSuccessHapticFeedback()
             Jay.progressAppend(data: &(derivedData)!, animationView: successAnimationView, afterAction: {self.update()})
         }
     }
@@ -29,7 +30,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = .systemGray6
-        layer.cornerRadius = 10
+        layer.cornerRadius = 12
         layer.masksToBounds = false
         layer.shouldRasterize = true
         layer.rasterizationScale = UIScreen.main.scale
@@ -64,7 +65,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
         layer.shadowOpacity = 0.2
         layer.shadowRadius = 8
         let view = caller.contentView
-        layer.shadowPath = UIBezierPath(roundedRect: CGRect(x: (view.center.x - view.bounds.width / 2) - 8, y: view.center.x - view.bounds.width / 2, width: layer.bounds.width + 12, height: layer.bounds.width + 12), cornerRadius: 10).cgPath
+        layer.shadowPath = UIBezierPath(roundedRect: CGRect(x: (view.center.x - view.bounds.width / 2) - 8, y: view.center.x - view.bounds.width / 2, width: layer.bounds.width + 12, height: layer.bounds.height + 12), cornerRadius: 10).cgPath
         update()
     }
 }

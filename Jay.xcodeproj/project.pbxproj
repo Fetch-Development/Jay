@@ -30,6 +30,8 @@
 		FC85763C24BF004B0012CDEA /* DefaultCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC85763924BF004B0012CDEA /* DefaultCollectionViewDelegate.swift */; };
 		FC85763D24BF004B0012CDEA /* TodayCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC85763A24BF004B0012CDEA /* TodayCollectionViewController.swift */; };
 		FCA243C824C5924800CB04B1 /* CheckedDone.json in Resources */ = {isa = PBXBuildFile; fileRef = FCA243C724C5924800CB04B1 /* CheckedDone.json */; };
+		FCB71EBE24C8783A008A5A0E /* CheckedDoneSmallLight.json in Resources */ = {isa = PBXBuildFile; fileRef = FCB71EBD24C8783A008A5A0E /* CheckedDoneSmallLight.json */; };
+		FCB71EC024C87F5D008A5A0E /* CheckedDoneSmallDark.json in Resources */ = {isa = PBXBuildFile; fileRef = FCB71EBF24C87F5D008A5A0E /* CheckedDoneSmallDark.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +62,8 @@
 		FC85763924BF004B0012CDEA /* DefaultCollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		FC85763A24BF004B0012CDEA /* TodayCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayCollectionViewController.swift; sourceTree = "<group>"; };
 		FCA243C724C5924800CB04B1 /* CheckedDone.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CheckedDone.json; sourceTree = "<group>"; };
+		FCB71EBD24C8783A008A5A0E /* CheckedDoneSmallLight.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CheckedDoneSmallLight.json; sourceTree = "<group>"; };
+		FCB71EBF24C87F5D008A5A0E /* CheckedDoneSmallDark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CheckedDoneSmallDark.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +243,8 @@
 			isa = PBXGroup;
 			children = (
 				FCA243C724C5924800CB04B1 /* CheckedDone.json */,
+				FCB71EBD24C8783A008A5A0E /* CheckedDoneSmallLight.json */,
+				FCB71EBF24C87F5D008A5A0E /* CheckedDoneSmallDark.json */,
 			);
 			path = Lottie;
 			sourceTree = "<group>";
@@ -305,7 +311,9 @@
 			files = (
 				FC85762B24BF003D0012CDEA /* ReminderCollectionViewCell.xib in Resources */,
 				FC25C35024C3724B00A27933 /* .gitignore in Resources */,
+				FCB71EC024C87F5D008A5A0E /* CheckedDoneSmallDark.json in Resources */,
 				FC85761024BF00060012CDEA /* Main.storyboard in Resources */,
+				FCB71EBE24C8783A008A5A0E /* CheckedDoneSmallLight.json in Resources */,
 				FC85763324BF00440012CDEA /* LaunchScreen.storyboard in Resources */,
 				FCA243C824C5924800CB04B1 /* CheckedDone.json in Resources */,
 				FC85763224BF00440012CDEA /* Assets.xcassets in Resources */,
