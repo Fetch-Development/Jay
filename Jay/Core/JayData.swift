@@ -232,8 +232,22 @@ public class JayData {
             }
             
             // History DB
-            let history = db.objects(HabitHistory.self).filter("id = '\(id)' AND date = %@", Jay.removeTimeFrom(date: Date()))
-            print(history)
+            if let history = db.objects(HabitHistory.self)
+                .filter("id = '\(id)' AND date >= %@ AND date < %@", Jay.removeTimeFrom(date: Date()), Date()).first {
+                try! db.write {
+                    db.delete(history)
+                }
+            }
+            let temp = obj as! HabitLocal
+            let historyTarget = HabitHistory(value: ["id": id,
+                                                     "completed": temp.completed,
+                                                     "wanted": temp.wanted,
+                                                     "state": state2string(temp.state),
+                                                     "date": Date()])
+            
+            try! db.write {
+                db.add(historyTarget)
+            }
         }
     }
     
@@ -259,11 +273,31 @@ public class JayData {
     
     func getChartInfo(id: String) -> [Int] {
         let db = try! Realm()
-        let items = db.objects(HabitHistory.self).filter("id = '\(id)'")
+        let items = db.objects(HabitHistory.self).filter("id = '\(id)'").sorted(byKeyPath: "date")
         var target = [0]
         for item in items {
-            target.append(10 + 10 * item.completed)
+            target.append(10 + 5 * item.completed)
         }
+        return target
+    }
+    
+    struct HabitStatistics {
+        var completedSum: Int = 0
+        var allCnt: Int = 0
+        var donePercentage: Int = 0
+        var len: Int = 0
+    }
+    
+    func getStatistics(id: String) -> HabitStatistics {
+        let db = try! Realm()
+        let items = db.objects(HabitHistory.self).filter("id = '\(id)'")
+        var target = HabitStatistics()
+        for item in items {
+            target.completedSum += item.completed
+            target.allCnt += item.wanted
+        }
+        target.len = items.count
+        target.donePercentage = Int((Double(target.completedSum) / Double(target.allCnt)) * 100)
         return target
     }
 }

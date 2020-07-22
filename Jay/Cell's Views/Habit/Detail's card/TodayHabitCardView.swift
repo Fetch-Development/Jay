@@ -50,6 +50,15 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     @IBOutlet weak var calendarDateLabel: UILabel!
     @IBOutlet weak var quickLookProgressLabel: UILabel!
     
+    // Details
+    @IBOutlet weak var streakLabel: UILabel!
+    @IBOutlet weak var bestCntLabel: UILabel!
+    @IBOutlet weak var procentageLabel: UILabel!
+    @IBOutlet weak var missesLable: UILabel!
+    @IBOutlet weak var successLabel: UILabel!
+    @IBOutlet weak var dayCountLable: UILabel!
+    
+    
     //GLOBAL VARS
     let date = Date()
     public static var derivedData: JayData.HabitLocal?
@@ -69,7 +78,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     //Explicitly detecting whether the system appearance has changed in order to redraw the chart
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-
+        
         if #available(iOS 13.0, *) {
             if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
                 setData()
@@ -127,7 +136,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         return CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradientColors, locations: colorLocations)!
     }
     
-    //Setting data for the chart
+    //Setting data for the chart and details
     private func setData() {
         let set = LineChartDataSet(entries: {
             let values = DataProvider.getChartInfo(id: cellId!)
@@ -147,6 +156,19 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         set.setDrawHighlightIndicators(false)
         let data = LineChartData(dataSet: set)
         lineChartView.data = data
+        
+        // details
+        let details = DataProvider.getStatistics(id: cellId!)
+        if TodayHabitCardView.derivedData!.state == .completed {
+            streakLabel.text = "2"
+        } else {
+            streakLabel.text = "1"
+        }
+        
+        procentageLabel.text = "\(details.donePercentage)%"
+        missesLable.text = "\(details.allCnt - details.completedSum)"
+        successLabel.text = "\(details.completedSum)"
+        dayCountLable.text = "of \(details.len) days"
     }
     
     override func viewDidLoad() {
