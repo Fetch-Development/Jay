@@ -138,19 +138,6 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         return chartView
     }()
     
-    //MARK: DEBUG – REMOVE IN PRODUCTION
-    let values: [ChartDataEntry] = [
-        ChartDataEntry(x: 0.0, y: 50.0),
-        ChartDataEntry(x: 1.0, y: 35.0),
-        ChartDataEntry(x: 2.0, y: 40.0),
-        ChartDataEntry(x: 3.0, y: 25.0),
-        ChartDataEntry(x: 4.0, y: 20.0),
-        ChartDataEntry(x: 5.0, y: 46.0),
-        ChartDataEntry(x: 6.0, y: 30.0),
-        ChartDataEntry(x: 6.1, y: 0.0),
-    ]
-    //MARK: DEBUG END
-    
     //Function returning gradient
     private func getGradientFilling() -> CGGradient {
         // Setting fill gradient color
@@ -165,7 +152,14 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     
     //Setting data for the chart
     private func setData() {
-        let set = LineChartDataSet(entries: values)
+        let set = LineChartDataSet(entries: {
+            let values = DataProvider.getChartInfo(id: cellId!)
+            var target: [ChartDataEntry] = []
+            for i in 0..<values.count {
+                target.append(ChartDataEntry(x: Double(i), y: Double(values[i])))
+            }
+            return target
+        }())
         set.drawCirclesEnabled = false
         set.drawValuesEnabled = false
         set.mode = .cubicBezier

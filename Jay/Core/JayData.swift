@@ -250,4 +250,14 @@ class JayData {
             }
         }
     }
+    
+    func getChartInfo(id: String) -> [Int] {
+        let db = try! Realm()
+        let items = db.objects(HabitHistoricalValue.self).filter("id = '\(id)'")
+        var target = [Int]()
+        for item in items {
+            target.append(item.completed)
+        }
+        return target
+    }
 }
