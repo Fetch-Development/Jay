@@ -41,6 +41,16 @@ class CustomGriddedContentCollectionViewDelegate: DefaultCollectionViewDelegate 
         ) {_ in
             // TODO: share action
         }
+        
+        let archive = UIAction(
+            title: "Archive",
+            image: UIImage(systemName: "archivebox")
+        ) {_ in
+            DataProvider.archive(id: cellID[indexPath.item])
+            cellID = DataProvider.getAvaliableCellsIDs()
+            vc!.collectionView.reloadData()
+        }
+        
         let delete = UIAction(
             title: "Delete",
             image: UIImage(systemName: "trash")
@@ -53,7 +63,7 @@ class CustomGriddedContentCollectionViewDelegate: DefaultCollectionViewDelegate 
         return UIContextMenuConfiguration(identifier: nil,
                                           previewProvider: nil)
         { _ in
-            UIMenu(title: "", children: [share, delete])
+            UIMenu(title: "", children: [share, archive, delete])
         }
     }
     

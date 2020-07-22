@@ -17,6 +17,7 @@ var reminderDict: [String: JayData.Reminder] = [:]
 
 
 class HabitHistoricalValue: Object {
+    @objc dynamic var id = ""
     @objc dynamic var completed = 0
     @objc dynamic var wanted = 0
     @objc dynamic var state = ""
@@ -236,6 +237,16 @@ class JayData {
             let item = db.objects(Habit.self).filter("id = '\(id)'").first
             try! db.write {
                 db.delete(item!)
+            }
+        }
+    }
+    
+    func archive(id: String) {
+        if reminderDict[id] == nil {
+            let db = try! Realm()
+            let item = db.objects(Habit.self).filter("id = '\(id)'").first
+            try! db.write {
+                item?.archived = true
             }
         }
     }
