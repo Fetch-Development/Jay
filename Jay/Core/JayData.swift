@@ -210,6 +210,16 @@ public class JayData {
             try! db.write {
                 db.add(target)
             }
+            let temp = obj as! HabitLocal
+            let historyTarget = HabitHistory(value: ["id": target.id,
+                                                     "completed": temp.completed,
+                                                     "wanted": temp.wanted,
+                                                     "state": state2string(temp.state),
+                                                     "date": Date()])
+            
+            try! db.write {
+                db.add(historyTarget)
+            }
             
         case .reminder:
             // FIXME : add reminder
@@ -297,7 +307,9 @@ public class JayData {
             target.allCnt += item.wanted
         }
         target.len = items.count
-        target.donePercentage = Int((Double(target.completedSum) / Double(target.allCnt)) * 100)
+        if target.allCnt != 0 {
+            target.donePercentage = Int((Double(target.completedSum) / Double(target.allCnt)) * 100)
+        }
         return target
     }
 }
