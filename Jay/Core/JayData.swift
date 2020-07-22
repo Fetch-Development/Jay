@@ -16,7 +16,7 @@ var flag = true
 var reminderDict: [String: JayData.Reminder] = [:]
 
 
-class HabitHistoricalValue: Object {
+class HabitHistory: Object {
     @objc dynamic var id = ""
     @objc dynamic var completed = 0
     @objc dynamic var wanted = 0
@@ -210,6 +210,16 @@ public class JayData {
             try! db.write {
                 db.add(target)
             }
+            let temp = obj as! HabitLocal
+            let historyTarget = HabitHistory(value: ["id": target.id,
+                                                     "completed": temp.completed,
+                                                     "wanted": temp.wanted,
+                                                     "state": state2string(temp.state),
+                                                     "date": Date()])
+            
+            try! db.write {
+                db.add(historyTarget)
+            }
             
         case .reminder:
             // FIXME : add reminder
@@ -222,12 +232,31 @@ public class JayData {
             
             let db = try! Realm()
             
+            // Habit DB
             let item = db.objects(Habit.self).filter("id = '\(id)'").first
             let target = self.habitLocal2Habit(ID: id, item: obj as! HabitLocal)
             
             try! db.write {
                 db.delete(item!)
                 db.add(target)
+            }
+            
+            // History DB
+            if let history = db.objects(HabitHistory.self)
+                .filter("id = '\(id)' AND date >= %@ AND date < %@", Jay.removeTimeFrom(date: Date()), Date()).first {
+                try! db.write {
+                    db.delete(history)
+                }
+            }
+            let temp = obj as! HabitLocal
+            let historyTarget = HabitHistory(value: ["id": id,
+                                                     "completed": temp.completed,
+                                                     "wanted": temp.wanted,
+                                                     "state": state2string(temp.state),
+                                                     "date": Date()])
+            
+            try! db.write {
+                db.add(historyTarget)
             }
         }
     }
@@ -254,12 +283,33 @@ public class JayData {
     
     func getChartInfo(id: String) -> [Int] {
         let db = try! Realm()
-        let items = db.objects(HabitHistoricalValue.self).filter("id = '\(id)'")
+        let items = db.objects(HabitHistory.self).filter("id = '\(id)'").sorted(byKeyPath: "date")
         var target = [0]
         for item in items {
-            target.append(10 + 10 * item.completed)
+            target.append(10 + 5 * item.completed)
         }
-        print(target)
+        return target
+    }
+    
+    struct HabitStatistics {
+        var completedSum: Int = 0
+        var allCnt: Int = 0
+        var donePercentage: Int = 0
+        var len: Int = 0
+    }
+    
+    func getStatistics(id: String) -> HabitStatistics {
+        let db = try! Realm()
+        let items = db.objects(HabitHistory.self).filter("id = '\(id)'")
+        var target = HabitStatistics()
+        for item in items {
+            target.completedSum += item.completed
+            target.allCnt += item.wanted
+        }
+        target.len = items.count
+        if target.allCnt != 0 {
+            target.donePercentage = Int((Double(target.completedSum) / Double(target.allCnt)) * 100)
+        }
         return target
     }
 }

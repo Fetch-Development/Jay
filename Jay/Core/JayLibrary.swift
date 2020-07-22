@@ -85,4 +85,13 @@ public class Jay {
                         view.isHidden = true
         })
     }
+    
+    // DB time formate
+     public static func removeTimeFrom(date: Date) -> Date {
+        var components = Calendar.current.dateComponents([.year, .month, .day], from: date)
+        components.hour = 0
+        components.minute = 0
+        let date = Calendar.current.date(from: components)
+        return date!
+    }
 }
