@@ -63,13 +63,12 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     @IBOutlet weak var dayCountLabel: UILabel!
     
     //GLOBAL VARS
-    let date = Date()
     public static var derivedData: JayData.HabitLocal?
     public var cellId: String?
     private lazy var delegate = CustomGriddedCalendarCollectionViewDelegate()
     public static var startingWeekday = 0
-    var cellsPrinted = 0
     var daysInMonth = 0
+    var today = 0
     public static var today = Calendar.current.component(.day, from: Date()) + 1
     var collectionView: UICollectionView!
     
@@ -99,6 +98,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     
     //Setting cells in Calendar CV
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let offset = today - 2 + TodayHabitCardView.startingWeekday
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         
         var imageView = UIImageView()
@@ -111,18 +111,18 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
 
         switch status {
         case .completed:
-            imageView = UIImageView(image: UIImage(systemName: "checkmark.circle"))
+            imageView = UIImageView(image: UIImage(systemName: indexPath.item == offset ? "smallcircle.fill.circle.fill" : "smallcircle.fill.circle"))
         case .untouched:
-            imageView = UIImageView(image: UIImage(systemName: "xmark.circle"))
+            imageView = UIImageView(image: UIImage(systemName: indexPath.item == offset ? "slash.circle.fill" : "slash.circle"))
         case .incompleted:
-            imageView = UIImageView(image: UIImage(systemName: "smallcircle.circle"))
+            imageView = UIImageView(image: UIImage(systemName: indexPath.item == offset ? "smallcircle.circle.fill" : "smallcircle.circle"))
         case .unknown:
             imageView = UIImageView(image: UIImage(systemName: "circle"))
         case .blank:
             imageView = UIImageView(image: nil)
         }
         
-        imageView.tintColor = .darkGray
+        imageView.tintColor = indexPath.item > offset ? .systemGray4 : .darkGray
         cell.contentView.addSubview(imageView)
         imageView.centerInSuperview()
         imageView.widthToSuperview()
@@ -137,6 +137,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         let year = Calendar.current.component(.year, from: Date())
         TodayHabitCardView.startingWeekday = Calendar.current.component(.weekday, from: Calendar.current.date(from: DateComponents(year: year, month: month, day: 0))!)
         daysInMonth = Jay.getDaysInMonth(month: month)
+        today = Calendar.current.component(.day, from: Date())
     }
     
     //Creating & configuring chart
