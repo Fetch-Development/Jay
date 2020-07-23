@@ -14,9 +14,11 @@ import Lottie
 class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     //VIEWS
     @IBOutlet var habitCardView: UIView!
+    @IBOutlet weak var overviewView: UIView!
     @IBOutlet weak var graphView: UIView!
     @IBOutlet weak var calendarView: UIView!
     @IBOutlet weak var successAnimationView: AnimationView!
+    @IBOutlet weak var cardIconImageView: UIImageView!
     @IBOutlet weak var detailsScrollView: UIScrollView!
     
     //BUTTONS
@@ -48,16 +50,17 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     //LABELS
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var calendarDateLabel: UILabel!
+    @IBOutlet weak var cardHeader: UILabel!
+    @IBOutlet weak var cardDescriptionLabel: UILabel!
     @IBOutlet weak var quickLookProgressLabel: UILabel!
     
-    // DETAILS
+    //DETAILS
     @IBOutlet weak var streakLabel: UILabel!
     @IBOutlet weak var bestCntLabel: UILabel!
     @IBOutlet weak var percentageLabel: UILabel!
     @IBOutlet weak var missesLabel: UILabel!
     @IBOutlet weak var successLabel: UILabel!
     @IBOutlet weak var dayCountLabel: UILabel!
-    
     
     //GLOBAL VARS
     let date = Date()
@@ -157,15 +160,33 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         let data = LineChartData(dataSet: set)
         lineChartView.data = data
         
-        // details
+        //Details
         let details = DataProvider.getStatistics(id: cellId!)
-       
         bestCntLabel.text = "\(details.best)"
         streakLabel.text = "\(details.streak)"
         percentageLabel.text = "\(details.donePercentage)%"
         missesLabel.text = "\(details.len - details.completedSum)"
         successLabel.text = "\(details.completedSum)"
         dayCountLabel.text = "Over \(details.len) days"
+        
+        //Card
+        var card: JayOverview.Card?
+        if (TodayHabitCardView.derivedData?.createdAt.distance(to: Date()).isLess(than: 200000))!{
+            card = JayOverview.beginCard
+        }else if false{ //Get here in case overall completion is over 85%
+            card = JayOverview.amazingResultsCard
+        }else if false{ //Get here in case user's progress increased
+            card = JayOverview.progressCard
+        }else if false{ //Get here in case user's progress stayed the same
+            card = JayOverview.stagnationCard
+        }else if false{ //Get here in case user's progress decreased
+            card = JayOverview.degradationCard
+        }else{
+            card = JayOverview.commonCard
+        }
+        cardHeader.text = card?.header
+        cardDescriptionLabel.text = card?.description
+        cardIconImageView.image = UIImage(systemName: card!.imageName)
     }
     
     override func viewDidLoad() {
@@ -204,6 +225,16 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         collectionView.width(to: calendarView)
         collectionView.bounds = calendarView.bounds
         collectionView.heightToSuperview()
+        //Configuring overview container
+        let ovrvLayer = overviewView.layer
+        ovrvLayer.masksToBounds = false
+        ovrvLayer.cornerRadius = 15
+        ovrvLayer.shadowColor = UIColor.black.cgColor
+        ovrvLayer.shadowOpacity = 0.2
+        ovrvLayer.shadowRadius = 8
+        ovrvLayer.shadowPath = UIBezierPath(roundedRect: CGRect(x: overviewView.bounds.minX, y: overviewView.bounds.minY, width: view.frame.width - 40, height: overviewView.bounds.height + 5), cornerRadius: 10).cgPath
+        ovrvLayer.shouldRasterize = true
+        ovrvLayer.rasterizationScale = UIScreen.main.scale
         
         //Updating everything
         progressUpdate(initial: true)
@@ -226,6 +257,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         else {
             statusButton.setBackgroundImage(UIImage(named: "HabitIconDone"), for: .normal)
             quickLookProgressLabel.textColor = Jay.successGreenColor
+            successAnimationView.isHidden = true
             //MARK: Move detailsScrollView to front here
         }
     }

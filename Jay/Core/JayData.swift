@@ -15,6 +15,60 @@ var reminderList: [EKReminder]!
 var flag = true
 var reminderDict: [String: JayData.Reminder] = [:]
 
+public class JayOverview{
+    public struct Card {
+        var imageName: String
+        var header: String
+        var description: String
+    }
+/**
+ Image names for use:
+    – checkmark.seal.fill (галка)
+    – rosette (медаль)
+    – sparkles (звездочки)
+    – xmark.seal.fill (крестик)
+    – arrow.up.right (прогресс)
+    – arrow.down.right (деградация)
+    – arrow.right (стагнация)
+    – arrow.turn.right.up (начало)
+ */
+    public static let beginCard =
+    Card(
+        imageName: "arrow.turn.right.up",
+        header: "Get ready",
+        description: "You've just begun with your habit.\nIt's time you did that!"
+    )
+    public static let commonCard =
+    Card(
+        imageName: "chart.bar.fill",
+        header: "Add more data",
+        description: "More data required for this one"
+    )
+    public static let progressCard =
+    Card(
+        imageName: "arrow.up.right",
+        header: "You're doing great",
+        description: "Your progress has increased over the recent time.\nGreat job!"
+    )
+    public static let stagnationCard =
+    Card(
+        imageName: "arrow.right",
+        header: "You're on the level",
+        description: "Your progress is just the same as it was.\nTime to push the boundaries!"
+    )
+    public static let degradationCard =
+    Card(
+        imageName: "arrow.down.right",
+        header: "You're struggling",
+        description: "Your progress has decreased.\nGet back on track!"
+    )
+    public static let amazingResultsCard =
+    Card(
+        imageName: "sparkles",
+        header: "Amazing!",
+        description: "You're doing great completing your habit!\nTime to celebrate!"
+    )
+}
 
 class HabitHistory: Object {
     @objc dynamic var id = ""
@@ -35,9 +89,6 @@ class Habit: Object {
     @objc dynamic var state = ""
     @objc dynamic var archived = false
 }
-
-
-
 
 public class JayData {
     // MARK: - Habit
@@ -87,7 +138,7 @@ public class JayData {
                 })
             } else {
                 flag = false
-                print("The app is not permitted to access reminders, make sure to grant permission in the settings and try again")
+                print("The app is not permitted to access reminders, make sure you've granted permission in the settings and try again")
             }
         }
     }
