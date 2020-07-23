@@ -1,8 +1,8 @@
 //
 //  JayData.swift
-//  CardExtendedViewPrototype
+//  Jay
 //
-//  Created by Aydar Nasibullin on 17.07.2020.
+//  Created by Chernykh Vladimir on 17.07.2020.
 //  Copyright © 2020 Fetch Development. All rights reserved.
 //
 
@@ -293,7 +293,6 @@ public class JayData {
     
     struct HabitStatistics {
         var completedSum: Int = 0
-        var allCnt: Int = 0
         var donePercentage: Int = 0
         var len: Int = 0
         var streak: Int = 0
@@ -301,29 +300,22 @@ public class JayData {
     
     func getStatistics(id: String) -> HabitStatistics {
         let db = try! Realm()
-        let items = db.objects(HabitHistory.self).filter("id = '\(id)'")
+        let items = db.objects(HabitHistory.self).filter("id = '\(id)'").sorted(byKeyPath: "date", ascending: false)
+        print(items)
         var target = HabitStatistics()
-        if items.last!.state == "completed"{
-            for item in items {
-                target.completedSum += item.completed
-                target.allCnt += item.wanted
-                if item.state == "completed"{
-                    target.streak += 1
-                }
-                else {
-                    target.streak = 0
-                }
-            }
-        } else {
-            for item in items {
-                target.completedSum += item.completed
-                target.allCnt += item.wanted
-            }
-            target.streak = 0
+        var i = 0
+        while i < items.count && items[i].state == "completed" {
+            target.streak += 1
+            i += 1
         }
+        
+        for item in items {
+            target.completedSum += item.state == "completed" ? 1: 0
+        }
+        
         target.len = items.count
-        if target.allCnt != 0 {
-            target.donePercentage = Int((Double(target.completedSum) / Double(target.allCnt)) * 100)
+        if target.len != 0 {
+            target.donePercentage = Int((Double(target.completedSum) / Double(target.len)) * 100)
         }
         
         return target

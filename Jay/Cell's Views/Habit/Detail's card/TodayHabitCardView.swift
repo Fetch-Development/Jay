@@ -159,14 +159,10 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         
         // details
         let details = DataProvider.getStatistics(id: cellId!)
-        if TodayHabitCardView.derivedData!.state == .completed {
-            streakLabel.text = "2"
-        } else {
-            streakLabel.text = "1"
-        }
-        
+       
+        streakLabel.text = "\(details.streak)"
         percentageLabel.text = "\(details.donePercentage)%"
-        missesLabel.text = "\(details.allCnt - details.completedSum)"
+        missesLabel.text = "\(details.len - details.completedSum)"
         successLabel.text = "\(details.completedSum)"
         dayCountLabel.text = "Over \(details.len) days"
     }
