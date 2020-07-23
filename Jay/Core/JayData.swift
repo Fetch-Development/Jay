@@ -114,6 +114,7 @@ public class JayData {
         case incompleted
         case untouched
         case unknown
+        case blank
     }
     
     
@@ -384,4 +385,13 @@ public class JayData {
         
         return target
     }
+    
+    func getCalendarStatus(id: String, date: Date) -> JayHabitState {
+           let db = try! Realm()
+
+           if let history = db.objects(HabitHistory.self).filter("id = '\(id)' AND date >= %@ AND date < %@", Jay.removeTimeFrom(date: date), date).first {
+               return getHabitState(history.state)
+           }
+           return .unknown
+       }
 }

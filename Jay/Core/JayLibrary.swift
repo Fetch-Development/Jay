@@ -94,4 +94,15 @@ public class Jay {
         let date = Calendar.current.date(from: components)
         return date!
     }
+    
+    public static func getDayOfMonth(date: Date, index: Int) -> Date {
+        var components = Calendar.current.dateComponents([.year, .month], from: date)
+        
+        components.day = index + 1
+        components.hour = 23
+        components.minute = 59
+        
+        let date = Calendar.current.date(from: components)
+        return date!
+    }
 }

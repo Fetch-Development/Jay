@@ -99,6 +99,34 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     //Setting cells in Calendar CV
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+        
+        var imageView = UIImageView()
+        var status = JayData.JayHabitState.blank
+        
+        if indexPath.item - TodayHabitCardView.startingWeekday > 0 {
+            status = DataProvider.getCalendarStatus(id: cellId!, date: Jay.getDayOfMonth(date: Date(), index: indexPath.item - TodayHabitCardView.startingWeekday + 1))
+        }
+
+        switch status {
+        case .completed:
+            imageView = UIImageView(image: UIImage(systemName: "checkmark.circle"))
+        case .untouched:
+            imageView = UIImageView(image: UIImage(systemName: "smallcircle.circle"))
+        case .incompleted:
+            imageView = UIImageView(image: UIImage(systemName: "xmark.circle"))
+        case .unknown:
+            imageView = UIImageView(image: UIImage(systemName: "circle"))
+        case .blank:
+            imageView = UIImageView(image: nil)
+        }
+        
+        imageView.tintColor = .darkGray
+        cell.contentView.addSubview(imageView)
+        imageView.centerInSuperview()
+        imageView.widthToSuperview()
+        imageView.heightToSuperview()
+        
+        
         return cell
     }
     
@@ -173,20 +201,26 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         var card: JayOverview.Card?
         if (TodayHabitCardView.derivedData?.createdAt.distance(to: Date()).isLess(than: 200000))!{
             card = JayOverview.beginCard
-        }else if false{ //Get here in case overall completion is over 85%
+        } else if false { //Get here in case overall completion is over 85%
             card = JayOverview.amazingResultsCard
-        }else if false{ //Get here in case user's progress increased
+        } else if false { //Get here in case user's progress increased
             card = JayOverview.progressCard
-        }else if false{ //Get here in case user's progress stayed the same
+        } else if false { //Get here in case user's progress stayed the same
             card = JayOverview.stagnationCard
-        }else if false{ //Get here in case user's progress decreased
+        } else if false { //Get here in case user's progress decreased
             card = JayOverview.degradationCard
-        }else{
+        } else {
             card = JayOverview.commonCard
         }
         cardHeader.text = card?.header
         cardDescriptionLabel.text = card?.description
         cardIconImageView.image = UIImage(systemName: card!.imageName)
+        
+        // collection view
+        if calendarView.subviews.count > 0 {
+            let collectionView = calendarView.subviews[0] as! UICollectionView
+            collectionView.reloadData()
+        }
     }
     
     override func viewDidLoad() {
