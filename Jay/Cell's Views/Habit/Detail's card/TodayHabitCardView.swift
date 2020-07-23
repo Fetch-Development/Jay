@@ -71,6 +71,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     var cellsPrinted = 0
     var daysInMonth = 0
     public static var today = Calendar.current.component(.day, from: Date()) + 1
+    var collectionView: UICollectionView!
     
     //MISC
     override func viewWillDisappear(_ animated: Bool) {
@@ -104,7 +105,8 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         var status = JayData.JayHabitState.blank
         
         if indexPath.item - TodayHabitCardView.startingWeekday + 2 > 0 {
-            status = DataProvider.getCalendarStatus(id: cellId!, date: Jay.getDayOfMonth(date: Date(), index: indexPath.item - TodayHabitCardView.startingWeekday + 1))
+            status = DataProvider.getCalendarStatus(id: cellId!, date: Jay.getDayOfMonth(date: Date(), index:
+                indexPath.item - TodayHabitCardView.startingWeekday + 1))
         }
 
         switch status {
@@ -125,8 +127,6 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         imageView.centerInSuperview()
         imageView.widthToSuperview()
         imageView.heightToSuperview()
-        
-        
         return cell
     }
     
@@ -215,40 +215,28 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         cardHeader.text = card?.header
         cardDescriptionLabel.text = card?.description
         cardIconImageView.image = UIImage(systemName: card!.imageName)
-        
-        // collection view
-        if calendarView.subviews.count > 0 {
-            let collectionView = calendarView.subviews[0] as! UICollectionView
-            let day = Calendar.current.component(.day, from: Date())
-
-//            collectionView.reloadData()
-            collectionView.delegate = delegate
-        }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Title
-        mainLabel.text = TodayHabitCardView.derivedData?.name
-        //Loading chart
-        graphView.insertSubview(lineChartView, at: 0)
-        lineChartView.centerInSuperview()
-        lineChartView.width(to: graphView)
-        lineChartView.height(to: graphView)
-        setData()
+    func loadCV(){
         //Loading calendar
-        let collectionView = UICollectionView (
+        if calendarView.subviews.count > 0 {
+            let dcollectionView = calendarView.subviews[0] as! UICollectionView
+            let day = Calendar.current.component(.day, from: Date())
+            //collectionView.reloadData()
+            dcollectionView.removeFromSuperview()
+            dcollectionView.delegate = delegate
+            //dcollectionView.delete((Any).self)
+        }
+        calendarView.layoutSubviews()
+        collectionView = UICollectionView (
             frame: CGRect(x: 0, y: 100, width: self.view.bounds.width, height: 500),
             collectionViewLayout: UICollectionViewFlowLayout()
         )
-        
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.estimatedItemSize = CGSize.zero
         }
-        
         collectionView.dataSource = self
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
-        
         collectionView.alwaysBounceVertical = true
         collectionView.backgroundColor = .white
         collectionView.contentInset = .zero
@@ -262,6 +250,18 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         collectionView.width(to: calendarView)
         collectionView.bounds = calendarView.bounds
         collectionView.heightToSuperview()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Title
+        mainLabel.text = TodayHabitCardView.derivedData?.name
+        //Loading chart
+        graphView.insertSubview(lineChartView, at: 0)
+        lineChartView.centerInSuperview()
+        lineChartView.width(to: graphView)
+        lineChartView.height(to: graphView)
+        setData()
         //Configuring overview container
         let ovrvLayer = overviewView.layer
         ovrvLayer.masksToBounds = false
@@ -274,6 +274,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         ovrvLayer.rasterizationScale = UIScreen.main.scale
         
         //Updating everything
+        loadCV()
         progressUpdate(initial: true)
     }
     
@@ -297,6 +298,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
             successAnimationView.isHidden = true
             //MARK: Move detailsScrollView to front here
         }
+        loadCV()
     }
     
     
