@@ -296,6 +296,7 @@ public class JayData {
         var donePercentage: Int = 0
         var len: Int = 0
         var streak: Int = 0
+        var best: Int = 0
     }
     
     func getStatistics(id: String) -> HabitStatistics {
@@ -303,14 +304,26 @@ public class JayData {
         let items = db.objects(HabitHistory.self).filter("id = '\(id)'").sorted(byKeyPath: "date", ascending: false)
         print(items)
         var target = HabitStatistics()
+        
+        // Streak
         var i = 0
+        if items.count > 0 && items[0].state != "completed" {
+            i = 1
+        }
         while i < items.count && items[i].state == "completed" {
             target.streak += 1
             i += 1
         }
         
+        var cnt = 0
         for item in items {
-            target.completedSum += item.state == "completed" ? 1: 0
+            if item.state == "completed" {
+                target.completedSum += 1
+                cnt += 1
+            } else {
+                cnt = 0
+            }
+            target.best = max(target.best, cnt)
         }
         
         target.len = items.count

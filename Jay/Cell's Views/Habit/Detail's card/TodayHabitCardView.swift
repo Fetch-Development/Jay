@@ -160,6 +160,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         // details
         let details = DataProvider.getStatistics(id: cellId!)
        
+        bestCntLabel.text = "\(details.best)"
         streakLabel.text = "\(details.streak)"
         percentageLabel.text = "\(details.donePercentage)%"
         missesLabel.text = "\(details.len - details.completedSum)"
