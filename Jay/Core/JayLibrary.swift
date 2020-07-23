@@ -12,7 +12,7 @@ import Lottie
 public class Jay {
     
     //Colors
-    public static let successGreenColor = UIColor.init(displayP3Red: 91 / 255, green: 199 / 255, blue: 122 / 255, alpha: 1)
+    public static let successGreenColor = UIColor.init(displayP3Red: 120 / 255, green: 197 / 255, blue: 129 / 255, alpha: 1)
     //Function, called when user presses habit-completing button
     public static func progressAppend(data: inout JayData.HabitLocal, animationView: AnimationView, afterAction: @escaping () -> Void) {
         (data.wanted - data.completed == 1) ? (data.state = .completed) : (data.state = .incompleted)
