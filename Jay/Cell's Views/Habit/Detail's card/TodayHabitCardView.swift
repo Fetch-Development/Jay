@@ -66,7 +66,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     let date = Date()
     public static var derivedData: JayData.HabitLocal?
     public var cellId: String?
-    private var delegate = CustomGriddedCalendarCollectionViewDelegate()
+    private lazy var delegate = CustomGriddedCalendarCollectionViewDelegate()
     public static var startingWeekday = 0
     var cellsPrinted = 0
     var daysInMonth = 0
@@ -93,7 +93,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     
     //Setting number of cells in Calendar CV
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 28
+        return 31 + TodayHabitCardView.startingWeekday - 1
     }
     
     //Setting cells in Calendar CV
@@ -103,7 +103,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         var imageView = UIImageView()
         var status = JayData.JayHabitState.blank
         
-        if indexPath.item - TodayHabitCardView.startingWeekday > 0 {
+        if indexPath.item - TodayHabitCardView.startingWeekday + 2 > 0 {
             status = DataProvider.getCalendarStatus(id: cellId!, date: Jay.getDayOfMonth(date: Date(), index: indexPath.item - TodayHabitCardView.startingWeekday + 1))
         }
 
@@ -111,9 +111,9 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         case .completed:
             imageView = UIImageView(image: UIImage(systemName: "checkmark.circle"))
         case .untouched:
-            imageView = UIImageView(image: UIImage(systemName: "smallcircle.circle"))
-        case .incompleted:
             imageView = UIImageView(image: UIImage(systemName: "xmark.circle"))
+        case .incompleted:
+            imageView = UIImageView(image: UIImage(systemName: "smallcircle.circle"))
         case .unknown:
             imageView = UIImageView(image: UIImage(systemName: "circle"))
         case .blank:
@@ -199,7 +199,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         
         //Card
         var card: JayOverview.Card?
-        if (TodayHabitCardView.derivedData?.createdAt.distance(to: Date()).isLess(than: 200000))!{
+        if (TodayHabitCardView.derivedData?.createdAt.distance(to: Date()).isLess(than: 200000))! {
             card = JayOverview.beginCard
         } else if false { //Get here in case overall completion is over 85%
             card = JayOverview.amazingResultsCard
@@ -219,7 +219,10 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         // collection view
         if calendarView.subviews.count > 0 {
             let collectionView = calendarView.subviews[0] as! UICollectionView
-            collectionView.reloadData()
+            let day = Calendar.current.component(.day, from: Date())
+
+//            collectionView.reloadData()
+            collectionView.delegate = delegate
         }
     }
     

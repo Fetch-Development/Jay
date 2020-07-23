@@ -15,7 +15,7 @@ var reminderList: [EKReminder]!
 var flag = true
 var reminderDict: [String: JayData.Reminder] = [:]
 
-public class JayOverview{
+public class JayOverview {
     public struct Card {
         var imageName: String
         var header: String
@@ -163,9 +163,6 @@ public class JayData {
         return map[state]!
     }
     
-    func getHabitHistory() {
-        // TODO: Make habit history
-    }
     
     func class2struct(habit: Habit) -> Generic {
         let target = HabitLocal(
@@ -354,7 +351,6 @@ public class JayData {
     func getStatistics(id: String) -> HabitStatistics {
         let db = try! Realm()
         let items = db.objects(HabitHistory.self).filter("id = '\(id)'").sorted(byKeyPath: "date", ascending: false)
-        print(items)
         var target = HabitStatistics()
         
         // Streak
