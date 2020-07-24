@@ -52,7 +52,7 @@ class ReminderCollectionViewCell: UICollectionViewCell {
             layer.shadowColor = UIColor.black.cgColor
         case .dark:
             // dark mode detected
-            layer.shadowColor = UIColor.white.cgColor
+            layer.shadowColor = UIColor.lightGray.cgColor
         }
         layer.shadowOpacity = 0.2
         layer.shadowRadius = 8
