@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="gTV-IL-0wX" customClass="ReminderCollectionViewCell" customModule="Jay" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="316" height="59"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="316" height="59"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="imX-AR-3bC">
+                        <rect key="frame" x="20" y="14" width="42" height="31"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QG3-Oz-hcI">
+                        <rect key="frame" x="271" y="17" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="GDv-1s-D8P"/>
+                            <constraint firstAttribute="width" constant="25" id="h3z-C0-Lm0"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                        <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <state key="normal" image="circle" catalog="system">
+                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                        </state>
+                        <connections>
+                            <action selector="statusButtonPressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Azk-mE-g5R"/>
+                        </connections>
+                    </button>
+                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3K5-OH-5Rv" userLabel="CheckedAnimationView" customClass="AnimationView" customModule="Lottie">
+                        <rect key="frame" x="261.5" y="7.5" width="44" height="44"/>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mve-VQ-BjJ" userLabel="CrossedLineView">
+                        <rect key="frame" x="15" y="28.5" width="0.0" height="2"/>
+                        <color key="backgroundColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" id="7LR-bX-Yvv"/>
+                            <constraint firstAttribute="height" constant="2" id="r8K-MV-v4Z"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="3K5-OH-5Rv" firstAttribute="centerY" secondItem="QG3-Oz-hcI" secondAttribute="centerY" id="3XW-Pl-GRW"/>
+                <constraint firstAttribute="bottom" secondItem="imX-AR-3bC" secondAttribute="bottom" constant="14" id="6B4-ZO-wSh"/>
+                <constraint firstItem="3K5-OH-5Rv" firstAttribute="height" secondItem="QG3-Oz-hcI" secondAttribute="height" constant="19" id="Je4-gD-yw9"/>
+                <constraint firstItem="mve-VQ-BjJ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="UFB-9i-FJZ"/>
+                <constraint firstItem="imX-AR-3bC" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="ZjC-mX-DgE"/>
+                <constraint firstAttribute="trailing" secondItem="QG3-Oz-hcI" secondAttribute="trailing" constant="20" id="auU-8Q-wRo"/>
+                <constraint firstItem="3K5-OH-5Rv" firstAttribute="width" secondItem="QG3-Oz-hcI" secondAttribute="width" constant="19" id="gsa-7B-sce"/>
+                <constraint firstItem="3K5-OH-5Rv" firstAttribute="centerX" secondItem="QG3-Oz-hcI" secondAttribute="centerX" id="luO-WI-bei"/>
+                <constraint firstItem="imX-AR-3bC" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="14" id="rz5-tX-Fap"/>
+                <constraint firstItem="mve-VQ-BjJ" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="sAL-FQ-xso"/>
+                <constraint firstItem="QG3-Oz-hcI" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="y2h-81-hwU"/>
+            </constraints>
+            <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="316" height="59"/>
+            <connections>
+                <outlet property="Label" destination="imX-AR-3bC" id="ViL-cK-uMk"/>
+                <outlet property="checkedAnimation" destination="3K5-OH-5Rv" id="eY5-jF-ZW9"/>
+                <outlet property="crossWidthConstraint" destination="7LR-bX-Yvv" id="Rzy-K2-mWj"/>
+                <outlet property="crossedLineView" destination="mve-VQ-BjJ" id="srD-pV-HCo"/>
+                <outlet property="statusButton" destination="QG3-Oz-hcI" id="PjG-9D-ikI"/>
+            </connections>
+            <point key="canvasLocation" x="333.33333333333337" y="170.42410714285714"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="circle" catalog="system" width="128" height="121"/>
+    </resources>
+</document>

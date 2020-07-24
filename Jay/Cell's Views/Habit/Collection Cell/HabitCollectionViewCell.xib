@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="gTV-IL-0wX" customClass="HabitCollectionViewCell" customModule="Jay" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="178" height="180"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="178" height="180"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brush your teeth" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peo-u6-ZPi">
+                        <rect key="frame" x="15" y="15" width="148" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="pwy-JB-HnI"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="-3" translatesAutoresizingMaskIntoConstraints="NO" id="vmr-Co-YSz" userLabel="TodayHabitStatSW">
+                        <rect key="frame" x="46" y="115.5" width="50" height="39.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="TODAY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4x7-qa-Brn">
+                                <rect key="frame" x="9" y="0.0" width="32" height="11"/>
+                                <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="1"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="9"/>
+                                <color key="textColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11o-Tl-zqo">
+                                <rect key="frame" x="0.0" y="8" width="50" height="31.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="IHX-KY-kEb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="J3F-dK-UjV"/>
+                            <constraint firstAttribute="height" constant="39.5" id="aUO-sh-gEr"/>
+                        </constraints>
+                    </stackView>
+                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jsf-Tz-ATq" userLabel="StatusButton">
+                        <rect key="frame" x="103" y="105" width="60" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="8cJ-iN-PR7"/>
+                            <constraint firstAttribute="height" constant="60" id="JAz-ZP-6Ig"/>
+                            <constraint firstAttribute="width" constant="60" id="kPi-6Z-cPH"/>
+                        </constraints>
+                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <inset key="imageEdgeInsets" minX="-4" minY="0.0" maxX="0.0" maxY="-4"/>
+                        <state key="normal" backgroundImage="HabitIcon0.1">
+                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="47" scale="large"/>
+                        </state>
+                        <connections>
+                            <action selector="buttonPressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="qMl-LA-kGr"/>
+                        </connections>
+                    </button>
+                    <view hidden="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="ifj-Ok-FuH" userLabel="SuccessAnimationView" customClass="AnimationView" customModule="Lottie">
+                        <rect key="frame" x="23" y="25" width="220" height="220"/>
+                        <viewLayoutGuide key="safeArea" id="Eh3-2x-u1W"/>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="ifj-Ok-FuH" firstAttribute="centerY" secondItem="Jsf-Tz-ATq" secondAttribute="centerY" id="5Jd-4e-xlF"/>
+                <constraint firstItem="ifj-Ok-FuH" firstAttribute="centerX" secondItem="Jsf-Tz-ATq" secondAttribute="centerX" id="9a8-mz-Zxl"/>
+                <constraint firstItem="Jsf-Tz-ATq" firstAttribute="leading" secondItem="vmr-Co-YSz" secondAttribute="trailing" constant="7" id="DZf-Cc-eN3"/>
+                <constraint firstAttribute="trailing" secondItem="peo-u6-ZPi" secondAttribute="trailing" constant="15" id="Umw-1V-tbc"/>
+                <constraint firstItem="Jsf-Tz-ATq" firstAttribute="centerY" secondItem="vmr-Co-YSz" secondAttribute="centerY" id="YPR-7g-XuC"/>
+                <constraint firstItem="peo-u6-ZPi" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="ZZc-OK-fJF"/>
+                <constraint firstItem="peo-u6-ZPi" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="nWF-CY-kcz"/>
+                <constraint firstItem="ifj-Ok-FuH" firstAttribute="height" secondItem="Jsf-Tz-ATq" secondAttribute="height" constant="160" id="nsZ-1H-Pf1"/>
+                <constraint firstAttribute="trailing" secondItem="Jsf-Tz-ATq" secondAttribute="trailing" constant="15" id="ojF-Rp-AoK"/>
+                <constraint firstAttribute="bottom" secondItem="Jsf-Tz-ATq" secondAttribute="bottom" constant="15" id="rFd-gE-LMd"/>
+                <constraint firstItem="ifj-Ok-FuH" firstAttribute="width" secondItem="Jsf-Tz-ATq" secondAttribute="width" constant="160" id="zXU-1X-n6r"/>
+            </constraints>
+            <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="178" height="180"/>
+            <connections>
+                <outlet property="Label" destination="peo-u6-ZPi" id="hx8-cs-d8j"/>
+                <outlet property="button" destination="Jsf-Tz-ATq" id="Dz1-Yp-lR1"/>
+                <outlet property="progressLabel" destination="11o-Tl-zqo" id="uIP-9n-E9c"/>
+                <outlet property="successAnimationView" destination="ifj-Ok-FuH" id="F3l-gc-icl"/>
+            </connections>
+            <point key="canvasLocation" x="233.33333333333334" y="196.875"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="HabitIcon0.1" width="200" height="201"/>
+    </resources>
+</document>

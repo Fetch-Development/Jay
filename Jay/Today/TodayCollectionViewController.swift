@@ -8,72 +8,107 @@
 
 import UIKit
 
-var datasource: [Any] = CellsProvider.get()
+var DataProvider = JayData()
+var cellID: [String] = DataProvider.getAvaliableCellsIDs()
+var vc: UICollectionViewController? = nil
+
 
 class TodayCollectionViewController: UICollectionViewController {
     
+    private let refreshControl = UIRefreshControl()
     
-    private var Delegate: CollectionViewSelectableItemDelegate = {
+    private lazy var delegate: CollectionViewSelectableItemDelegate = {
         let res = CustomGriddedContentCollectionViewDelegate()
-        res.didSelectItem = { _ in
-            print("Item selected")
+        res.didSelectItem = { index in
+            vc?.navigationController?.present(getDetailsVC(id: cellID[index.item]), animated: true, completion: nil)
         }
         return res
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        vc = self
+        self.collectionView.isUserInteractionEnabled = true
         self.collectionView.register (
             HabitCollectionViewCell.nib,
             forCellWithReuseIdentifier: HabitCollectionViewCell.reuseID
         )
         
         self.collectionView.register (
-                   ReminderCollectionViewCell.nib,
-                   forCellWithReuseIdentifier: ReminderCollectionViewCell.reuseID
-               )
+            ReminderCollectionViewCell.nib,
+            forCellWithReuseIdentifier: ReminderCollectionViewCell.reuseID
+        )
         
-        collectionView.contentInset = .zero
+        // Pull-to-Refresh
+        self.collectionView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        
         updatePresentationStyle()
     }
     
+    @objc private func refresh(_ sender: Any) {
+        cellID = DataProvider.getAvaliableCellsIDs()
+        self.collectionView.reloadData()
+        self.refreshControl.endRefreshing()
+    }
+    
+    
     private func updatePresentationStyle() {
-        collectionView.delegate = Delegate
+        if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.estimatedItemSize = CGSize.zero
+        }
+        collectionView.delegate = delegate
         collectionView.performBatchUpdates({
             collectionView.reloadData()
         }, completion: nil)
     }
     
+    // add button reload seque
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "addButton" else { return }
+        guard let destination = segue.destination as? AddViewController else { return }
+        destination.reload = {
+            self.collectionView.reloadData()
+        }
+    }
 }
 
 // MARK: UICollectionViewDataSource & UICollectionViewDelegate
 extension TodayCollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return datasource.count
+        return cellID.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let data = DataProvider.id2cell(id: cellID[indexPath.item])
         
-        if let item = datasource[indexPath.item] as? Habit {
+        switch data.type {
+        case .habit:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: HabitCollectionViewCell.reuseID,
                 for: indexPath) as? HabitCollectionViewCell
                 else {
                     fatalError("Wrong cell")
             }
-            cell.update(habit: item)
+            cell.contentView.widthToSuperview()
+            cell.contentView.heightToSuperview()
+            cell.contentView.centerInSuperview()
+            cell.draw(caller: cell, id: cellID[indexPath.item], habit: data.obj as! JayData.HabitLocal)
             return cell
-        } else if let item = datasource[indexPath.item] as? Reminder {
+        case .reminder:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: ReminderCollectionViewCell.reuseID,
                 for: indexPath) as? ReminderCollectionViewCell
                 else {
                     fatalError("Wrong cell")
             }
-            cell.update(reminder: item)
+            cell.setData(
+                caller: cell,
+                remId: cellID[indexPath.item],
+                reminder: data.obj as! JayData.Reminder
+            )
             return cell
         }
-    fatalError("Wrong cell")
     }
 }
 
