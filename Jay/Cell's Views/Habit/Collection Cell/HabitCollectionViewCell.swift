@@ -86,6 +86,8 @@ class HabitCollectionViewCell: UICollectionViewCell {
         case .light, .unspecified:
             // light mode detected
             layer.shadowColor = UIColor.black.cgColor
+            layer.borderColor = nil
+            layer.borderWidth = 0
         case .dark:
             // dark mode detected
             layer.shadowColor = UIColor.white.cgColor
