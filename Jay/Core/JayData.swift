@@ -180,12 +180,22 @@ public class JayData {
     
     func getAvaliableCellsIDs() -> [String] {
         // Habit
-        Realm.Configuration.defaultConfiguration.deleteRealmIfMigrationNeeded = true
         let db = try! Realm()
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+
         let habits = db.objects(Habit.self).filter("archived = false")
         var cellIDs = [String]()
         for habit in habits {
             cellIDs.append(habit.id)
+            
+            // reset if needed
+            if db.objects(HabitHistory.self)
+                .filter("id = '\(habit.id)' AND date >= %@ AND date < %@", Jay.removeTimeFrom(date: Date()), Date()).first == nil {
+                var target = self.class2struct(habit: habit).obj as! HabitLocal
+                target.completed = 0
+                target.state = .untouched
+                update(id: habit.id, obj: target)
+            }
         }
         cellIDs.sort()
         
@@ -253,7 +263,6 @@ public class JayData {
     func add(type: DataType, obj: Any) {
         switch type {
         case .habit:
-            print(Realm.Configuration.defaultConfiguration.fileURL!)
             let target = self.habitLocal2Habit(ID: nil, item: obj as! HabitLocal)
             let db = try! Realm()
             try! db.write {
@@ -316,6 +325,10 @@ public class JayData {
             let item = db.objects(Habit.self).filter("id = '\(id)'").first
             try! db.write {
                 db.delete(item!)
+            }
+            let history = db.objects(HabitHistory.self).filter("id = '\(id)'")
+            try! db.write {
+                db.delete(history)
             }
         }
     }

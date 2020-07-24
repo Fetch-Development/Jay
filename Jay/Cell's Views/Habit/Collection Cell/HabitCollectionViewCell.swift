@@ -62,7 +62,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
             button.setBackgroundImage(UIImage(named: "HabitIconDone"), for: .normal)
             progressLabel.textColor = Jay.successGreenColor
         } else {
-            progressLabel.textColor = .black
+            progressLabel.textColor = nil
             button.setBackgroundImage(UIImage(named: "HabitIcon"
             + String(derivedData!.completed) + "."
             + String(derivedData!.wanted)), for: .normal)
@@ -74,7 +74,14 @@ class HabitCollectionViewCell: UICollectionViewCell {
         self.id = id
         self.derivedData = habit
         Label.text = habit.name
-        layer.shadowColor = UIColor.black.cgColor
+        switch traitCollection.userInterfaceStyle {
+        case .light, .unspecified:
+            // light mode detected
+            layer.shadowColor = UIColor.black.cgColor
+        case .dark:
+            // dark mode detected
+            layer.shadowColor = UIColor.white.cgColor
+        }
         layer.shadowOpacity = 0.2
         layer.shadowRadius = 8
         let view = caller.contentView

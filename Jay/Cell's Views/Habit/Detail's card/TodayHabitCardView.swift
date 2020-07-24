@@ -222,11 +222,8 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         //Loading calendar
         if calendarView.subviews.count > 0 {
             let dcollectionView = calendarView.subviews[0] as! UICollectionView
-            let day = Calendar.current.component(.day, from: Date())
-            //collectionView.reloadData()
             dcollectionView.removeFromSuperview()
             dcollectionView.delegate = delegate
-            //dcollectionView.delete((Any).self)
         }
         calendarView.layoutSubviews()
         collectionView = UICollectionView (

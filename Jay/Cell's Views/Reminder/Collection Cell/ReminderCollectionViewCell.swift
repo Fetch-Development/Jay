@@ -46,7 +46,14 @@ class ReminderCollectionViewCell: UICollectionViewCell {
         self.reminder = reminder
         layer.masksToBounds = false
         layer.cornerRadius = 15
-        layer.shadowColor = UIColor.black.cgColor
+        switch traitCollection.userInterfaceStyle {
+        case .light, .unspecified:
+            // light mode detected
+            layer.shadowColor = UIColor.black.cgColor
+        case .dark:
+            // dark mode detected
+            layer.shadowColor = UIColor.white.cgColor
+        }
         layer.shadowOpacity = 0.2
         layer.shadowRadius = 8
         let view = caller.contentView
