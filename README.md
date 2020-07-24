@@ -1,4 +1,4 @@
-# Jay (HSE summer school project)
+# Jay App
 ![title](imgs/title.jpeg)
 ![info](imgs/info.jpeg)
 
