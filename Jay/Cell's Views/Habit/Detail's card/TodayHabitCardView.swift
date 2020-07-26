@@ -204,7 +204,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         cardIconImageView.image = UIImage(systemName: card.imageName)
     }
     
-    func loadCV(){
+    func loadCV() {
         //Loading calendar
         if calendarView.subviews.count > 0 {
             let dcollectionView = calendarView.subviews[0] as! UICollectionView
@@ -212,7 +212,6 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
             //collectionView.reloadData()
             dcollectionView.removeFromSuperview()
             dcollectionView.delegate = delegate
-            //dcollectionView.delete((Any).self)
         }
         calendarView.layoutSubviews()
         collectionView = UICollectionView (
@@ -225,7 +224,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         collectionView.dataSource = self
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
         collectionView.alwaysBounceVertical = true
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .systemBackground
         collectionView.contentInset = .zero
         collectionView.delegate = delegate
         collectionView.performBatchUpdates({

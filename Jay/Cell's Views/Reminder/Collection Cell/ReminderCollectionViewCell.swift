@@ -33,7 +33,14 @@ class ReminderCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = .systemGray6
+        switch traitCollection.userInterfaceStyle {
+        case .light, .unspecified:
+            // light mode detected
+            backgroundColor = .systemGray6
+        case .dark:
+            // dark mode detected
+            backgroundColor = .systemGray4
+        }
         clipsToBounds = true
     }
     
@@ -46,7 +53,18 @@ class ReminderCollectionViewCell: UICollectionViewCell {
         self.reminder = reminder
         layer.masksToBounds = false
         layer.cornerRadius = 15
-        layer.shadowColor = UIColor.black.cgColor
+        switch traitCollection.userInterfaceStyle {
+        case .light, .unspecified:
+            // light mode detected
+            layer.shadowColor = UIColor.black.cgColor
+            layer.borderColor = nil
+            layer.borderWidth = 0
+        case .dark:
+            // dark mode detected
+            layer.shadowColor = UIColor.white.cgColor
+            layer.borderColor = UIColor.gray.cgColor
+            layer.borderWidth = 1
+        }
         layer.shadowOpacity = 0.2
         layer.shadowRadius = 8
         let view = caller.contentView
