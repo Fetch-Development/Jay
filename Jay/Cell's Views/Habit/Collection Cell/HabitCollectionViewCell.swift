@@ -17,6 +17,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
     private var derivedData: JayData.HabitLocal?
     private var id: String?
     
+    @IBOutlet weak var overviewImageView: UIImageView!
     @IBOutlet weak var successAnimationView: AnimationView!
     @IBOutlet weak var Label: UILabel!
     @IBOutlet weak var button: UIButton!
@@ -34,7 +35,15 @@ class HabitCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = .systemGray6
+        switch traitCollection.userInterfaceStyle {
+        case .light, .unspecified:
+            // light mode detected
+            backgroundColor = .systemGray6
+        case .dark:
+            // dark mode detected
+            backgroundColor = .systemGray4
+        }
+        
         layer.cornerRadius = 15
         layer.masksToBounds = false
         layer.shouldRasterize = true
@@ -62,19 +71,33 @@ class HabitCollectionViewCell: UICollectionViewCell {
             button.setBackgroundImage(UIImage(named: "HabitIconDone"), for: .normal)
             progressLabel.textColor = Jay.successGreenColor
         } else {
-            progressLabel.textColor = .black
+            progressLabel.textColor = nil
             button.setBackgroundImage(UIImage(named: "HabitIcon"
             + String(derivedData!.completed) + "."
             + String(derivedData!.wanted)), for: .normal)
             Jay.animateScale(view: successAnimationView)
         }
+        let card = Jay.getCard(from: derivedData!)
+        overviewImageView.image = UIImage(systemName: card.imageName)
     }
     
     func draw(caller: UICollectionViewCell, id: String, habit: JayData.HabitLocal) {
         self.id = id
         self.derivedData = habit
+        self.derivedData?.stats = DataProvider.getStatistics(id: id)
         Label.text = habit.name
-        layer.shadowColor = UIColor.black.cgColor
+        switch traitCollection.userInterfaceStyle {
+        case .light, .unspecified:
+            // light mode detected
+            layer.shadowColor = UIColor.black.cgColor
+            layer.borderColor = nil
+            layer.borderWidth = 0
+        case .dark:
+            // dark mode detected
+            layer.shadowColor = UIColor.white.cgColor
+            layer.borderColor = UIColor.gray.cgColor
+            layer.borderWidth = 1
+        }
         layer.shadowOpacity = 0.2
         layer.shadowRadius = 8
         let view = caller.contentView

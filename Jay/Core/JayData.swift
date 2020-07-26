@@ -15,61 +15,6 @@ var reminderList: [EKReminder]!
 var flag = true
 var reminderDict: [String: JayData.Reminder] = [:]
 
-public class JayOverview {
-    public struct Card {
-        var imageName: String
-        var header: String
-        var description: String
-    }
-/**
- Image names for use:
-    – checkmark.seal.fill (галка)
-    – rosette (медаль)
-    – sparkles (звездочки)
-    – xmark.seal.fill (крестик)
-    – arrow.up.right (прогресс)
-    – arrow.down.right (деградация)
-    – arrow.right (стагнация)
-    – arrow.turn.right.up (начало)
- */
-    public static let beginCard =
-    Card(
-        imageName: "arrow.turn.right.up",
-        header: "Get ready",
-        description: "You've just begun with your habit.\nIt's time you did that!"
-    )
-    public static let commonCard =
-    Card(
-        imageName: "chart.bar.fill",
-        header: "Add more data",
-        description: "More data required for this one"
-    )
-    public static let progressCard =
-    Card(
-        imageName: "arrow.up.right",
-        header: "You're doing great",
-        description: "Your progress has increased over the recent time.\nGreat job!"
-    )
-    public static let stagnationCard =
-    Card(
-        imageName: "arrow.right",
-        header: "You're on the level",
-        description: "Your progress is just the same as it was.\nTime to push the boundaries!"
-    )
-    public static let degradationCard =
-    Card(
-        imageName: "arrow.down.right",
-        header: "You're struggling",
-        description: "Your progress has decreased.\nGet back on track!"
-    )
-    public static let amazingResultsCard =
-    Card(
-        imageName: "sparkles",
-        header: "Amazing!",
-        description: "You're doing great completing your habit!\nTime to celebrate!"
-    )
-}
-
 class HabitHistory: Object {
     @objc dynamic var id = ""
     @objc dynamic var completed = 0
@@ -91,6 +36,60 @@ class Habit: Object {
 }
 
 public class JayData {
+    public class JayOverview {
+        public struct Card {
+            var imageName: String
+            var header: String
+            var description: String
+        }
+    /**
+     Image names for use:
+        – checkmark.seal.fill (галка)
+        – rosette (медаль)
+        – sparkles (звездочки)
+        – xmark.seal.fill (крестик)
+        – arrow.up.right (прогресс)
+        – arrow.down.right (деградация)
+        – arrow.right (стагнация)
+        – arrow.turn.right.up (начало)
+     */
+        public static let beginCard =
+        Card(
+            imageName: "arrow.turn.right.up",
+            header: "Get ready",
+            description: "You've just begun with your habit.\nIt's time you did that!"
+        )
+        public static let commonCard =
+        Card(
+            imageName: "chart.bar.fill",
+            header: "Add more data",
+            description: "More data required for this one"
+        )
+        public static let progressCard =
+        Card(
+            imageName: "arrow.up.right",
+            header: "You're doing great",
+            description: "Your progress has increased over the recent time.\nGreat job!"
+        )
+        public static let stagnationCard =
+        Card(
+            imageName: "arrow.right",
+            header: "You're on the level",
+            description: "Your progress is just the same as it was.\nTime to push the boundaries!"
+        )
+        public static let degradationCard =
+        Card(
+            imageName: "arrow.down.right",
+            header: "You're struggling",
+            description: "Your progress has decreased.\nGet back on track!"
+        )
+        public static let amazingResultsCard =
+        Card(
+            imageName: "sparkles",
+            header: "Amazing!",
+            description: "You're doing great completing your habit!\nTime to celebrate!"
+        )
+    }
     // MARK: - Habit
     // This is the main Habit data structure
     public struct HabitLocal {
@@ -101,6 +100,7 @@ public class JayData {
         var wanted: Int
         var state: JayHabitState
         var archived: Bool
+        var stats: HabitStatistics?
     }
     
     public struct JayHabitHistoricalValue {
@@ -180,12 +180,22 @@ public class JayData {
     
     func getAvaliableCellsIDs() -> [String] {
         // Habit
-        Realm.Configuration.defaultConfiguration.deleteRealmIfMigrationNeeded = true
         let db = try! Realm()
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+
         let habits = db.objects(Habit.self).filter("archived = false")
         var cellIDs = [String]()
         for habit in habits {
             cellIDs.append(habit.id)
+            
+            // reset if needed
+            if db.objects(HabitHistory.self)
+                .filter("id = '\(habit.id)' AND date >= %@ AND date < %@", Jay.removeTimeFrom(date: Date()), Date()).first == nil {
+                var target = self.class2struct(habit: habit).obj as! HabitLocal
+                target.completed = 0
+                target.state = .untouched
+                update(id: habit.id, obj: target)
+            }
         }
         cellIDs.sort()
         
@@ -253,7 +263,6 @@ public class JayData {
     func add(type: DataType, obj: Any) {
         switch type {
         case .habit:
-            print(Realm.Configuration.defaultConfiguration.fileURL!)
             let target = self.habitLocal2Habit(ID: nil, item: obj as! HabitLocal)
             let db = try! Realm()
             try! db.write {
@@ -278,7 +287,6 @@ public class JayData {
     
     func update(id: String, obj: Any) {
         if obj is HabitLocal {
-            
             let db = try! Realm()
             
             // Habit DB
@@ -316,6 +324,10 @@ public class JayData {
             let item = db.objects(Habit.self).filter("id = '\(id)'").first
             try! db.write {
                 db.delete(item!)
+            }
+            let history = db.objects(HabitHistory.self).filter("id = '\(id)'")
+            try! db.write {
+                db.delete(history)
             }
         }
     }

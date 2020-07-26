@@ -69,12 +69,22 @@
                         <rect key="frame" x="23" y="25" width="220" height="220"/>
                         <viewLayoutGuide key="safeArea" id="Eh3-2x-u1W"/>
                     </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wGX-qc-3jI" userLabel="OverviewImageView">
+                        <rect key="frame" x="109" y="48" width="48" height="48"/>
+                        <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="48" id="Ecg-Kt-UMB"/>
+                            <constraint firstAttribute="height" constant="48" id="gwR-ze-5kl"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstItem="ifj-Ok-FuH" firstAttribute="centerY" secondItem="Jsf-Tz-ATq" secondAttribute="centerY" id="5Jd-4e-xlF"/>
                 <constraint firstItem="ifj-Ok-FuH" firstAttribute="centerX" secondItem="Jsf-Tz-ATq" secondAttribute="centerX" id="9a8-mz-Zxl"/>
                 <constraint firstItem="Jsf-Tz-ATq" firstAttribute="leading" secondItem="vmr-Co-YSz" secondAttribute="trailing" constant="7" id="DZf-Cc-eN3"/>
+                <constraint firstItem="wGX-qc-3jI" firstAttribute="centerX" secondItem="Jsf-Tz-ATq" secondAttribute="centerX" id="Mki-RV-lQe"/>
+                <constraint firstItem="Jsf-Tz-ATq" firstAttribute="top" secondItem="wGX-qc-3jI" secondAttribute="bottom" constant="9" id="RDg-oy-lqg"/>
                 <constraint firstAttribute="trailing" secondItem="peo-u6-ZPi" secondAttribute="trailing" constant="15" id="Umw-1V-tbc"/>
                 <constraint firstItem="Jsf-Tz-ATq" firstAttribute="centerY" secondItem="vmr-Co-YSz" secondAttribute="centerY" id="YPR-7g-XuC"/>
                 <constraint firstItem="peo-u6-ZPi" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="ZZc-OK-fJF"/>
@@ -90,6 +100,7 @@
             <connections>
                 <outlet property="Label" destination="peo-u6-ZPi" id="hx8-cs-d8j"/>
                 <outlet property="button" destination="Jsf-Tz-ATq" id="Dz1-Yp-lR1"/>
+                <outlet property="overviewImageView" destination="wGX-qc-3jI" id="ZGY-ty-hBH"/>
                 <outlet property="progressLabel" destination="11o-Tl-zqo" id="uIP-9n-E9c"/>
                 <outlet property="successAnimationView" destination="ifj-Ok-FuH" id="F3l-gc-icl"/>
             </connections>
