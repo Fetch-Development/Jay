@@ -24,6 +24,22 @@ public class Jay {
             after: { afterAction() }
         )
     }
+    //Returning card instance
+    public static func getCard(from: JayData.HabitLocal) -> JayData.JayOverview.Card{
+        if (from.createdAt.distance(to: Date()).isLess(than: 200000)) {
+            return JayData.JayOverview.beginCard
+        } else if false { //Get here in case overall completion is over 85%
+            return JayData.JayOverview.amazingResultsCard
+        } else if false { //Get here in case user's progress increased
+            return JayData.JayOverview.progressCard
+        } else if false { //Get here in case user's progress stayed the same
+            return JayData.JayOverview.stagnationCard
+        } else if false { //Get here in case user's progress decreased
+            return JayData.JayOverview.degradationCard
+        } else {
+            return JayData.JayOverview.commonCard
+        }
+    }
     //Sending haptic feedback
     public static func sendSuccessHapticFeedback(){
         let generator = UINotificationFeedbackGenerator()

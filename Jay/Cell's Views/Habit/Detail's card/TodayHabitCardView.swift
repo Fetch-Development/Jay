@@ -86,8 +86,6 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
             if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
                 setData()
             }
-        } else {
-            // Fallback on earlier versions
         }
     }
     
@@ -196,33 +194,21 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         percentageLabel.text = "\(details.donePercentage)%"
         missesLabel.text = "\(details.len - details.completedSum)"
         successLabel.text = "\(details.completedSum)"
-        dayCountLabel.text = "Over \(details.len) days"
+        let len = details.len
+        dayCountLabel.text = "Over \(len) " + (len > 1 ? "days" : "day")
         
         //Card
-        var card: JayOverview.Card?
-        if (TodayHabitCardView.derivedData?.createdAt.distance(to: Date()).isLess(than: 200000))! {
-            card = JayOverview.beginCard
-        } else if false { //Get here in case overall completion is over 85%
-            card = JayOverview.amazingResultsCard
-        } else if false { //Get here in case user's progress increased
-            card = JayOverview.progressCard
-        } else if false { //Get here in case user's progress stayed the same
-            card = JayOverview.stagnationCard
-        } else if false { //Get here in case user's progress decreased
-            card = JayOverview.degradationCard
-        } else {
-            card = JayOverview.commonCard
-        }
-        cardHeader.text = card?.header
-        cardDescriptionLabel.text = card?.description
-        cardIconImageView.image = UIImage(systemName: card!.imageName)
+        let card = Jay.getCard(from: TodayHabitCardView.derivedData!)
+        cardHeader.text = card.header
+        cardDescriptionLabel.text = card.description
+        cardIconImageView.image = UIImage(systemName: card.imageName)
     }
     
     func loadCV(){
         //Loading calendar
         if calendarView.subviews.count > 0 {
             let dcollectionView = calendarView.subviews[0] as! UICollectionView
-            let day = Calendar.current.component(.day, from: Date())
+            //let day = Calendar.current.component(.day, from: Date())
             //collectionView.reloadData()
             dcollectionView.removeFromSuperview()
             dcollectionView.delegate = delegate

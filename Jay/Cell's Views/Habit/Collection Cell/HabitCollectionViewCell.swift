@@ -17,6 +17,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
     private var derivedData: JayData.HabitLocal?
     private var id: String?
     
+    @IBOutlet weak var overviewImageView: UIImageView!
     @IBOutlet weak var successAnimationView: AnimationView!
     @IBOutlet weak var Label: UILabel!
     @IBOutlet weak var button: UIButton!
@@ -68,11 +69,14 @@ class HabitCollectionViewCell: UICollectionViewCell {
             + String(derivedData!.wanted)), for: .normal)
             Jay.animateScale(view: successAnimationView)
         }
+        let card = Jay.getCard(from: derivedData!)
+        overviewImageView.image = UIImage(systemName: card.imageName)
     }
     
     func draw(caller: UICollectionViewCell, id: String, habit: JayData.HabitLocal) {
         self.id = id
         self.derivedData = habit
+        self.derivedData?.stats = DataProvider.getStatistics(id: id)
         Label.text = habit.name
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.2
