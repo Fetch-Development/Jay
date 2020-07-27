@@ -28,7 +28,7 @@ public class Jay {
     public static func getCard(from: JayData.HabitLocal) -> JayData.JayOverview.Card{
         if (from.createdAt.distance(to: Date()).isLess(than: 200000)) {
             return JayData.JayOverview.beginCard
-        } else if false { //Get here in case overall completion is over 85%
+        } else if from.stats!.donePercentage > 85 { //Get here in case overall completion is over 85%
             return JayData.JayOverview.amazingResultsCard
         } else if false { //Get here in case user's progress increased
             return JayData.JayOverview.progressCard

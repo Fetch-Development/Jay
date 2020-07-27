@@ -13,6 +13,7 @@ class AddViewController: UIViewController {
     @IBOutlet weak var SaveButton: UINavigationItem!
     @IBOutlet weak var CloseButton: UIBarButtonItem!
     
+    @IBOutlet weak var presetsStackView: UIStackView!
     @IBOutlet weak var NameField: UITextField!
     @IBOutlet weak var wantedSelector: UISegmentedControl!
     
@@ -20,6 +21,17 @@ class AddViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        for view in presetsStackView.subviews{
+            let ovrvLayer = view.layer
+            ovrvLayer.masksToBounds = false
+            ovrvLayer.cornerRadius = 15
+            ovrvLayer.shadowColor = UIColor.black.cgColor
+            ovrvLayer.shadowOpacity = 0.2
+            ovrvLayer.shadowRadius = 8
+            ovrvLayer.shadowPath = UIBezierPath(roundedRect: CGRect(x: view.bounds.minX, y: view.bounds.minY, width: view.frame.width, height: view.bounds.height + 5), cornerRadius: 10).cgPath
+            ovrvLayer.shouldRasterize = true
+            ovrvLayer.rasterizationScale = UIScreen.main.scale
+        }
     }
     
     @IBAction func save(_ sender: Any) {

@@ -131,6 +131,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
     func update(idCell: String, data: JayData.HabitLocal) {
         cellId = idCell
         TodayHabitCardView.derivedData = data
+        TodayHabitCardView.derivedData?.stats = DataProvider.getStatistics(id: cellId!)
         let month = Calendar.current.component(.month, from: Date())
         let year = Calendar.current.component(.year, from: Date())
         TodayHabitCardView.startingWeekday = Calendar.current.component(.weekday, from: Calendar.current.date(from: DateComponents(year: year, month: month, day: 0))!)
@@ -188,7 +189,7 @@ class TodayHabitCardView: UIViewController, ChartViewDelegate, UICollectionViewD
         lineChartView.data = data
         
         //Details
-        let details = DataProvider.getStatistics(id: cellId!)
+        let details = TodayHabitCardView.derivedData!.stats!
         bestCntLabel.text = "\(details.best)"
         streakLabel.text = "\(details.streak)"
         percentageLabel.text = "\(details.donePercentage)%"
